@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
-import AOS from 'aos'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -47,12 +46,6 @@ function App() {
       '(prefers-reduced-motion: reduce)',
     ).matches
 
-    AOS.init({
-      duration: prefersReducedMotion ? 0 : 700,
-      once: true,
-      disable: prefersReducedMotion,
-    })
-
     if (prefersReducedMotion) return
 
     const lenis = new Lenis({
@@ -82,7 +75,6 @@ function App() {
     } else {
       window.scrollTo(0, 0)
     }
-    AOS.refresh()
     ScrollTrigger.refresh()
   }, [pathname])
 
