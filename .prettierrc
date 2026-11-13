@@ -1,0 +1,7 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "tailwindStylesheet": "./src/index.css",
+  "tailwindFunctions": ["cn"],
+  "plugins": ["prettier-plugin-tailwindcss"]
+}
