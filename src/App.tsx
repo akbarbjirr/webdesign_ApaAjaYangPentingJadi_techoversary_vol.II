@@ -27,7 +27,7 @@ const QuizPage = lazy(() =>
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 function App() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
@@ -39,6 +39,12 @@ function App() {
 
     const lenis = new Lenis({
       autoRaf: false,
+      lerp: 0.09,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      anchors: true,
+      stopInertiaOnNavigate: true,
+      respectReducedMotion: true,
     })
     lenisRef.current = lenis
 
@@ -59,13 +65,28 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (lenisRef.current) {
+    if (hash) {
+      const target = document.getElementById(hash.slice(1))
+      if (target) {
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(target)
+        } else {
+          target.scrollIntoView()
+        }
+      }
+    } else if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true })
     } else {
       window.scrollTo(0, 0)
     }
-    ScrollTrigger.refresh()
-  }, [pathname])
+
+    const rafId = requestAnimationFrame(() => {
+      lenisRef.current?.resize()
+      ScrollTrigger.refresh()
+    })
+
+    return () => cancelAnimationFrame(rafId)
+  }, [pathname, hash])
 
   const isQuizRoute = pathname === '/quiz'
 

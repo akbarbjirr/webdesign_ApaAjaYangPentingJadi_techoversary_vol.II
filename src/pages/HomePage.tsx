@@ -1,8 +1,6 @@
-import { useRef } from 'react'
 import { Link } from 'react-router'
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
 import { ArrowRight, PawPrint, Trash, Tree } from '@phosphor-icons/react'
+import { AnimatedContent } from '@/components/AnimatedContent'
 
 interface PillActionLinkProps {
   to: string
@@ -13,11 +11,11 @@ function PillActionLink({ to, label }: PillActionLinkProps) {
   return (
     <Link
       to={to}
-      className="inline-flex min-h-11 items-center gap-3 rounded-full bg-neutral-950 py-1.5 pr-1.5 pl-5 text-xs font-medium text-white transition-all hover:bg-neutral-800 active:scale-[0.99] sm:text-sm"
+      className="inline-flex min-h-12 items-center gap-6 rounded-full bg-neutral-950 py-2 pr-2 pl-8 text-sm font-medium text-white transition-all hover:bg-neutral-800 active:scale-[0.99] sm:text-base"
     >
       <span>{label}</span>
-      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-neutral-950">
-        <ArrowRight size={15} weight="bold" aria-hidden="true" />
+      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-950 sm:h-9 sm:w-9">
+        <ArrowRight size={16} weight="bold" aria-hidden="true" />
       </span>
     </Link>
   )
@@ -109,53 +107,49 @@ const WASTE_IMPACTS = [
 ] as const
 
 export function HomePage() {
-  const mainRef = useRef<HTMLElement>(null)
-
-  useGSAP(
-    () => {
-      const prefersReducedMotion = window.matchMedia(
-        '(prefers-reduced-motion: reduce)',
-      ).matches
-      if (prefersReducedMotion) return
-
-      gsap.fromTo(
-        '.hero-reveal',
-        { y: 18, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.65,
-          stagger: 0.1,
-          ease: 'power2.out',
-        },
-      )
-    },
-    { scope: mainRef },
-  )
-
   return (
-    <main ref={mainRef} id="konten-utama" className="min-h-screen bg-white">
-      <section className="pt-12 pb-16 sm:pt-16 sm:pb-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="hero-reveal text-3xl leading-[1.15] font-bold tracking-tight text-neutral-950 sm:text-5xl lg:text-[3.5rem]">
-              Jauh di Dalam Hutan,
-              <br />
-              Menjaganya Tetap Hidup.
-            </h1>
+    <main id="konten-utama" className="min-h-screen bg-white">
+      <section className="pt-16 pb-16 sm:pt-24 sm:pb-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[68rem] text-center">
+            <AnimatedContent distance={28} duration={0.7} threshold={0.02}>
+              <h1 className="text-3xl leading-[1.15] font-bold tracking-tight text-neutral-950 sm:text-5xl lg:text-[4rem]">
+                Jauh di Dalam Hutan, Menjaganya Tetap Hidup.
+              </h1>
+            </AnimatedContent>
 
-            <p className="hero-reveal mx-auto mt-4 max-w-xl text-sm leading-relaxed text-neutral-600 sm:text-base">
-              Kenali hutan Indonesia, satwa langka yang bergantung padanya, dan
-              langkah kecil yang dapat kita lakukan untuk menjaga alam tetap
-              hidup.
-            </p>
+            <AnimatedContent
+              distance={28}
+              duration={0.7}
+              delay={0.08}
+              threshold={0.02}
+            >
+              <p className="mx-auto mt-5 max-w-[58rem] text-sm leading-relaxed text-neutral-600 sm:mt-6 sm:text-lg">
+                Kenali hutan Indonesia, satwa langka yang bergantung padanya,
+                dan langkah kecil yang dapat kita lakukan untuk menjaga alam
+                tetap hidup.
+              </p>
+            </AnimatedContent>
 
-            <div className="hero-reveal mt-7 flex justify-center">
+            <AnimatedContent
+              distance={24}
+              duration={0.65}
+              delay={0.16}
+              threshold={0.02}
+              className="mt-8 flex justify-center sm:mt-10"
+            >
               <PillActionLink to="/quiz" label="Yuk Quiz" />
-            </div>
+            </AnimatedContent>
           </div>
 
-          <div className="hero-reveal mt-12 overflow-hidden rounded-2xl bg-neutral-100 sm:mt-14 sm:rounded-[24px]">
+          <AnimatedContent
+            distance={48}
+            scale={0.97}
+            duration={0.85}
+            delay={0.2}
+            threshold={0.02}
+            className="mt-14 overflow-hidden rounded-2xl bg-neutral-100 sm:mt-20 sm:rounded-[24px]"
+          >
             <img
               src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/Group_18"
               alt="Harimau Sumatera di balik pagar kandang dengan dedaunan hijau di sekitarnya"
@@ -164,65 +158,85 @@ export function HomePage() {
               fetchPriority="high"
               className="aspect-[16/9] h-auto w-full object-cover sm:aspect-[16/8.5]"
             />
-          </div>
+          </AnimatedContent>
         </div>
       </section>
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedContent
+            distance={40}
+            duration={0.75}
+            threshold={0.12}
+            className="max-w-3xl"
+          >
             <h2 className="text-2xl font-bold tracking-tight text-neutral-950 sm:text-4xl">
               Bumi Sedang Menghadapi Ancaman.
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-600 sm:text-base">
+            <p className="mt-3 text-base leading-relaxed text-neutral-600 sm:text-lg">
               Hutan yang terus berkurang, satwa yang kehilangan habitat, dan
               sampah yang mencemari lingkungan menjadi masalah yang membutuhkan
               perhatian kita.
             </p>
-          </div>
+          </AnimatedContent>
 
           <div className="mt-12 grid grid-cols-1 gap-10 sm:mt-14 md:grid-cols-3 lg:gap-14">
-            {THREAT_STATS.map((stat) => {
+            {THREAT_STATS.map((stat, index) => {
               const Icon = stat.icon
               return (
-                <div key={stat.id}>
+                <AnimatedContent
+                  key={stat.id}
+                  distance={44}
+                  duration={0.7}
+                  delay={index * 0.1}
+                  threshold={0.12}
+                >
                   <Icon
                     size={44}
                     weight="regular"
                     aria-hidden="true"
                     className="text-green-600"
                   />
-                  <h3 className="mt-5 text-xs font-bold text-neutral-950 sm:text-sm">
+                  <h3 className="mt-5 text-sm font-bold text-neutral-950 sm:text-base">
                     {stat.label}
                   </h3>
-                  <p className="mt-2 text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl">
+                  <p className="mt-2 text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl lg:text-[2.5rem]">
                     {stat.value}
                   </p>
-                  <p className="mt-1 text-xs font-semibold text-neutral-700">
+                  <p className="mt-1 text-xs font-semibold text-neutral-700 sm:text-sm">
                     {stat.unit}
                   </p>
-                  <p className="mt-3 max-w-xs text-xs leading-relaxed text-neutral-600 sm:text-sm">
+                  <p className="mt-3 max-w-sm text-sm leading-relaxed text-neutral-600 sm:text-base">
                     {stat.description}
                   </p>
-                </div>
+                </AnimatedContent>
               )
             })}
           </div>
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl leading-[1.2] font-bold tracking-tight text-neutral-950 sm:text-4xl">
-            Menjaga Hutan,
-            <br />
-            Melindungi Satwa,
-            <br />
-            Memulai Perubahan.
-          </h2>
+      <section className="overflow-x-clip py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedContent distance={40} duration={0.75} threshold={0.12}>
+            <h2 className="text-2xl leading-[1.2] font-bold tracking-tight text-neutral-950 sm:text-4xl">
+              Menjaga Hutan,
+              <br />
+              Melindungi Satwa,
+              <br />
+              Memulai Perubahan.
+            </h2>
+          </AnimatedContent>
 
           <div className="mt-10 grid grid-cols-1 items-start gap-8 sm:mt-12 md:grid-cols-12 lg:gap-12">
-            <div className="overflow-hidden rounded-2xl bg-neutral-100 md:col-span-5 lg:col-span-4">
+            <AnimatedContent
+              direction="horizontal"
+              reverse
+              distance={48}
+              duration={0.8}
+              threshold={0.12}
+              className="overflow-hidden rounded-2xl bg-neutral-100 md:col-span-5 lg:col-span-4"
+            >
               <img
                 src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto/q_auto/Rectangle_90.png"
                 alt="Tajuk pepohonan hutan hijau menjulang ke arah langit berawan"
@@ -231,16 +245,23 @@ export function HomePage() {
                 loading="lazy"
                 className="aspect-[3/4] h-auto w-full object-cover"
               />
-            </div>
+            </AnimatedContent>
 
-            <div className="space-y-5 md:col-span-7 lg:col-span-6 lg:col-start-7">
-              <p className="text-sm leading-relaxed text-neutral-700 sm:text-base">
+            <AnimatedContent
+              direction="horizontal"
+              distance={48}
+              duration={0.8}
+              delay={0.1}
+              threshold={0.12}
+              className="space-y-5 md:col-span-7 lg:col-span-6 lg:col-start-7"
+            >
+              <p className="text-base leading-relaxed text-neutral-700 sm:text-lg">
                 Hutan memiliki peran penting dalam menjaga keseimbangan
                 ekosistem. Di dalamnya terdapat berbagai spesies yang saling
                 bergantung, mulai dari tumbuhan hingga satwa liar.
               </p>
 
-              <p className="text-sm leading-relaxed text-neutral-700 sm:text-base">
+              <p className="text-base leading-relaxed text-neutral-700 sm:text-lg">
                 Ketika hutan mengalami kerusakan, kehidupan di dalamnya ikut
                 terancam. Hilangnya habitat dapat membuat satwa kesulitan
                 mencari makan, berkembang biak, dan mempertahankan kelangsungan
@@ -250,30 +271,40 @@ export function HomePage() {
               <div className="pt-2">
                 <PillActionLink to="/hutan" label="Jelajahi Hutan" />
               </div>
-            </div>
+            </AnimatedContent>
           </div>
         </div>
       </section>
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-lg">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedContent
+            distance={40}
+            duration={0.75}
+            threshold={0.12}
+            className="max-w-3xl"
+          >
             <h2 className="text-2xl leading-[1.2] font-bold tracking-tight text-neutral-950 sm:text-4xl">
               Mereka Juga Berhak Hidup
               <br />
               di Alam
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-600 sm:text-base">
+            <p className="mt-3 text-base leading-relaxed text-neutral-600 sm:text-lg">
               Hutan merupakan rumah bagi berbagai satwa liar. Namun, kerusakan
               habitat, perburuan, dan perdagangan ilegal membuat banyak satwa
               kehilangan tempat berlindung dan terancam keberadaannya.
             </p>
-          </div>
+          </AnimatedContent>
 
           <div className="mt-10 grid grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-3 lg:gap-8">
-            {WILDLIFE_CARDS.map((card) => (
-              <div
+            {WILDLIFE_CARDS.map((card, index) => (
+              <AnimatedContent
                 key={card.id}
+                distance={50}
+                scale={0.96}
+                duration={0.75}
+                delay={index * 0.1}
+                threshold={0.1}
                 className="relative overflow-hidden rounded-2xl bg-neutral-900"
               >
                 <img
@@ -289,21 +320,26 @@ export function HomePage() {
                     {card.name}
                   </h3>
                 </div>
-              </div>
+              </AnimatedContent>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-lg">
+      <section className="overflow-x-clip py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedContent
+            distance={40}
+            duration={0.75}
+            threshold={0.12}
+            className="max-w-3xl"
+          >
             <h2 className="text-2xl leading-[1.2] font-bold tracking-tight text-neutral-950 sm:text-4xl">
               Sampah yang Kita Buang, Alam
               <br />
               yang Menanggung
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-600 sm:text-base">
+            <p className="mt-3 text-base leading-relaxed text-neutral-600 sm:text-lg">
               Sampah yang tidak dikelola dengan baik dapat mencemari tanah,
               sungai, dan laut. Plastik yang berakhir di alam juga dapat
               membahayakan satwa dan merusak ekosistem.
@@ -311,27 +347,39 @@ export function HomePage() {
             <div className="mt-6">
               <PillActionLink to="/hutan" label="Jelajahi Sampah" />
             </div>
-          </div>
+          </AnimatedContent>
 
-          <div className="mt-12 space-y-6 sm:mt-16">
+          <div className="mt-12 space-y-8 sm:mt-16 sm:space-y-10">
             {WASTE_IMPACTS.map((item) => (
               <div
                 key={item.id}
                 className="grid grid-cols-1 items-center gap-6 md:grid-cols-12 lg:gap-12"
               >
-                <div className="md:col-span-6 lg:col-span-5">
-                  <span className="block text-xl font-bold text-neutral-500 sm:text-2xl">
+                <AnimatedContent
+                  distance={36}
+                  duration={0.7}
+                  threshold={0.14}
+                  className="md:col-span-6 lg:col-span-5"
+                >
+                  <span className="block text-3xl font-bold text-neutral-500 sm:text-4xl">
                     {item.number}
                   </span>
-                  <h3 className="mt-1.5 text-lg font-bold text-neutral-950 sm:text-xl">
+                  <h3 className="mt-2 text-2xl font-bold tracking-tight text-neutral-950 sm:text-[1.75rem] lg:text-[2rem]">
                     {item.title}
                   </h3>
-                  <p className="mt-2 max-w-md text-xs leading-relaxed text-neutral-600 sm:text-sm">
+                  <p className="mt-3 max-w-lg text-base leading-relaxed text-neutral-600 sm:text-lg">
                     {item.description}
                   </p>
-                </div>
+                </AnimatedContent>
 
-                <div className="overflow-hidden rounded-2xl bg-neutral-100 md:col-span-6 lg:col-span-5 lg:col-start-8">
+                <AnimatedContent
+                  distance={44}
+                  scale={0.97}
+                  duration={0.8}
+                  delay={0.1}
+                  threshold={0.14}
+                  className="overflow-hidden rounded-2xl bg-neutral-100 md:col-span-6 lg:col-span-6 lg:col-start-7"
+                >
                   <img
                     src={item.image}
                     alt={item.alt}
@@ -340,7 +388,7 @@ export function HomePage() {
                     loading="lazy"
                     className="aspect-[16/8.5] h-auto w-full object-cover"
                   />
-                </div>
+                </AnimatedContent>
               </div>
             ))}
           </div>
@@ -348,19 +396,30 @@ export function HomePage() {
       </section>
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-md text-center">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedContent
+            distance={36}
+            duration={0.75}
+            threshold={0.12}
+            className="mx-auto max-w-2xl text-center"
+          >
             <h2 className="text-2xl font-bold tracking-tight text-neutral-950 sm:text-4xl">
               Satu Alam, Satu Kehidupan.
             </h2>
-            <p className="mt-3 text-xs leading-relaxed text-neutral-600 sm:text-sm">
+            <p className="mt-3 text-sm leading-relaxed text-neutral-600 sm:text-base">
               Hutan, satwa, dan lingkungan memiliki hubungan yang erat.
               Kerusakan pada satu bagian dapat memengaruhi kehidupan lainnya.
             </p>
-          </div>
+          </AnimatedContent>
 
           <div className="mt-12 grid grid-cols-1 items-start gap-8 sm:mt-16 md:grid-cols-12 lg:gap-10">
-            <div className="md:col-span-5">
+            <AnimatedContent
+              distance={44}
+              scale={0.97}
+              duration={0.75}
+              threshold={0.12}
+              className="md:col-span-5"
+            >
               <div className="overflow-hidden rounded-2xl bg-neutral-100">
                 <img
                   src="https://res.cloudinary.com/hd53eglp/image/upload/v1794748923/Rectangle_105.png"
@@ -372,22 +431,28 @@ export function HomePage() {
                 />
               </div>
               <div className="mt-3">
-                <h3 className="text-sm font-bold text-neutral-950 sm:text-base">
+                <h3 className="text-base font-bold text-neutral-950 sm:text-lg">
                   Satwa Terancam
                 </h3>
-                <p className="mt-0.5 text-xs text-neutral-600">
+                <p className="mt-0.5 text-sm text-neutral-600 sm:text-base">
                   Kehilangan ruang hidup
                 </p>
               </div>
-            </div>
+            </AnimatedContent>
 
-            <div className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 md:col-span-6 md:col-start-7">
-              <div>
+            <div className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 md:col-span-7 md:col-start-6">
+              <AnimatedContent
+                distance={44}
+                scale={0.97}
+                duration={0.75}
+                delay={0.1}
+                threshold={0.12}
+              >
                 <div>
-                  <h3 className="text-sm font-bold text-neutral-950 sm:text-base">
+                  <h3 className="text-base font-bold text-neutral-950 sm:text-lg">
                     Alam Tercemar
                   </h3>
-                  <p className="mt-0.5 text-xs text-neutral-600">
+                  <p className="mt-0.5 text-sm text-neutral-600 sm:text-base">
                     Ekosistem terganggu
                   </p>
                 </div>
@@ -401,9 +466,15 @@ export function HomePage() {
                     className="aspect-[5/6] h-auto w-full object-cover"
                   />
                 </div>
-              </div>
+              </AnimatedContent>
 
-              <div>
+              <AnimatedContent
+                distance={44}
+                scale={0.97}
+                duration={0.75}
+                delay={0.2}
+                threshold={0.12}
+              >
                 <div className="overflow-hidden rounded-2xl bg-neutral-100">
                   <img
                     src="https://res.cloudinary.com/hd53eglp/image/upload/v1794748941/Rectangle_107.png"
@@ -415,22 +486,27 @@ export function HomePage() {
                   />
                 </div>
                 <div className="mt-3">
-                  <h3 className="text-sm font-bold text-neutral-950 sm:text-base">
+                  <h3 className="text-base font-bold text-neutral-950 sm:text-lg">
                     Hutan Rusak
                   </h3>
-                  <p className="mt-0.5 text-xs text-neutral-600">
+                  <p className="mt-0.5 text-sm text-neutral-600 sm:text-base">
                     Habitat alam berkurang.
                   </p>
                 </div>
-              </div>
+              </AnimatedContent>
             </div>
           </div>
         </div>
       </section>
 
       <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-xs font-medium text-neutral-700 sm:text-sm">
+        <AnimatedContent
+          distance={40}
+          duration={0.8}
+          threshold={0.15}
+          className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8"
+        >
+          <p className="text-sm font-medium text-neutral-700 sm:text-base">
             Menjaga Bumi Dimulai dari Kita.
           </p>
           <h2 className="mt-3 text-2xl leading-[1.22] font-bold tracking-tight text-neutral-950 sm:text-4xl">
@@ -441,7 +517,7 @@ export function HomePage() {
           <div className="mt-8 flex justify-center">
             <PillActionLink to="/hutan" label="Mulai Dari Sini" />
           </div>
-        </div>
+        </AnimatedContent>
       </section>
     </main>
   )
