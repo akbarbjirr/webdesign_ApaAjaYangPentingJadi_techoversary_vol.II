@@ -11,7 +11,7 @@ const FOOTER_NAV_LINKS = [
 export function Footer() {
   return (
     <footer className="bg-white text-neutral-950">
-      <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-t-[28px] border border-b-0 border-neutral-300 bg-white px-6 pt-10 pb-0 sm:px-12 sm:pt-12">
           <div className="relative z-10 flex flex-col justify-between gap-8 sm:flex-row sm:items-start">
             <p className="text-base font-bold tracking-tight text-neutral-950 sm:text-lg">
