@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -14,8 +14,14 @@ const AboutPage = lazy(() =>
 const EdukasiPage = lazy(() =>
   import('@/pages/EdukasiPage').then((m) => ({ default: m.EdukasiPage })),
 )
+const SatwaPage = lazy(() =>
+  import('@/pages/SatwaPage').then((m) => ({ default: m.SatwaPage })),
+)
 const ContactPage = lazy(() =>
   import('@/pages/ContactPage').then((m) => ({ default: m.ContactPage })),
+)
+const QuizPage = lazy(() =>
+  import('@/pages/QuizPage').then((m) => ({ default: m.QuizPage })),
 )
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
@@ -23,23 +29,6 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 function App() {
   const { pathname } = useLocation()
   const lenisRef = useRef<Lenis | null>(null)
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    try {
-      const saved = localStorage.getItem('rimbawara_theme')
-      return saved === 'dark' ? 'dark' : 'light'
-    } catch {
-      return 'light'
-    }
-  })
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    try {
-      localStorage.setItem('rimbawara_theme', theme)
-    } catch {
-      // Ignore storage quota errors in restricted browsing modes.
-    }
-  }, [theme])
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -78,20 +67,18 @@ function App() {
     ScrollTrigger.refresh()
   }, [pathname])
 
-  const handleToggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
-  }
+  const isQuizRoute = pathname === '/quiz'
 
   return (
-    <div className="flex min-h-screen flex-col bg-[var(--bg-primary)] text-[var(--text-primary)]">
-      <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
+    <div className="flex min-h-screen flex-col bg-white text-neutral-950">
+      {!isQuizRoute && <Navbar />}
       <div className="flex-1">
         <Suspense
           fallback={
             <div
               role="status"
               aria-live="polite"
-              className="mx-auto max-w-7xl px-4 py-16 font-mono text-sm text-[var(--text-secondary)] sm:px-6 lg:px-8"
+              className="mx-auto max-w-6xl px-4 py-16 font-mono text-sm text-neutral-600 sm:px-6 lg:px-8"
             >
               Memuat halaman...
             </div>
@@ -99,14 +86,19 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/tentang" element={<AboutPage />} />
+            <Route path="/hutan" element={<EdukasiPage />} />
             <Route path="/edukasi" element={<EdukasiPage />} />
+            <Route path="/satwa" element={<SatwaPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/kontak" element={<ContactPage />} />
+            <Route path="/quiz" element={<QuizPage />} />
             <Route path="*" element={<HomePage />} />
           </Routes>
         </Suspense>
       </div>
-      <Footer />
+      {!isQuizRoute && <Footer />}
     </div>
   )
 }
