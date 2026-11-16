@@ -6,6 +6,7 @@ import {
   CheckCircle,
   WarningCircle,
 } from '@phosphor-icons/react'
+import { ScrollReveal } from '@/components/ScrollReveal'
 import { useQuiz } from '@/hooks/useQuiz'
 import { cn } from '@/lib/utils'
 
@@ -226,9 +227,12 @@ export function QuizPage() {
                 <p className="text-xs font-semibold text-green-700">
                   HASIL QUIZ RIMBA
                 </p>
-                <h2 className="mt-1 text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl">
-                  Skor Kamu: {correctCount} / {totalQuestions}
-                </h2>
+                <ScrollReveal
+                  as="h2"
+                  className="mt-1 text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl"
+                >
+                  {`Skor Kamu: ${correctCount} / ${totalQuestions}`}
+                </ScrollReveal>
                 <p className="mt-2 text-sm text-neutral-600">
                   {answeredCount < totalQuestions
                     ? `Kamu baru menjawab ${answeredCount} dari ${totalQuestions} skenario.`
@@ -330,9 +334,12 @@ export function QuizPage() {
             className="rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8"
           >
             <div className="space-y-1 border-b border-neutral-200 pb-4">
-              <h3 className="text-xl font-bold tracking-tight text-neutral-950">
+              <ScrollReveal
+                as="h3"
+                className="text-xl font-bold tracking-tight text-neutral-950"
+              >
                 Simpan Skor Quiz
-              </h3>
+              </ScrollReveal>
               <p className="text-sm text-neutral-600">
                 Catat hasil quiz ke papan skor publik bersama peserta lain.
               </p>
@@ -420,9 +427,12 @@ export function QuizPage() {
 
           <div className="rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8">
             <div className="flex items-center justify-between gap-2 border-b border-neutral-200 pb-3">
-              <h3 className="text-lg font-bold text-neutral-950">
+              <ScrollReveal
+                as="h3"
+                className="text-lg font-bold text-neutral-950"
+              >
                 Skor Peserta Terbaru
-              </h3>
+              </ScrollReveal>
               <button
                 type="button"
                 onClick={() => void reloadSubmissions()}

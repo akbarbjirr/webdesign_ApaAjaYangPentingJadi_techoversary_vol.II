@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Link } from 'react-router'
+import { AnimatedContent } from '@/components/AnimatedContent'
+import { ScrollReveal } from '@/components/ScrollReveal'
 
 export function ContactPage() {
   const [senderName, setSenderName] = useState('')
@@ -25,13 +27,18 @@ export function ContactPage() {
     <main id="konten-utama" className="min-h-screen py-12 sm:py-16">
       <div className="mx-auto max-w-3xl space-y-8 px-4 sm:px-6 lg:px-8">
         <div className="space-y-3 border-b border-[var(--border-strong)] pb-6">
-          <h1 className="font-display text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+          <ScrollReveal
+            as="h1"
+            className="font-display text-3xl font-bold text-[var(--text-primary)] sm:text-4xl"
+          >
             Formulir Aspirasi &amp; Kontak Tim
-          </h1>
-          <p className="text-base leading-relaxed text-[var(--text-secondary)]">
-            Kirimkan masukan edukasi kehutanan atau catatan kolaborasi untuk tim
-            pengembang.
-          </p>
+          </ScrollReveal>
+          <AnimatedContent distance={8} duration={0.65} threshold={0.1}>
+            <p className="text-base leading-relaxed text-[var(--text-secondary)]">
+              Kirimkan masukan edukasi kehutanan atau catatan kolaborasi untuk
+              tim pengembang.
+            </p>
+          </AnimatedContent>
         </div>
 
         <form

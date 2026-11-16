@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
 import { ArrowRight, PawPrint, ShieldCheck, Tree } from '@phosphor-icons/react'
+import { AnimatedContent } from '@/components/AnimatedContent'
+import { ScrollReveal } from '@/components/ScrollReveal'
 import { cn } from '@/lib/utils'
 
 interface WildlifeProfile {
@@ -93,14 +95,19 @@ export function SatwaPage() {
             <PawPrint size={18} weight="regular" aria-hidden="true" />
             <span>SATWA ENDEMIK &amp; HUTAN INDONESIA</span>
           </p>
-          <h1 className="text-3xl leading-[1.15] font-bold tracking-tight text-neutral-950 sm:text-5xl">
+          <ScrollReveal
+            as="h1"
+            className="text-3xl leading-[1.15] font-bold tracking-tight text-neutral-950 sm:text-5xl"
+          >
             Satwa Langka Penjaga Keseimbangan Rimba.
-          </h1>
-          <p className="text-sm leading-relaxed text-neutral-600 sm:text-base">
-            Ketika hutan terjaga, satwa liar berperan aktif menebar biji pohon
-            dan menjaga rantai makanan tetap seimbang. Kenali spesies kunci di
-            hutan Indonesia.
-          </p>
+          </ScrollReveal>
+          <AnimatedContent distance={8} duration={0.65} threshold={0.1}>
+            <p className="text-sm leading-relaxed text-neutral-600 sm:text-base">
+              Ketika hutan terjaga, satwa liar berperan aktif menebar biji pohon
+              dan menjaga rantai makanan tetap seimbang. Kenali spesies kunci di
+              hutan Indonesia.
+            </p>
+          </AnimatedContent>
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -132,11 +139,16 @@ export function SatwaPage() {
 
           <Link
             to="/quiz"
-            className="inline-flex min-h-11 items-center gap-2.5 rounded-full bg-neutral-950 py-1.5 pr-1.5 pl-5 text-xs font-medium text-white transition-colors hover:bg-neutral-800 sm:text-sm"
+            className="group inline-flex min-h-11 items-center gap-2.5 rounded-full bg-neutral-950 py-1.5 pr-2 pl-5 text-xs font-medium text-white transition-colors duration-300 hover:bg-neutral-900 sm:text-sm"
           >
             <span>Uji Pengetahuan di Quiz</span>
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-neutral-950">
-              <ArrowRight size={15} weight="bold" aria-hidden="true" />
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-neutral-950 transition-transform duration-300 ease-out group-hover:translate-x-1">
+              <ArrowRight
+                size={15}
+                weight="bold"
+                aria-hidden="true"
+                className="transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-rotate-45"
+              />
             </span>
           </Link>
         </div>
@@ -158,52 +170,63 @@ export function SatwaPage() {
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold tracking-tight text-neutral-950">
+                  <ScrollReveal
+                    as="h2"
+                    className="text-2xl font-bold tracking-tight text-neutral-950"
+                  >
                     {species.commonName}
-                  </h2>
-                  <p className="text-sm text-neutral-600 italic">
-                    {species.scientificName}
-                  </p>
+                  </ScrollReveal>
+                  <AnimatedContent distance={8} duration={0.65} threshold={0.1}>
+                    <p className="text-sm text-neutral-600 italic">
+                      {species.scientificName}
+                    </p>
+                  </AnimatedContent>
                 </div>
 
-                <div className="space-y-3 border-t border-neutral-200 pt-4 text-sm leading-relaxed text-neutral-700">
-                  <p className="flex items-start gap-2.5">
-                    <Tree
-                      size={18}
-                      weight="regular"
-                      aria-hidden="true"
-                      className="mt-0.5 shrink-0 text-green-600"
-                    />
-                    <span>
-                      <strong className="text-neutral-950">Habitat:</strong>{' '}
-                      {species.habitat}.
-                    </span>
-                  </p>
-                  <p>
-                    <strong className="text-neutral-950">
-                      Peran ekologis:
-                    </strong>{' '}
-                    {species.roleInForest}
-                  </p>
-                  <p>
-                    <strong className="text-neutral-950">Ancaman utama:</strong>{' '}
-                    {species.mainThreat}
-                  </p>
-                </div>
+                <AnimatedContent distance={8} duration={0.65} threshold={0.1}>
+                  <div className="space-y-3 border-t border-neutral-200 pt-4 text-sm leading-relaxed text-neutral-700">
+                    <p className="flex items-start gap-2.5">
+                      <Tree
+                        size={18}
+                        weight="regular"
+                        aria-hidden="true"
+                        className="mt-0.5 shrink-0 text-green-600"
+                      />
+                      <span>
+                        <strong className="text-neutral-950">Habitat:</strong>{' '}
+                        {species.habitat}.
+                      </span>
+                    </p>
+                    <p>
+                      <strong className="text-neutral-950">
+                        Peran ekologis:
+                      </strong>{' '}
+                      {species.roleInForest}
+                    </p>
+                    <p>
+                      <strong className="text-neutral-950">
+                        Ancaman utama:
+                      </strong>{' '}
+                      {species.mainThreat}
+                    </p>
+                  </div>
+                </AnimatedContent>
               </div>
 
-              <div className="mt-6 flex items-start gap-2.5 rounded-xl bg-neutral-50 p-4 text-xs leading-relaxed text-neutral-800 sm:text-sm">
-                <ShieldCheck
-                  size={18}
-                  weight="regular"
-                  aria-hidden="true"
-                  className="mt-0.5 shrink-0 text-green-600"
-                />
-                <span>
-                  <strong className="text-neutral-950">Langkah aksi:</strong>{' '}
-                  {species.conservationAction}
-                </span>
-              </div>
+              <AnimatedContent distance={8} duration={0.65} threshold={0.1}>
+                <div className="mt-6 flex items-start gap-2.5 rounded-xl bg-neutral-50 p-4 text-xs leading-relaxed text-neutral-800 sm:text-sm">
+                  <ShieldCheck
+                    size={18}
+                    weight="regular"
+                    aria-hidden="true"
+                    className="mt-0.5 shrink-0 text-green-600"
+                  />
+                  <span>
+                    <strong className="text-neutral-950">Langkah aksi:</strong>{' '}
+                    {species.conservationAction}
+                  </span>
+                </div>
+              </AnimatedContent>
             </article>
           ))}
         </div>

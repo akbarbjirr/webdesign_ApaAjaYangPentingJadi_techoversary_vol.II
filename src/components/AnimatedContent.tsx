@@ -1,9 +1,10 @@
-import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
-
-gsap.registerPlugin(ScrollTrigger, useGSAP)
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from 'react'
 
 export interface AnimatedContentProps {
   children: ReactNode
@@ -29,138 +30,61 @@ export interface AnimatedContentProps {
 
 export function AnimatedContent({
   children,
-  container,
   distance = 100,
   direction = 'vertical',
   reverse = false,
   duration = 0.8,
-  ease = 'power3.out',
   initialOpacity = 0,
   animateOpacity = true,
   scale = 1,
   threshold = 0.1,
   delay = 0,
-  disappearAfter = 0,
-  disappearDuration = 0.5,
-  disappearEase = 'power3.in',
-  onComplete,
-  onDisappearanceComplete,
   className = '',
   style,
 }: AnimatedContentProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const onCompleteRef = useRef(onComplete)
-  const onDisappearanceCompleteRef = useRef(onDisappearanceComplete)
+  const [isRevealed, setIsRevealed] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  )
 
   useEffect(() => {
-    onCompleteRef.current = onComplete
-    onDisappearanceCompleteRef.current = onDisappearanceComplete
-  }, [onComplete, onDisappearanceComplete])
+    const el = ref.current
+    if (!el || isRevealed) return
 
-  useGSAP(
-    () => {
-      const el = ref.current
-      if (!el) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setIsRevealed(true)
+          observer.disconnect()
+        }
+      },
+      { threshold },
+    )
 
-      const prefersReducedMotion = window.matchMedia(
-        '(prefers-reduced-motion: reduce)',
-      ).matches
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [isRevealed, threshold])
 
-      if (prefersReducedMotion) {
-        gsap.set(el, {
-          x: 0,
-          y: 0,
-          scale: 1,
-          opacity: 1,
-          visibility: 'visible',
-        })
-        return
-      }
-
-      let scrollerTarget: Element | string | null = container ?? null
-      if (typeof scrollerTarget === 'string') {
-        scrollerTarget = document.querySelector(scrollerTarget)
-      }
-
-      const axis = direction === 'horizontal' ? 'x' : 'y'
-      const offset = reverse ? -distance : distance
-      const startPct = (1 - threshold) * 100
-
-      gsap.set(el, {
-        [axis]: offset,
-        scale,
-        opacity: animateOpacity ? initialOpacity : 1,
-        visibility: 'visible',
-      })
-
-      const tl = gsap.timeline({
-        paused: true,
-        delay,
-        onComplete: () => {
-          onCompleteRef.current?.()
-          if (disappearAfter > 0) {
-            gsap.to(el, {
-              [axis]: reverse ? distance : -distance,
-              scale: 0.8,
-              opacity: animateOpacity ? initialOpacity : 0,
-              delay: disappearAfter,
-              duration: disappearDuration,
-              ease: disappearEase,
-              onComplete: () => onDisappearanceCompleteRef.current?.(),
-            })
-          }
-        },
-      })
-
-      tl.to(el, {
-        [axis]: 0,
-        scale: 1,
-        opacity: 1,
-        duration,
-        ease,
-      })
-
-      const st = ScrollTrigger.create({
-        trigger: el,
-        scroller: scrollerTarget || undefined,
-        start: `top ${startPct}%`,
-        once: true,
-        onEnter: () => tl.play(),
-      })
-
-      return () => {
-        st.kill()
-        tl.kill()
-        gsap.killTweensOf(el)
-      }
-    },
-    {
-      scope: ref,
-      dependencies: [
-        container,
-        distance,
-        direction,
-        reverse,
-        duration,
-        ease,
-        initialOpacity,
-        animateOpacity,
-        scale,
-        threshold,
-        delay,
-        disappearAfter,
-        disappearDuration,
-        disappearEase,
-      ],
-      revertOnUpdate: true,
-    },
-  )
+  const offset = reverse ? -distance : distance
+  const initialTransform =
+    direction === 'horizontal'
+      ? `translate3d(${offset}px, 0, 0) scale(${scale})`
+      : `translate3d(0, ${offset}px, 0) scale(${scale})`
 
   return (
     <div
       ref={ref}
       className={className}
-      style={{ visibility: 'hidden', ...style }}
+      style={{
+        opacity: isRevealed ? 1 : animateOpacity ? initialOpacity : 1,
+        transform: isRevealed
+          ? 'translate3d(0, 0, 0) scale(1)'
+          : initialTransform,
+        transition: `transform ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s, opacity ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`,
+        ...style,
+      }}
     >
       {children}
     </div>

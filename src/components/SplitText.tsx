@@ -84,6 +84,7 @@ export function SplitText({
         delay,
         ease,
         paused: true,
+        clearProps: 'transform,opacity',
       })
 
       const st = ScrollTrigger.create({
