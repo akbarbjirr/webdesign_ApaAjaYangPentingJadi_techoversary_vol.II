@@ -1,11 +1,16 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { ArrowRight } from '@phosphor-icons/react'
-import { GraduationCap, HandHeart, Sprout } from 'lucide-react'
+import {
+  ArrowRight,
+  GraduationCap,
+  HandHeart,
+  Plant,
+} from '@phosphor-icons/react'
 import { AnimatedContent } from '@/components/AnimatedContent'
+import { ScrollReveal } from '@/components/ScrollReveal'
 import { SplitText } from '@/components/SplitText'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
@@ -25,7 +30,7 @@ const CAMPAIGN_SHOWCASE: CampaignShowcaseBand[] = [
     description:
       'Hutan adalah penopang kehidupan dan rumah bagi berbagai spesies. Melindunginya berarti menjaga keseimbangan ekosistem dan masa depan alam.',
     image:
-      'https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1280&q=75',
     alt: 'Lembah hutan pinus dan padang rumput hijau dengan tebing batu bermandikan cahaya matahari',
   },
   {
@@ -34,7 +39,7 @@ const CAMPAIGN_SHOWCASE: CampaignShowcaseBand[] = [
     description:
       'Setiap satwa memiliki peran dalam ekosistem. Perlindungan habitat dan penghentian perburuan ilegal menjadi bagian penting dalam menjaga keberlangsungan hidup mereka.',
     image:
-      'https://images.unsplash.com/photo-1559569607-866e745bcf10?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1559569607-866e745bcf10?auto=format&fit=crop&w=1280&q=75',
     alt: 'Potret orangutan dengan pencahayaan hangat pada rambut oranyenya di latar gelap',
   },
   {
@@ -43,7 +48,7 @@ const CAMPAIGN_SHOWCASE: CampaignShowcaseBand[] = [
     description:
       'Pengelolaan sampah merupakan tanggung jawab bersama. Kebiasaan sederhana seperti mengurangi, memilah, dan menggunakan kembali barang dapat membantu mengurangi pencemaran.',
     image:
-      'https://images.unsplash.com/photo-1713016877596-6a800832e15c?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1713016877596-6a800832e15c?auto=format&fit=crop&w=1280&q=75',
     alt: 'Tumpukan sampah plastik beraneka warna yang mencemari lingkungan',
   },
 ]
@@ -69,18 +74,28 @@ function ParallaxPillarBand({ item }: { item: CampaignShowcaseBand }) {
         return
       }
 
-      ScrollTrigger.create({
-        trigger,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const offset = self.progress * 2 - 1
-          gsap.set(media, { yPercent: offset * 45 })
-          gsap.set(titleParallax, { y: offset * 85 })
-        },
-      })
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        })
+        .fromTo(
+          media,
+          { yPercent: -25, force3D: true },
+          { yPercent: 25, ease: 'none', force3D: true },
+          0,
+        )
+        .fromTo(
+          titleParallax,
+          { y: -60, force3D: true },
+          { y: 60, ease: 'none', force3D: true },
+          0,
+        )
     },
     { scope: sectionRef },
   )
@@ -122,7 +137,7 @@ function ParallaxPillarBand({ item }: { item: CampaignShowcaseBand }) {
           duration={0.8}
           stagger={0.055}
           threshold={0.18}
-          className="text-5xl font-bold tracking-tight text-white drop-shadow-sm sm:text-7xl lg:text-[5.5rem]"
+          className="text-5xl font-bold tracking-tight text-white sm:text-7xl lg:text-[5.5rem]"
         />
       </div>
 
@@ -158,7 +173,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-macaque',
     alt: 'Monyet hitam Sulawesi di habitat alami',
-    src: 'https://images.unsplash.com/photo-1578013460946-7b3884b7831d?auto=format&fit=crop&w=700&q=80',
+    src: 'https://images.unsplash.com/photo-1578013460946-7b3884b7831d?auto=format&fit=crop&w=520&q=75',
     positionClass:
       'lg:left-[3%] lg:top-[12%] lg:w-[175px] xl:w-[225px] 2xl:w-[260px] z-0',
     parallaxEnd: 170,
@@ -167,7 +182,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-orangutan',
     alt: 'Orangutan bergelantungan di dahan pohon hutan hujan',
-    src: 'https://images.unsplash.com/photo-1762301394169-af73f9553e74?auto=format&fit=crop&w=700&q=80',
+    src: 'https://images.unsplash.com/photo-1762301394169-af73f9553e74?auto=format&fit=crop&w=520&q=75',
     positionClass:
       'lg:left-[5%] lg:top-[27%] lg:w-[180px] xl:w-[235px] 2xl:w-[270px] z-10',
     parallaxEnd: 280,
@@ -176,7 +191,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-canopy',
     alt: 'Hamparan tajuk hutan hujan tropis dari udara',
-    src: 'https://images.unsplash.com/photo-1547033255-aa27399c1810?auto=format&fit=crop&w=700&q=80',
+    src: 'https://images.unsplash.com/photo-1547033255-aa27399c1810?auto=format&fit=crop&w=520&q=75',
     positionClass:
       'lg:right-[7%] lg:top-[11%] lg:w-[175px] xl:w-[225px] 2xl:w-[260px] z-0',
     parallaxEnd: 180,
@@ -185,7 +200,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-valley',
     alt: 'Pegunungan hijau berkabut diterangi cahaya matahari pagi',
-    src: 'https://images.unsplash.com/photo-1475139195209-c6343f17842f?auto=format&fit=crop&w=700&q=80',
+    src: 'https://images.unsplash.com/photo-1475139195209-c6343f17842f?auto=format&fit=crop&w=520&q=75',
     positionClass:
       'lg:right-[2%] lg:top-[26%] lg:w-[180px] xl:w-[235px] 2xl:w-[270px] z-10',
     parallaxEnd: 295,
@@ -194,7 +209,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-tiger',
     alt: 'Potret jarak dekat harimau sumatera di alam liar',
-    src: 'https://images.unsplash.com/photo-1508817628294-5a453fa0b8fb?auto=format&fit=crop&w=700&q=80',
+    src: 'https://images.unsplash.com/photo-1508817628294-5a453fa0b8fb?auto=format&fit=crop&w=520&q=75',
     positionClass:
       'lg:left-[17%] lg:bottom-[4%] lg:w-[180px] xl:w-[230px] 2xl:w-[265px] z-10',
     parallaxEnd: 250,
@@ -203,7 +218,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-rhino',
     alt: 'Badak berdiri di padang rumput terbuka',
-    src: 'https://images.unsplash.com/photo-1696894134345-abdb955875b2?auto=format&fit=crop&w=700&q=80',
+    src: 'https://images.unsplash.com/photo-1696894134345-abdb955875b2?auto=format&fit=crop&w=520&q=75',
     positionClass:
       'lg:right-[17%] lg:bottom-[5%] lg:w-[180px] xl:w-[230px] 2xl:w-[265px] z-10',
     parallaxEnd: 230,
@@ -234,67 +249,71 @@ function KnowledgeChangeSection() {
       )
 
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        gsap.set(masks, { height: '100%' })
+        gsap.set(masks, { clipPath: 'inset(0% 0% 0% 0%)' })
         gsap.set(images, { scale: 1 })
         gsap.set(cards, { y: 0 })
         return
       }
 
-      // Trigger each photo's smooth height expansion when its own static slot enters the viewport, then scrub upward on scroll.
       slots.forEach((slot) => {
         const mask = slot.querySelector<HTMLElement>('.knowledge-height-mask')
         const img = slot.querySelector<HTMLElement>('.knowledge-reveal-img')
-        const card = slot.querySelector<HTMLElement>('.knowledge-parallax-card')
-        if (!mask || !img || !card) return
+        if (!mask || !img) return
 
         const delay = Number(slot.dataset.revealDelay ?? 0)
-        const endY = Number(slot.dataset.parallaxEnd ?? 220)
 
         gsap.fromTo(
           mask,
-          { height: '0%' },
+          { clipPath: 'inset(100% 0% 0% 0%)' },
           {
-            height: '100%',
-            duration: 1.35,
+            clipPath: 'inset(0% 0% 0% 0%)',
+            duration: 1.1,
             delay,
-            ease: 'expo.out',
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: slot,
-              start: 'top 84%',
-              toggleActions: 'play none none reset',
+              start: 'top 85%',
+              once: true,
             },
           },
         )
 
         gsap.fromTo(
           img,
-          { scale: 1.24 },
+          { scale: 1.18, force3D: true },
           {
             scale: 1,
-            duration: 1.45,
+            duration: 1.1,
             delay,
-            ease: 'expo.out',
+            ease: 'power3.out',
+            clearProps: 'transform',
             scrollTrigger: {
               trigger: slot,
-              start: 'top 84%',
-              toggleActions: 'play none none reset',
+              start: 'top 85%',
+              once: true,
             },
           },
         )
+      })
 
-        gsap.fromTo(
+      const parallaxTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      })
+
+      cards.forEach((card) => {
+        const slot = card.closest<HTMLElement>('.knowledge-slot')
+        const endY = Number(slot?.dataset.parallaxEnd ?? 220)
+
+        parallaxTl.fromTo(
           card,
-          { y: 0 },
-          {
-            y: -endY,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: slot,
-              start: 'top 84%',
-              end: 'bottom top',
-              scrub: 1.2,
-            },
-          },
+          { y: 40, force3D: true },
+          { y: -endY, ease: 'none', force3D: true },
+          0,
         )
       })
     },
@@ -309,15 +328,14 @@ function KnowledgeChangeSection() {
     >
       <div className="relative mx-auto max-w-[1380px] px-4 py-20 sm:px-6 sm:py-24 lg:flex lg:min-h-[920px] lg:items-center lg:justify-center lg:py-36 xl:min-h-[1020px]">
         <div className="relative z-20 mx-auto max-w-md text-center lg:max-w-[460px] xl:max-w-[540px] 2xl:max-w-[580px]">
-          <AnimatedContent distance={28} duration={0.85}>
-            <h2
-              id="knowledge-change-heading"
-              className="text-[2rem] leading-[1.14] font-bold tracking-[-0.025em] text-balance text-zinc-950 sm:text-[2.5rem] lg:text-[2.75rem] xl:text-[3.15rem]"
-            >
-              Dari Pengetahuan Menuju Perubahan.
-            </h2>
-          </AnimatedContent>
-          <AnimatedContent distance={24} duration={0.85} delay={0.1}>
+          <ScrollReveal
+            as="h2"
+            id="knowledge-change-heading"
+            className="text-[2rem] leading-[1.14] font-bold tracking-[-0.025em] text-balance text-zinc-950 sm:text-[2.5rem] lg:text-[2.75rem] xl:text-[3.15rem]"
+          >
+            Dari Pengetahuan Menuju Perubahan.
+          </ScrollReveal>
+          <AnimatedContent distance={8} duration={0.65} delay={0.08}>
             <p className="mx-auto mt-5 max-w-[46ch] text-base leading-[1.6] text-pretty text-zinc-600 sm:text-lg">
               Kami ingin menjadikan edukasi lingkungan sebagai langkah awal
               untuk membangun kebiasaan yang lebih bertanggung jawab terhadap
@@ -336,12 +354,13 @@ function KnowledgeChangeSection() {
             >
               <div className="knowledge-parallax-card will-change-transform">
                 <div className="relative aspect-[16/10] w-full">
-                  <div className="knowledge-height-mask absolute inset-x-0 bottom-0 h-0 w-full overflow-hidden will-change-[height]">
+                  <div className="knowledge-height-mask absolute inset-0 h-full w-full overflow-hidden">
                     <img
                       src={photo.src}
                       alt={photo.alt}
+                      loading="lazy"
                       decoding="async"
-                      className="knowledge-reveal-img h-full w-full object-cover object-center will-change-transform"
+                      className="knowledge-reveal-img h-full w-full object-cover object-center"
                     />
                   </div>
                 </div>
@@ -376,7 +395,7 @@ const CAMPAIGN_PILLARS: CampaignPillar[] = [
   },
   {
     id: 'aksi',
-    icon: Sprout,
+    icon: Plant,
     title: 'Aksi',
     description: 'Mengajak masyarakat melakukan perubahan.',
   },
@@ -392,37 +411,37 @@ const WILDLIFE_GALLERY: WildlifeMarqueeItem[] = [
   {
     id: 'owl-flight',
     image:
-      'https://images.unsplash.com/photo-1792942204448-775ef17baa7b?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1792942204448-775ef17baa7b?auto=format&fit=crop&w=600&q=75',
     alt: 'Burung hantu elang terbang membentangkan sayap di alam terbuka',
   },
   {
     id: 'eagle-mist',
     image:
-      'https://images.unsplash.com/photo-1485488448524-23e9ea0a94cd?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1485488448524-23e9ea0a94cd?auto=format&fit=crop&w=600&q=75',
     alt: 'Elang botak terbang melintasi latar langit gelap berkabut',
   },
   {
     id: 'orangutan-canopy',
     image:
-      'https://images.unsplash.com/photo-1762301394169-af73f9553e74?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1762301394169-af73f9553e74?auto=format&fit=crop&w=600&q=75',
     alt: 'Orangutan bergelantungan di dahan pohon kawasan hutan alami',
   },
   {
     id: 'rhino-trail',
     image:
-      'https://images.unsplash.com/photo-1696894134345-abdb955875b2?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1696894134345-abdb955875b2?auto=format&fit=crop&w=600&q=75',
     alt: 'Badak berjalan di jalur habitat alaminya saat senja',
   },
   {
     id: 'tiger-forest',
     image:
-      'https://images.unsplash.com/photo-1508817628294-5a453fa0b8fb?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1508817628294-5a453fa0b8fb?auto=format&fit=crop&w=600&q=75',
     alt: 'Harimau beristirahat di habitat hutan alaminya',
   },
   {
     id: 'elephant-wild',
     image:
-      'https://images.unsplash.com/photo-1597487389339-5591e52de66f?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1597487389339-5591e52de66f?auto=format&fit=crop&w=600&q=75',
     alt: 'Gajah Asia melangkah di kawasan vegetasi terbuka',
   },
 ]
@@ -443,6 +462,7 @@ function MarqueeCardList({ decorative = false }: { decorative?: boolean }) {
             alt={decorative ? '' : item.alt}
             width={340}
             height={340}
+            loading="lazy"
             decoding="async"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
@@ -453,22 +473,41 @@ function MarqueeCardList({ decorative = false }: { decorative?: boolean }) {
 }
 
 export function AboutPage() {
+  const marqueeViewportRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const viewport = marqueeViewportRef.current
+    if (!viewport) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (entry) {
+          viewport.dataset.inView = entry.isIntersecting ? 'true' : 'false'
+        }
+      },
+      { threshold: 0 },
+    )
+
+    observer.observe(viewport)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <main id="konten-utama" className="bg-white">
       <section className="pt-14 pb-20 sm:pt-20 sm:pb-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AnimatedContent distance={28} duration={0.7} threshold={0.02}>
-            <h1 className="max-w-3xl text-3xl leading-[1.18] font-bold tracking-tight text-neutral-950 sm:text-5xl lg:text-[3.25rem]">
-              Tentang Kami, Tentang Bumi,
-              <br />
-              dan Masa Depannya.
-            </h1>
-          </AnimatedContent>
+          <ScrollReveal
+            as="h1"
+            className="max-w-3xl text-3xl leading-[1.18] font-bold tracking-tight text-neutral-950 sm:text-5xl lg:text-[3.25rem]"
+          >
+            {'Tentang Kami, Tentang Bumi,\ndan Masa Depannya.'}
+          </ScrollReveal>
 
           <div className="mt-10 grid grid-cols-1 sm:mt-14 md:mt-20 md:grid-cols-12 lg:mt-24">
             <AnimatedContent
-              distance={28}
-              duration={0.7}
+              distance={8}
+              duration={0.65}
               delay={0.08}
               threshold={0.02}
               className="md:col-span-6 md:col-start-7 lg:col-span-5 lg:col-start-7"
@@ -486,11 +525,17 @@ export function AboutPage() {
           duration={0.8}
           delay={0.14}
           threshold={0.02}
-          className="marquee-viewport mt-14 w-full overflow-hidden sm:mt-20 lg:mt-24"
+          className="mt-14 sm:mt-20 lg:mt-24"
         >
-          <div className="marquee-track flex w-max">
-            <MarqueeCardList />
-            <MarqueeCardList decorative />
+          <div
+            ref={marqueeViewportRef}
+            data-in-view="true"
+            className="marquee-viewport w-full overflow-hidden"
+          >
+            <div className="marquee-track flex w-max">
+              <MarqueeCardList />
+              <MarqueeCardList decorative />
+            </div>
           </div>
         </AnimatedContent>
       </section>
@@ -515,45 +560,59 @@ export function AboutPage() {
             </AnimatedContent>
 
             <div className="md:col-span-6 lg:col-span-6 lg:col-start-7">
-              <AnimatedContent distance={32} duration={0.7} threshold={0.12}>
-                <h2 className="text-2xl font-bold tracking-tight text-neutral-950 sm:text-3xl lg:text-4xl">
+              <div>
+                <ScrollReveal
+                  as="h2"
+                  className="text-2xl font-bold tracking-tight text-neutral-950 sm:text-3xl lg:text-4xl"
+                >
                   Mengapa Kampanye Ini Hadir?
-                </h2>
-                <p className="mt-4 max-w-xl text-base leading-relaxed text-neutral-600 sm:mt-5 sm:text-lg">
-                  Kami percaya bahwa kepedulian terhadap lingkungan dimulai dari
-                  pengetahuan dan kesadaran.
-                </p>
-              </AnimatedContent>
+                </ScrollReveal>
+                <AnimatedContent distance={8} duration={0.65} threshold={0.12}>
+                  <p className="mt-4 max-w-xl text-base leading-relaxed text-neutral-600 sm:mt-5 sm:text-lg">
+                    Kami percaya bahwa kepedulian terhadap lingkungan dimulai
+                    dari pengetahuan dan kesadaran.
+                  </p>
+                </AnimatedContent>
+              </div>
 
               <div className="mt-8 space-y-6 sm:mt-10 sm:space-y-7">
                 {CAMPAIGN_PILLARS.map((pillar, index) => {
                   const Icon = pillar.icon
                   return (
-                    <AnimatedContent
+                    <div
                       key={pillar.id}
-                      distance={24}
-                      duration={0.6}
-                      delay={0.08 * (index + 1)}
-                      threshold={0.12}
+                      className="flex items-start gap-4 sm:gap-5"
                     >
-                      <div className="flex items-start gap-4 sm:gap-5">
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-neutral-950 sm:h-12 sm:w-12">
-                          <Icon
-                            size={22}
-                            strokeWidth={1.75}
-                            aria-hidden="true"
-                          />
+                      <AnimatedContent
+                        distance={24}
+                        duration={0.6}
+                        delay={0.08 * (index + 1)}
+                        threshold={0.12}
+                        className="shrink-0"
+                      >
+                        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-neutral-100 text-neutral-950 sm:h-12 sm:w-12">
+                          <Icon size={22} weight="regular" aria-hidden="true" />
                         </div>
-                        <div>
-                          <h3 className="text-base font-bold text-neutral-950 sm:text-lg">
-                            {pillar.title}
-                          </h3>
+                      </AnimatedContent>
+                      <div>
+                        <ScrollReveal
+                          as="h3"
+                          className="text-base font-bold text-neutral-950 sm:text-lg"
+                        >
+                          {pillar.title}
+                        </ScrollReveal>
+                        <AnimatedContent
+                          distance={8}
+                          duration={0.65}
+                          delay={0.08 * (index + 1)}
+                          threshold={0.12}
+                        >
                           <p className="mt-1 max-w-md text-sm leading-relaxed text-neutral-600 sm:text-base">
                             {pillar.description}
                           </p>
-                        </div>
+                        </AnimatedContent>
                       </div>
-                    </AnimatedContent>
+                    </div>
                   )
                 })}
               </div>
@@ -571,32 +630,43 @@ export function AboutPage() {
       <KnowledgeChangeSection />
 
       <section className="py-24 sm:py-32">
-        <AnimatedContent
-          distance={40}
-          duration={0.8}
-          threshold={0.15}
-          className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8"
-        >
-          <p className="text-sm font-medium text-neutral-700 sm:text-base">
-            Menjaga Bumi Dimulai dari Kita.
-          </p>
-          <h2 className="mt-3 text-2xl leading-[1.22] font-bold tracking-tight text-neutral-950 sm:text-4xl">
+        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <AnimatedContent distance={8} duration={0.65} threshold={0.15}>
+            <p className="text-sm font-medium text-neutral-700 sm:text-base">
+              Menjaga Bumi Dimulai dari Kita.
+            </p>
+          </AnimatedContent>
+          <ScrollReveal
+            as="h2"
+            className="mt-3 text-2xl leading-[1.22] font-bold tracking-tight text-neutral-950 sm:text-4xl"
+          >
             Tidak semua perubahan harus dimulai dengan tindakan besar. Kebiasaan
             sederhana yang dilakukan secara konsisten dapat membantu menjaga
             lingkungan.
-          </h2>
-          <div className="mt-8 flex justify-center">
+          </ScrollReveal>
+          <AnimatedContent
+            distance={32}
+            duration={0.75}
+            delay={0.1}
+            threshold={0.15}
+            className="mt-8 flex justify-center"
+          >
             <Link
               to="/hutan"
-              className="inline-flex min-h-12 items-center gap-6 rounded-full bg-neutral-950 py-2 pr-2 pl-8 text-sm font-medium text-white transition-all hover:bg-neutral-800 active:scale-[0.99] sm:text-base"
+              className="group inline-flex min-h-12 items-center gap-6 rounded-full bg-neutral-950 py-2 pr-2.5 pl-8 text-sm font-medium text-white transition-all duration-300 hover:bg-neutral-900 active:scale-[0.99] sm:text-base"
             >
               <span>Mulai Dari Sini</span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-950 sm:h-9 sm:w-9">
-                <ArrowRight size={16} weight="bold" aria-hidden="true" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-950 transition-transform duration-300 ease-out group-hover:translate-x-1.5 sm:h-9 sm:w-9">
+                <ArrowRight
+                  size={16}
+                  weight="bold"
+                  aria-hidden="true"
+                  className="transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-rotate-45"
+                />
               </span>
             </Link>
-          </div>
-        </AnimatedContent>
+          </AnimatedContent>
+        </div>
       </section>
     </main>
   )

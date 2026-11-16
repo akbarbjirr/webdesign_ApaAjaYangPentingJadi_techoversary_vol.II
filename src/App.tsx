@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -7,24 +7,14 @@ import Lenis from 'lenis'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { HomePage } from '@/pages/HomePage'
-
-const AboutPage = lazy(() =>
-  import('@/pages/AboutPage').then((m) => ({ default: m.AboutPage })),
-)
-const EdukasiPage = lazy(() =>
-  import('@/pages/EdukasiPage').then((m) => ({ default: m.EdukasiPage })),
-)
-const SatwaPage = lazy(() =>
-  import('@/pages/SatwaPage').then((m) => ({ default: m.SatwaPage })),
-)
-const ContactPage = lazy(() =>
-  import('@/pages/ContactPage').then((m) => ({ default: m.ContactPage })),
-)
-const QuizPage = lazy(() =>
-  import('@/pages/QuizPage').then((m) => ({ default: m.QuizPage })),
-)
+import { AboutPage } from '@/pages/AboutPage'
+import { EdukasiPage } from '@/pages/EdukasiPage'
+import { SatwaPage } from '@/pages/SatwaPage'
+import { ContactPage } from '@/pages/ContactPage'
+import { QuizPage } from '@/pages/QuizPage'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
+ScrollTrigger.config({ ignoreMobileResize: true })
 
 function App() {
   const { pathname, hash } = useLocation()
@@ -94,30 +84,18 @@ function App() {
     <div className="flex min-h-screen flex-col bg-white text-neutral-950">
       {!isQuizRoute && <Navbar />}
       <div className="flex-1">
-        <Suspense
-          fallback={
-            <div
-              role="status"
-              aria-live="polite"
-              className="mx-auto max-w-6xl px-4 py-16 font-mono text-sm text-neutral-600 sm:px-6 lg:px-8"
-            >
-              Memuat halaman...
-            </div>
-          }
-        >
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/tentang" element={<AboutPage />} />
-            <Route path="/hutan" element={<EdukasiPage />} />
-            <Route path="/edukasi" element={<EdukasiPage />} />
-            <Route path="/satwa" element={<SatwaPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/kontak" element={<ContactPage />} />
-            <Route path="/quiz" element={<QuizPage />} />
-            <Route path="*" element={<HomePage />} />
-          </Routes>
-        </Suspense>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/tentang" element={<AboutPage />} />
+          <Route path="/hutan" element={<EdukasiPage />} />
+          <Route path="/edukasi" element={<EdukasiPage />} />
+          <Route path="/satwa" element={<SatwaPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/kontak" element={<ContactPage />} />
+          <Route path="/quiz" element={<QuizPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
       </div>
       {!isQuizRoute && <Footer />}
     </div>

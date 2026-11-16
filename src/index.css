@@ -83,7 +83,8 @@
   will-change: transform;
 }
 
-.marquee-viewport:hover .marquee-track {
+.marquee-viewport:hover .marquee-track,
+.marquee-viewport[data-in-view='false'] .marquee-track {
   animation-play-state: paused;
 }
 

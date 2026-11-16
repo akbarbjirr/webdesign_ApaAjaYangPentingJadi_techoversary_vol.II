@@ -1,34 +1,54 @@
 import { Link } from 'react-router'
 
-const FOOTER_NAV_LINKS = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/hutan', label: 'Hutan' },
-  { to: '/satwa', label: 'Satwa' },
-  { to: '/contact', label: 'Contact' },
-] as const
+interface FooterColumn {
+  heading: string
+  links: Array<{ to: string; label: string }>
+}
+
+const FOOTER_COLUMNS: FooterColumn[] = [
+  {
+    heading: 'Halaman Utama',
+    links: [
+      { to: '/', label: 'Home' },
+      { to: '/about', label: 'About' },
+      { to: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    heading: 'Edukasi',
+    links: [
+      { to: '/sampah', label: 'Sampah' },
+      { to: '/satwa', label: 'Satwa' },
+      { to: '/hutan', label: 'Hutan' },
+    ],
+  },
+  {
+    heading: 'Chalange',
+    links: [{ to: '/quiz', label: 'Quiz' }],
+  },
+]
 
 export function Footer() {
   return (
-    <footer className="bg-white text-neutral-950">
-      <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-t-[28px] border border-b-0 border-neutral-300 bg-white px-6 pt-10 pb-0 sm:px-12 sm:pt-12">
-          <div className="relative z-10 flex flex-col justify-between gap-8 sm:flex-row sm:items-start">
-            <p className="text-base font-bold tracking-tight text-neutral-950 sm:text-lg">
-              Hutan adalah Rumah, Mari Kita Jaga.
-            </p>
+    <footer className="w-full overflow-hidden bg-white pt-16 text-neutral-950 sm:pt-24">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-12">
+        <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
+          <p className="text-lg font-bold tracking-tight text-neutral-950 sm:text-xl lg:text-2xl">
+            Hutan adalah Rumah, Mari Kita Jaga.
+          </p>
 
-            <div className="flex gap-12 sm:gap-16">
-              <div>
-                <h2 className="text-sm font-bold text-neutral-950">
-                  Navigation
+          <div className="grid grid-cols-2 gap-10 sm:flex sm:gap-14 lg:gap-20">
+            {FOOTER_COLUMNS.map((column) => (
+              <div key={column.heading}>
+                <h2 className="text-base font-bold text-neutral-950 sm:text-lg">
+                  {column.heading}
                 </h2>
-                <ul className="mt-3 flex flex-col gap-0.5">
-                  {FOOTER_NAV_LINKS.map((item) => (
+                <ul className="mt-2.5 flex flex-col gap-1">
+                  {column.links.map((item) => (
                     <li key={item.to}>
                       <Link
                         to={item.to}
-                        className="inline-flex min-h-11 items-center text-xs font-medium text-neutral-700 transition-colors hover:text-neutral-950 sm:min-h-8"
+                        className="inline-flex items-center py-0.5 text-xs font-medium text-neutral-700 transition-colors hover:text-neutral-950 sm:text-sm"
                       >
                         {item.label}
                       </Link>
@@ -36,32 +56,18 @@ export function Footer() {
                   ))}
                 </ul>
               </div>
-
-              <div>
-                <h2 className="text-sm font-bold text-neutral-950">Chalange</h2>
-                <ul className="mt-3 flex flex-col gap-0.5">
-                  <li>
-                    <Link
-                      to="/quiz"
-                      className="inline-flex min-h-11 items-center text-xs font-medium text-neutral-700 transition-colors hover:text-neutral-950 sm:min-h-8"
-                    >
-                      Quiz
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div
-            aria-hidden="true"
-            className="pointer-events-none -mt-2 flex justify-center overflow-hidden leading-none select-none sm:-mt-6"
-          >
-            <span className="translate-y-[16%] text-[24vw] leading-[0.8] font-bold tracking-tighter text-neutral-200/90 sm:text-[13.5rem] lg:text-[17.5rem]">
-              Under
-            </span>
+            ))}
           </div>
         </div>
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none mt-20 flex w-full justify-center overflow-hidden leading-none select-none sm:mt-28 lg:mt-36"
+      >
+        <span className="translate-y-[18%] text-[25.5vw] leading-[0.78] font-bold tracking-[-0.04em] text-neutral-200/80">
+          Under
+        </span>
       </div>
     </footer>
   )
