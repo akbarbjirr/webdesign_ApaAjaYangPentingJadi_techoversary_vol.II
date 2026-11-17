@@ -1,0 +1,13 @@
+{
+  "0": "package.json",
+  "1": "App.tsx",
+  "2": "AboutPage.tsx",
+  "3": "dependencies",
+  "4": "quizService.ts",
+  "5": "compilerOptions",
+  "6": "compilerOptions",
+  "7": "Navbar.tsx",
+  "8": "scripts",
+  "9": "tsconfig.json",
+  "10": "React + TypeScript + Vite"
+}

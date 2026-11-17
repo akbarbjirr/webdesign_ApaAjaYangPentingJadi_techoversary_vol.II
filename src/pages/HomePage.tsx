@@ -71,8 +71,8 @@ const WILDLIFE_CARDS = [
     alt: 'Induk dan anak orangutan bergelantungan di dahan pohon',
   },
   {
-    id: 'bajak-jawa',
-    name: 'Bajak Jawa',
+    id: 'badak-jawa',
+    name: 'Badak Jawa',
     image:
       'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748893/Rectangle_101.png',
     alt: 'Badak Jawa berdiri di habitat alaminya',
@@ -251,17 +251,19 @@ export function HomePage() {
               distance={48}
               duration={0.8}
               threshold={0.12}
-              className="overflow-hidden rounded-2xl bg-neutral-100 md:col-span-5 lg:col-span-4"
+              className="md:col-span-5 lg:col-span-4"
             >
-              <img
-                src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/Rectangle_90.png"
-                alt="Tajuk pepohonan hutan hijau menjulang ke arah langit berawan"
-                width={600}
-                height={798}
-                loading="lazy"
-                decoding="async"
-                className="aspect-[3/4] h-auto w-full object-cover"
-              />
+              <div className="photo-hover-card rounded-2xl bg-neutral-100">
+                <img
+                  src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/Rectangle_90.png"
+                  alt="Tajuk pepohonan hutan hijau menjulang ke arah langit berawan"
+                  width={600}
+                  height={798}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[3/4] h-auto w-full object-cover"
+                />
+              </div>
             </AnimatedContent>
 
             <AnimatedContent
@@ -319,24 +321,25 @@ export function HomePage() {
                 duration={0.75}
                 delay={index * 0.1}
                 threshold={0.1}
-                className="relative overflow-hidden rounded-2xl bg-neutral-900"
               >
-                <img
-                  src={card.image}
-                  alt={card.alt}
-                  width={420}
-                  height={540}
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[3/3.8] h-auto w-full object-cover"
-                />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent p-5 pt-12">
-                  <ScrollReveal
-                    as="h3"
-                    className="text-base font-bold text-white sm:text-lg"
-                  >
-                    {card.name}
-                  </ScrollReveal>
+                <div className="photo-hover-card rounded-2xl bg-neutral-900">
+                  <img
+                    src={card.image}
+                    alt={card.alt}
+                    width={420}
+                    height={540}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[3/3.8] h-auto w-full object-cover"
+                  />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/75 via-black/25 to-transparent p-5 pt-12">
+                    <ScrollReveal
+                      as="h3"
+                      className="text-base font-bold text-white sm:text-lg"
+                    >
+                      {card.name}
+                    </ScrollReveal>
+                  </div>
                 </div>
               </AnimatedContent>
             ))}
@@ -360,7 +363,7 @@ export function HomePage() {
                 membahayakan satwa dan merusak ekosistem.
               </p>
               <div className="mt-6">
-                <PillActionLink to="/hutan" label="Jelajahi Sampah" />
+                <PillActionLink to="/sampah" label="Jelajahi Sampah" />
               </div>
             </AnimatedContent>
           </div>
@@ -404,17 +407,19 @@ export function HomePage() {
                   duration={0.8}
                   delay={0.1}
                   threshold={0.14}
-                  className="overflow-hidden rounded-2xl bg-neutral-100 md:col-span-6 lg:col-span-6 lg:col-start-7"
+                  className="md:col-span-6 lg:col-span-6 lg:col-start-7"
                 >
-                  <img
-                    src={item.image}
-                    alt={item.alt}
-                    width={600}
-                    height={320}
-                    loading="lazy"
-                    decoding="async"
-                    className="aspect-[16/8.5] h-auto w-full object-cover"
-                  />
+                  <div className="photo-hover-card rounded-2xl bg-neutral-100">
+                    <img
+                      src={item.image}
+                      alt={item.alt}
+                      width={600}
+                      height={320}
+                      loading="lazy"
+                      decoding="async"
+                      className="aspect-[16/8.5] h-auto w-full object-cover"
+                    />
+                  </div>
                 </AnimatedContent>
               </div>
             ))}
@@ -447,7 +452,7 @@ export function HomePage() {
                 duration={0.75}
                 threshold={0.12}
               >
-                <div className="overflow-hidden rounded-2xl bg-neutral-100">
+                <div className="photo-hover-card rounded-2xl bg-neutral-100">
                   <img
                     src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748923/Rectangle_105.png"
                     alt="Orangutan terjebak di antara jaring plastik"
@@ -499,17 +504,19 @@ export function HomePage() {
                   duration={0.75}
                   delay={0.1}
                   threshold={0.12}
-                  className="mt-3 overflow-hidden rounded-2xl bg-neutral-100"
+                  className="mt-3"
                 >
-                  <img
-                    src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748933/Rectangle_106.png"
-                    alt="Sampah plastik mencemari perairan hijau"
-                    width={380}
-                    height={440}
-                    loading="lazy"
-                    decoding="async"
-                    className="aspect-[5/6] h-auto w-full object-cover"
-                  />
+                  <div className="photo-hover-card rounded-2xl bg-neutral-100">
+                    <img
+                      src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748933/Rectangle_106.png"
+                      alt="Sampah plastik mencemari perairan hijau"
+                      width={380}
+                      height={440}
+                      loading="lazy"
+                      decoding="async"
+                      className="aspect-[5/6] h-auto w-full object-cover"
+                    />
+                  </div>
                 </AnimatedContent>
               </div>
 
@@ -521,7 +528,7 @@ export function HomePage() {
                   delay={0.2}
                   threshold={0.12}
                 >
-                  <div className="overflow-hidden rounded-2xl bg-neutral-100">
+                  <div className="photo-hover-card rounded-2xl bg-neutral-100">
                     <img
                       src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748941/Rectangle_107.png"
                       alt="Pembukaan lahan hutan dilihat dari atas dengan alat berat"
@@ -578,7 +585,7 @@ export function HomePage() {
             threshold={0.15}
             className="mt-8 flex justify-center"
           >
-            <PillActionLink to="/hutan" label="Mulai Dari Sini" />
+            <PillActionLink to="/quiz" label="Mulai Dari Sini" />
           </AnimatedContent>
         </div>
       </section>

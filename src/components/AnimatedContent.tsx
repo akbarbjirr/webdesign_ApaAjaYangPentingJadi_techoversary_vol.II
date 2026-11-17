@@ -8,22 +8,15 @@ import {
 
 export interface AnimatedContentProps {
   children: ReactNode
-  container?: Element | string | null
   distance?: number
   direction?: 'vertical' | 'horizontal'
   reverse?: boolean
   duration?: number
-  ease?: string
   initialOpacity?: number
   animateOpacity?: boolean
   scale?: number
   threshold?: number
   delay?: number
-  disappearAfter?: number
-  disappearDuration?: number
-  disappearEase?: string
-  onComplete?: () => void
-  onDisappearanceComplete?: () => void
   className?: string
   style?: CSSProperties
 }

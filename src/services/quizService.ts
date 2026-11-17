@@ -6,13 +6,6 @@ import type {
 } from '@/types/supabase'
 import { isSupabaseConfigured, supabase } from '@/utils/supabase'
 
-export type QuizQuestionSource = 'supabase' | 'local'
-
-export interface QuizQuestionsResult {
-  questions: QuizQuestion[]
-  source: QuizQuestionSource
-}
-
 function mapRowToQuestion(row: QuizQuestionRow): QuizQuestion {
   const options = Array.isArray(row.options)
     ? row.options.filter((item): item is string => typeof item === 'string')
@@ -28,9 +21,9 @@ function mapRowToQuestion(row: QuizQuestionRow): QuizQuestion {
   }
 }
 
-export async function fetchQuizQuestions(): Promise<QuizQuestionsResult> {
+export async function fetchQuizQuestions(): Promise<QuizQuestion[]> {
   if (!isSupabaseConfigured) {
-    return { questions: QUIZ_QUESTIONS, source: 'local' }
+    return QUIZ_QUESTIONS
   }
 
   const { data, error } = await supabase
@@ -43,13 +36,10 @@ export async function fetchQuizQuestions(): Promise<QuizQuestionsResult> {
   }
 
   if (!data || data.length === 0) {
-    return { questions: QUIZ_QUESTIONS, source: 'local' }
+    return QUIZ_QUESTIONS
   }
 
-  return {
-    questions: data.map(mapRowToQuestion),
-    source: 'supabase',
-  }
+  return data.map(mapRowToQuestion)
 }
 
 export async function fetchQuizSubmissions(

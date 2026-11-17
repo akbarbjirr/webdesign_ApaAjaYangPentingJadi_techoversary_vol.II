@@ -7,10 +7,8 @@ export interface ScrollRevealProps {
   as?: ScrollRevealTag
   id?: string
   className?: string
-  enableBlur?: boolean
   baseOpacity?: number
   baseRotation?: number
-  blurStrength?: number
 }
 
 export function ScrollReveal({

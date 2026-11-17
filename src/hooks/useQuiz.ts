@@ -4,8 +4,6 @@ import {
   fetchQuizQuestions,
   fetchQuizSubmissions,
   submitQuizScore,
-  type QuizQuestionSource,
-  type QuizQuestionsResult,
 } from '@/services/quizService'
 import type { QuizSubmissionRow } from '@/types/supabase'
 
@@ -17,8 +15,6 @@ function getErrorMessage(error: unknown, fallback: string): string {
 
 export function useQuiz() {
   const [questions, setQuestions] = useState<QuizQuestion[]>(QUIZ_QUESTIONS)
-  const [questionSource, setQuestionSource] =
-    useState<QuizQuestionSource>('local')
   const [questionsLoading, setQuestionsLoading] = useState(true)
   const [questionsError, setQuestionsError] = useState<string | null>(null)
 
@@ -36,17 +32,18 @@ export function useQuiz() {
   const [lastSubmission, setLastSubmission] =
     useState<QuizSubmissionRow | null>(null)
 
-  const applyQuestionsSuccess = useCallback((result: QuizQuestionsResult) => {
-    setQuestions(result.questions)
-    setQuestionSource(result.source)
-    setQuestionsError(null)
-    setCurrentIndex((prev) => (prev < result.questions.length ? prev : 0))
-  }, [])
+  const applyQuestionsSuccess = useCallback(
+    (loadedQuestions: QuizQuestion[]) => {
+      setQuestions(loadedQuestions)
+      setQuestionsError(null)
+      setCurrentIndex((prev) => (prev < loadedQuestions.length ? prev : 0))
+    },
+    [],
+  )
 
   const applyQuestionsError = useCallback((error: unknown) => {
     setQuestionsError(getErrorMessage(error, 'Gagal memuat soal kuis.'))
     setQuestions(QUIZ_QUESTIONS)
-    setQuestionSource('local')
   }, [])
 
   const applySubmissionsError = useCallback((error: unknown) => {
@@ -187,7 +184,6 @@ export function useQuiz() {
 
   return {
     questions,
-    questionSource,
     questionsLoading,
     questionsError,
     reloadQuestions,

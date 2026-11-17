@@ -2,18 +2,21 @@ import { useEffect, useRef } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
 import Lenis from 'lenis'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { HomePage } from '@/pages/HomePage'
 import { AboutPage } from '@/pages/AboutPage'
-import { EdukasiPage } from '@/pages/EdukasiPage'
+import { HutanPage } from '@/pages/HutanPage'
 import { SatwaPage } from '@/pages/SatwaPage'
+import { SampahPage } from '@/pages/SampahPage'
+import { SampahReducePage } from '@/pages/SampahReducePage'
+import { SampahReusePage } from '@/pages/SampahReusePage'
+import { SampahRecyclePage } from '@/pages/SampahRecyclePage'
 import { ContactPage } from '@/pages/ContactPage'
 import { QuizPage } from '@/pages/QuizPage'
 
-gsap.registerPlugin(ScrollTrigger, useGSAP)
+gsap.registerPlugin(ScrollTrigger)
 ScrollTrigger.config({ ignoreMobileResize: true })
 
 function App() {
@@ -88,9 +91,14 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/tentang" element={<AboutPage />} />
-          <Route path="/hutan" element={<EdukasiPage />} />
-          <Route path="/edukasi" element={<EdukasiPage />} />
+          <Route path="/hutan" element={<HutanPage />} />
+          <Route path="/edukasi" element={<HutanPage />} />
           <Route path="/satwa" element={<SatwaPage />} />
+          <Route path="/sampah" element={<SampahPage />} />
+          <Route path="/sampah/reduce" element={<SampahReducePage />} />
+          <Route path="/sampah/reuse" element={<SampahReusePage />} />
+          <Route path="/sampah/recycle" element={<SampahRecyclePage />} />
+          <Route path="/sampah/:subpage" element={<SampahPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/kontak" element={<ContactPage />} />
           <Route path="/quiz" element={<QuizPage />} />
