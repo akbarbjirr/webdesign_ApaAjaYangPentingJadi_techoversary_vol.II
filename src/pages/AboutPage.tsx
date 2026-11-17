@@ -10,20 +10,15 @@ import {
   Plant,
 } from '@phosphor-icons/react'
 import { AnimatedContent } from '@/components/AnimatedContent'
+import {
+  ParallaxPillarBand,
+  type ParallaxBandItem,
+} from '@/components/ParallaxPillarBand'
 import { ScrollReveal } from '@/components/ScrollReveal'
-import { SplitText } from '@/components/SplitText'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-interface CampaignShowcaseBand {
-  id: string
-  title: string
-  description: string
-  image: string
-  alt: string
-}
-
-const CAMPAIGN_SHOWCASE: CampaignShowcaseBand[] = [
+const CAMPAIGN_SHOWCASE: ParallaxBandItem[] = [
   {
     id: 'hutan',
     title: 'HUTAN',
@@ -52,113 +47,6 @@ const CAMPAIGN_SHOWCASE: CampaignShowcaseBand[] = [
     alt: 'Tumpukan sampah plastik beraneka warna yang mencemari lingkungan',
   },
 ]
-
-function ParallaxPillarBand({ item }: { item: CampaignShowcaseBand }) {
-  const sectionRef = useRef<HTMLElement>(null)
-  const mediaRef = useRef<HTMLDivElement>(null)
-  const titleParallaxRef = useRef<HTMLDivElement>(null)
-
-  useGSAP(
-    () => {
-      const trigger = sectionRef.current
-      const media = mediaRef.current
-      const titleParallax = titleParallaxRef.current
-      if (!trigger || !media || !titleParallax) return
-
-      const prefersReducedMotion = window.matchMedia(
-        '(prefers-reduced-motion: reduce)',
-      ).matches
-
-      if (prefersReducedMotion) {
-        gsap.set([media, titleParallax], { yPercent: 0, y: 0 })
-        return
-      }
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-        })
-        .fromTo(
-          media,
-          { yPercent: -25, force3D: true },
-          { yPercent: 25, ease: 'none', force3D: true },
-          0,
-        )
-        .fromTo(
-          titleParallax,
-          { y: -60, force3D: true },
-          { y: 60, ease: 'none', force3D: true },
-          0,
-        )
-    },
-    { scope: sectionRef },
-  )
-
-  return (
-    <article
-      ref={sectionRef}
-      className="relative flex h-svh w-full items-center justify-center overflow-hidden bg-neutral-950"
-    >
-      <div
-        ref={mediaRef}
-        className="pointer-events-none absolute inset-x-0 -top-[6%] h-[112%] w-full will-change-transform"
-      >
-        <img
-          src={item.image}
-          alt={item.alt}
-          width={1600}
-          height={1067}
-          loading="lazy"
-          decoding="async"
-          className="h-full w-full scale-[1.05] object-cover"
-        />
-      </div>
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/25"
-      />
-
-      <div
-        ref={titleParallaxRef}
-        className="relative z-10 px-4 text-center will-change-transform sm:px-6 lg:px-8"
-      >
-        <SplitText
-          as="h2"
-          text={item.title}
-          splitBy="chars"
-          yOffset={40}
-          duration={0.8}
-          stagger={0.055}
-          threshold={0.18}
-          className="text-5xl font-bold tracking-tight text-white sm:text-7xl lg:text-[5.5rem]"
-        />
-      </div>
-
-      <div className="absolute inset-x-0 bottom-0 z-10 pb-8 sm:pb-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SplitText
-            as="p"
-            text={item.description}
-            splitBy="words"
-            yOffset={20}
-            duration={0.65}
-            stagger={0.025}
-            delay={0.12}
-            threshold={0.05}
-            className="max-w-lg text-sm leading-relaxed text-white/95 sm:text-base"
-          />
-        </div>
-      </div>
-    </article>
-  )
-}
 
 interface KnowledgeScatterPhoto {
   id: string
@@ -455,7 +343,7 @@ function MarqueeCardList({ decorative = false }: { decorative?: boolean }) {
       {WILDLIFE_GALLERY.map((item) => (
         <li
           key={decorative ? `${item.id}-dup` : item.id}
-          className="group aspect-square w-[240px] shrink-0 overflow-hidden rounded-[20px] bg-neutral-100 sm:w-[300px] lg:w-[340px]"
+          className="photo-hover-card aspect-square w-[240px] shrink-0 rounded-[20px] bg-neutral-100 sm:w-[300px] lg:w-[340px]"
         >
           <img
             src={item.image}
@@ -464,7 +352,7 @@ function MarqueeCardList({ decorative = false }: { decorative?: boolean }) {
             height={340}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            className="h-full w-full object-cover"
           />
         </li>
       ))}
@@ -530,7 +418,7 @@ export function AboutPage() {
           <div
             ref={marqueeViewportRef}
             data-in-view="true"
-            className="marquee-viewport w-full overflow-hidden"
+            className="marquee-viewport -my-5 w-full overflow-x-clip py-5"
           >
             <div className="marquee-track flex w-max">
               <MarqueeCardList />
@@ -547,16 +435,18 @@ export function AboutPage() {
               distance={32}
               duration={0.7}
               threshold={0.12}
-              className="overflow-hidden rounded-[20px] bg-neutral-100 md:col-span-6 lg:col-span-5"
+              className="md:col-span-6 lg:col-span-5"
             >
-              <img
-                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80"
-                alt="Danau alam jernih yang memantulkan langit biru dan perbukitan hijau"
-                width={760}
-                height={720}
-                loading="lazy"
-                className="aspect-[1.06/1] h-auto w-full object-cover"
-              />
+              <div className="photo-hover-card rounded-[20px] bg-neutral-100">
+                <img
+                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80"
+                  alt="Danau alam jernih yang memantulkan langit biru dan perbukitan hijau"
+                  width={760}
+                  height={720}
+                  loading="lazy"
+                  className="aspect-[1.06/1] h-auto w-full object-cover"
+                />
+              </div>
             </AnimatedContent>
 
             <div className="md:col-span-6 lg:col-span-6 lg:col-start-7">
@@ -652,7 +542,7 @@ export function AboutPage() {
             className="mt-8 flex justify-center"
           >
             <Link
-              to="/hutan"
+              to="/quiz"
               className="group inline-flex min-h-12 items-center gap-6 rounded-full bg-neutral-950 py-2 pr-2.5 pl-8 text-sm font-medium text-white transition-all duration-300 hover:bg-neutral-900 active:scale-[0.99] sm:text-base"
             >
               <span>Mulai Dari Sini</span>

@@ -122,31 +122,45 @@ export function Navbar() {
                       }
                     }}
                   >
-                    <button
-                      type="button"
-                      onClick={() => setSampahOpen((prev) => !prev)}
-                      aria-expanded={sampahOpen}
-                      aria-haspopup="menu"
-                      className={cn(
-                        'group inline-flex min-h-11 items-center gap-1.5 px-2 text-sm transition-colors',
-                        isGroupActive
-                          ? 'font-bold text-neutral-950'
-                          : 'font-normal text-neutral-600 hover:text-neutral-950',
-                      )}
-                    >
-                      <span className={navUnderlineClass(isGroupActive)}>
-                        {item.label}
-                      </span>
-                      <CaretDown
-                        size={15}
-                        weight="light"
-                        aria-hidden="true"
+                    <div className="inline-flex min-h-11 items-center gap-0.5 px-2">
+                      <NavLink
+                        to={item.to}
+                        onClick={() => setSampahOpen(false)}
                         className={cn(
-                          'mt-0.5 transition-transform duration-200',
-                          sampahOpen && 'rotate-180',
+                          'group inline-flex min-h-11 items-center text-sm transition-colors',
+                          isGroupActive
+                            ? 'font-bold text-neutral-950'
+                            : 'font-normal text-neutral-600 hover:text-neutral-950',
                         )}
-                      />
-                    </button>
+                      >
+                        <span className={navUnderlineClass(isGroupActive)}>
+                          {item.label}
+                        </span>
+                      </NavLink>
+                      <button
+                        type="button"
+                        onClick={() => setSampahOpen((prev) => !prev)}
+                        aria-expanded={sampahOpen}
+                        aria-haspopup="menu"
+                        aria-label={`Buka submenu ${item.label}`}
+                        className={cn(
+                          'inline-flex min-h-11 items-center px-1 transition-colors',
+                          isGroupActive
+                            ? 'text-neutral-950'
+                            : 'text-neutral-600 hover:text-neutral-950',
+                        )}
+                      >
+                        <CaretDown
+                          size={15}
+                          weight="light"
+                          aria-hidden="true"
+                          className={cn(
+                            'mt-0.5 transition-transform duration-200',
+                            sampahOpen && 'rotate-180',
+                          )}
+                        />
+                      </button>
+                    </div>
 
                     <div
                       role="menu"

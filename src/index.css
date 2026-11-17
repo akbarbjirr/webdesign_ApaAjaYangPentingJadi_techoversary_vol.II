@@ -5,7 +5,6 @@
   --font-sans:
     'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Fraunces Variable', Georgia, serif;
-  --font-serif: 'Fraunces Variable', Georgia, serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 }
 
@@ -86,6 +85,54 @@
 .marquee-viewport:hover .marquee-track,
 .marquee-viewport[data-in-view='false'] .marquee-track {
   animation-play-state: paused;
+}
+
+.photo-hover-frame,
+.photo-hover-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photo-hover-frame img,
+.photo-hover-card img {
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.photo-hover-frame::after,
+.photo-hover-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 30% 25%,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0) 62%
+  );
+  opacity: 0;
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .photo-hover-card:hover {
+    box-shadow: 0 18px 38px -14px rgba(10, 10, 10, 0.24);
+    transform: translate3d(0, -4px, 0);
+  }
+
+  .photo-hover-frame:hover img,
+  .photo-hover-card:hover img {
+    transform: scale(1.045);
+  }
+
+  .photo-hover-frame:hover::after,
+  .photo-hover-card:hover::after {
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
