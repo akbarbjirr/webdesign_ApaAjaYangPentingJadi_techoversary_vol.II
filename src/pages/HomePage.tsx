@@ -117,7 +117,7 @@ export function HomePage() {
     <main id="konten-utama" className="min-h-screen bg-white">
       <section className="pt-16 pb-16 sm:pt-24 sm:pb-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-[68rem] text-center">
+          <div className="mx-auto max-w-272 text-center">
             <ScrollReveal
               as="h1"
               className="text-3xl leading-[1.15] font-bold tracking-tight text-neutral-950 sm:text-5xl lg:text-[4rem]"
@@ -131,7 +131,7 @@ export function HomePage() {
               delay={0.08}
               threshold={0.02}
             >
-              <p className="mx-auto mt-5 max-w-[58rem] text-sm leading-relaxed text-neutral-600 sm:mt-6 sm:text-lg">
+              <p className="mx-auto mt-5 max-w-232 text-sm leading-relaxed text-neutral-600 sm:mt-6 sm:text-lg">
                 Kenali hutan Indonesia, satwa langka yang bergantung padanya,
                 dan langkah kecil yang dapat kita lakukan untuk menjaga alam
                 tetap hidup.
@@ -155,7 +155,7 @@ export function HomePage() {
             duration={0.85}
             delay={0.2}
             threshold={0.02}
-            className="mt-14 overflow-hidden rounded-2xl bg-neutral-100 sm:mt-20 sm:rounded-[24px]"
+            className="mt-14 overflow-hidden rounded-2xl bg-neutral-100 sm:mt-20 sm:rounded-3xl"
           >
             <video
               autoPlay
@@ -167,7 +167,7 @@ export function HomePage() {
               width={1200}
               height={638}
               aria-label="Video udara air terjun di tengah lebatnya pepohonan hutan tropis hijau"
-              className="aspect-[16/9] h-auto w-full object-cover sm:aspect-[16/8.5]"
+              className="aspect-video h-auto w-full object-cover sm:aspect-16/8.5"
             >
               <source
                 src="https://res.cloudinary.com/hd53eglp/video/upload/f_mp4,q_auto,w_1600/v1795004813/Hasil.mp4"
@@ -270,7 +270,7 @@ export function HomePage() {
                   height={798}
                   loading="lazy"
                   decoding="async"
-                  className="aspect-[3/4] h-auto w-full object-cover"
+                  className="aspect-3/4 h-auto w-full object-cover"
                 />
               </div>
             </AnimatedContent>
@@ -341,7 +341,7 @@ export function HomePage() {
                     decoding="async"
                     className="aspect-[3/3.8] h-auto w-full object-cover"
                   />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/75 via-black/25 to-transparent p-5 pt-12">
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-linear-to-t from-black/75 via-black/25 to-transparent p-5 pt-12">
                     <ScrollReveal
                       as="h3"
                       className="text-base font-bold text-white sm:text-lg"
@@ -426,7 +426,7 @@ export function HomePage() {
                       height={320}
                       loading="lazy"
                       decoding="async"
-                      className="aspect-[16/8.5] h-auto w-full object-cover"
+                      className="aspect-16/8.5 h-auto w-full object-cover"
                     />
                   </div>
                 </AnimatedContent>
@@ -469,7 +469,7 @@ export function HomePage() {
                     height={480}
                     loading="lazy"
                     decoding="async"
-                    className="aspect-[11/10] h-auto w-full object-cover"
+                    className="aspect-11/10 h-auto w-full object-cover"
                   />
                 </div>
               </AnimatedContent>
@@ -523,7 +523,7 @@ export function HomePage() {
                       height={328}
                       loading="lazy"
                       decoding="async"
-                      className="aspect-[5/6] h-auto w-full object-cover"
+                      className="aspect-5/6 h-auto w-full object-cover"
                     />
                   </div>
                 </AnimatedContent>
@@ -611,7 +611,7 @@ export function HomePage() {
             threshold={0.15}
             className="mt-8 flex justify-center"
           >
-            <PillActionLink to="/quiz" label="Mulai Dari Sini" />
+            <PillActionLink to="/quiz" label="Mulai Kuis" />
           </AnimatedContent>
         </div>
       </section>

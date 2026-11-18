@@ -63,7 +63,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
     alt: 'Monyet hitam Sulawesi di habitat alami',
     src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005483/Rectangle_118.jpg',
     positionClass:
-      'lg:left-[3%] lg:top-[12%] lg:w-[175px] xl:w-[225px] 2xl:w-[260px] z-0',
+      'lg:left-[3%] lg:top-[12%] lg:w-43.75 xl:w-56.25 2xl:w-65 z-0',
     parallaxEnd: 170,
     revealDelay: 0,
   },
@@ -72,7 +72,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
     alt: 'Orangutan bergelantungan di dahan pohon hutan hujan',
     src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005492/Rectangle_119.jpg',
     positionClass:
-      'lg:left-[5%] lg:top-[27%] lg:w-[180px] xl:w-[235px] 2xl:w-[270px] z-10',
+      'lg:left-[5%] lg:top-[27%] lg:w-45 xl:w-58.75 2xl:w-67.5 z-10',
     parallaxEnd: 280,
     revealDelay: 0.08,
   },
@@ -81,7 +81,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
     alt: 'Hamparan tajuk hutan hujan tropis dari udara',
     src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005490/Rectangle_120.jpg',
     positionClass:
-      'lg:right-[7%] lg:top-[11%] lg:w-[175px] xl:w-[225px] 2xl:w-[260px] z-0',
+      'lg:right-[7%] lg:top-[11%] lg:w-43.75 xl:w-56.25 2xl:w-65 z-0',
     parallaxEnd: 180,
     revealDelay: 0.04,
   },
@@ -90,7 +90,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
     alt: 'Pegunungan hijau berkabut diterangi cahaya matahari pagi',
     src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005493/Rectangle_121.jpg',
     positionClass:
-      'lg:right-[2%] lg:top-[26%] lg:w-[180px] xl:w-[235px] 2xl:w-[270px] z-10',
+      'lg:right-[2%] lg:top-[26%] lg:w-45 xl:w-58.75 2xl:w-67.5 z-10',
     parallaxEnd: 295,
     revealDelay: 0.12,
   },
@@ -99,7 +99,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
     alt: 'Potret jarak dekat harimau sumatera di alam liar',
     src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005496/Rectangle_123.jpg',
     positionClass:
-      'lg:left-[17%] lg:bottom-[4%] lg:w-[180px] xl:w-[230px] 2xl:w-[265px] z-10',
+      'lg:left-[17%] lg:bottom-[4%] lg:w-45 xl:w-57.5 2xl:w-66.25 z-10',
     parallaxEnd: 250,
     revealDelay: 0,
   },
@@ -108,7 +108,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
     alt: 'Badak berdiri di padang rumput terbuka',
     src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005495/Rectangle_122.jpg',
     positionClass:
-      'lg:right-[17%] lg:bottom-[5%] lg:w-[180px] xl:w-[230px] 2xl:w-[265px] z-10',
+      'lg:right-[17%] lg:bottom-[5%] lg:w-45 xl:w-57.5 2xl:w-66.25 z-10',
     parallaxEnd: 230,
     revealDelay: 0.08,
   },
@@ -214,12 +214,12 @@ function KnowledgeChangeSection() {
       aria-labelledby="knowledge-change-heading"
       className="relative overflow-hidden bg-white"
     >
-      <div className="relative mx-auto max-w-[1380px] px-4 py-20 sm:px-6 sm:py-24 lg:flex lg:min-h-[920px] lg:items-center lg:justify-center lg:py-36 xl:min-h-[1020px]">
-        <div className="relative z-20 mx-auto max-w-md text-center lg:max-w-[460px] xl:max-w-[540px] 2xl:max-w-[580px]">
+      <div className="relative mx-auto max-w-345 px-4 py-20 sm:px-6 sm:py-24 lg:flex lg:min-h-230 lg:items-center lg:justify-center lg:py-36 xl:min-h-255">
+        <div className="relative z-20 mx-auto max-w-md text-center lg:max-w-115 xl:max-w-135 2xl:max-w-145">
           <ScrollReveal
             as="h2"
             id="knowledge-change-heading"
-            className="text-[2rem] leading-[1.14] font-bold tracking-[-0.025em] text-balance text-zinc-950 sm:text-[2.5rem] lg:text-[2.75rem] xl:text-[3.15rem]"
+            className="text-[2rem] leading-[1.14] font-bold tracking-tight text-balance text-zinc-950 sm:text-[2.5rem] lg:text-[2.75rem] xl:text-[3.15rem]"
           >
             Dari Pengetahuan Menuju Perubahan.
           </ScrollReveal>
@@ -241,7 +241,7 @@ function KnowledgeChangeSection() {
               className={`knowledge-slot lg:absolute ${photo.positionClass}`}
             >
               <div className="knowledge-parallax-card will-change-transform">
-                <div className="relative aspect-[16/10] w-full">
+                <div className="relative aspect-16/10 w-full">
                   <div className="knowledge-height-mask absolute inset-0 h-full w-full overflow-hidden">
                     <img
                       src={photo.src}
@@ -331,7 +331,7 @@ function MarqueeCardList({ decorative = false }: { decorative?: boolean }) {
       {WILDLIFE_GALLERY.map((item) => (
         <li
           key={decorative ? `${item.id}-dup` : item.id}
-          className="photo-hover-card aspect-[4/5] w-[220px] shrink-0 rounded-[20px] bg-neutral-100 sm:w-[270px] lg:w-[300px]"
+          className="photo-hover-card aspect-4/5 w-55 shrink-0 rounded-[20px] bg-neutral-100 sm:w-67.5 lg:w-75"
         >
           <img
             src={item.image}
@@ -533,7 +533,7 @@ export function AboutPage() {
               to="/quiz"
               className="group inline-flex min-h-12 items-center gap-6 rounded-full bg-neutral-950 py-2 pr-2.5 pl-8 text-sm font-medium text-white transition-all duration-300 hover:bg-neutral-900 active:scale-[0.99] sm:text-base"
             >
-              <span>Mulai Dari Sini</span>
+              <span>Mulai Kuis</span>
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-950 transition-transform duration-300 ease-out group-hover:translate-x-1.5 sm:h-9 sm:w-9">
                 <ArrowRight
                   size={16}

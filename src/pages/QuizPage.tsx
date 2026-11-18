@@ -691,13 +691,13 @@ export function QuizPage() {
             <div className="mx-auto w-full max-w-2xl">
               {hasPhoto && currentQuestion.image ? (
                 <>
-                  <div className="mx-auto mt-6 w-full max-w-[340px] overflow-hidden rounded-2xl bg-neutral-100">
+                  <div className="mx-auto mt-6 w-full max-w-85 overflow-hidden rounded-2xl bg-neutral-100">
                     <img
                       src={currentQuestion.image}
                       alt={currentQuestion.imageAlt ?? currentQuestion.scenario}
                       width={680}
                       height={425}
-                      className="aspect-[16/10] w-full object-cover"
+                      className="aspect-16/10 w-full object-cover"
                     />
                   </div>
 

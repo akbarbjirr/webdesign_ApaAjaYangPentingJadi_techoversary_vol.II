@@ -252,7 +252,7 @@ export function SampahPage() {
             duration={0.8}
             delay={0.14}
             threshold={0.02}
-            className="mx-auto mt-14 max-w-6xl overflow-hidden rounded-[24px] bg-neutral-100 sm:mt-20 sm:rounded-[28px] lg:mt-24"
+            className="mx-auto mt-14 max-w-6xl overflow-hidden rounded-3xl bg-neutral-100 sm:mt-20 sm:rounded-[28px] lg:mt-24"
           >
             <img
               src={SAMPAH_HERO_IMAGE}
@@ -300,7 +300,7 @@ export function SampahPage() {
                 delay={index * 0.1}
                 threshold={0.1}
               >
-                <div className="photo-hover-card rounded-[24px] bg-neutral-900">
+                <div className="photo-hover-card rounded-3xl bg-neutral-900">
                   <img
                     src={card.image}
                     alt={card.alt}
@@ -310,7 +310,7 @@ export function SampahPage() {
                     decoding="async"
                     className="aspect-[1/1.05] h-auto w-full object-cover"
                   />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/85 via-black/45 to-transparent p-5 pt-20 sm:p-6">
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-linear-to-t from-black/85 via-black/45 to-transparent p-5 pt-20 sm:p-6">
                     <ScrollReveal
                       as="h3"
                       className="text-base font-bold text-white sm:text-lg lg:text-xl"

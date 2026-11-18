@@ -405,7 +405,7 @@ export const RECYCLE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
     },
   ],
   nextCta: {
-    label: 'Mulai Dari Sini',
+    label: 'Mulai Kuis',
     to: '/quiz',
   },
 }

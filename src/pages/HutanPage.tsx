@@ -111,7 +111,7 @@ export function HutanPage() {
             duration={0.8}
             delay={0.14}
             threshold={0.02}
-            className="mt-12 overflow-hidden rounded-[24px] bg-neutral-100 sm:mt-14 sm:rounded-[28px] lg:mt-16"
+            className="mt-12 overflow-hidden rounded-3xl bg-neutral-100 sm:mt-14 sm:rounded-[28px] lg:mt-16"
           >
             <img
               src={FOREST_HERO_IMAGE}
@@ -120,7 +120,7 @@ export function HutanPage() {
               height={1012}
               fetchPriority="high"
               decoding="async"
-              className="aspect-[16/9] h-auto w-full object-cover"
+              className="aspect-video h-auto w-full object-cover"
             />
           </AnimatedContent>
         </div>
@@ -168,7 +168,7 @@ export function HutanPage() {
                 delay={index * 0.1}
                 threshold={0.1}
               >
-                <div className="photo-hover-card rounded-[24px] bg-neutral-900">
+                <div className="photo-hover-card rounded-3xl bg-neutral-900">
                   <img
                     src={card.image}
                     alt={card.alt}
@@ -178,7 +178,7 @@ export function HutanPage() {
                     decoding="async"
                     className="aspect-[1/1.05] h-auto w-full object-cover"
                   />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/85 via-black/45 to-transparent p-5 pt-20 sm:p-6">
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-linear-to-t from-black/85 via-black/45 to-transparent p-5 pt-20 sm:p-6">
                     <ScrollReveal
                       as="h3"
                       className="text-base font-bold text-white sm:text-lg lg:text-xl"
@@ -212,7 +212,7 @@ export function HutanPage() {
               distance={32}
               duration={0.75}
               threshold={0.1}
-              className="photo-hover-frame relative min-h-[340px] bg-neutral-200 md:min-h-[600px]"
+              className="photo-hover-frame relative min-h-85 bg-neutral-200 md:min-h-150"
             >
               <img
                 src={FOREST_THREAT_IMAGE}
@@ -327,7 +327,7 @@ export function HutanPage() {
                 duration={0.75}
                 threshold={0.1}
               >
-                <div className="photo-hover-card rounded-[24px] bg-neutral-100">
+                <div className="photo-hover-card rounded-3xl bg-neutral-100">
                   <img
                     src={CONSERVATION_PHOTOS.orangutanClimb.src}
                     alt={CONSERVATION_PHOTOS.orangutanClimb.alt}
@@ -348,7 +348,7 @@ export function HutanPage() {
                 threshold={0.1}
                 className="sm:mt-24 lg:mt-32"
               >
-                <div className="photo-hover-card rounded-[24px] bg-neutral-100">
+                <div className="photo-hover-card rounded-3xl bg-neutral-100">
                   <img
                     src={CONSERVATION_PHOTOS.treeClimber.src}
                     alt={CONSERVATION_PHOTOS.treeClimber.alt}
@@ -391,7 +391,7 @@ export function HutanPage() {
               to="/quiz"
               className="group inline-flex min-h-12 items-center gap-6 rounded-full bg-neutral-950 py-2 pr-2.5 pl-8 text-sm font-medium text-white transition-all duration-300 hover:bg-neutral-900 active:scale-[0.99] sm:text-base"
             >
-              <span>Mulai Dari Sini</span>
+              <span>Mulai Kuis</span>
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-950 transition-transform duration-300 ease-out group-hover:translate-x-1.5 sm:h-9 sm:w-9">
                 <ArrowRight
                   size={16}

@@ -88,7 +88,7 @@ export function Navbar() {
         Langsung ke konten utama
       </a>
 
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 py-4 sm:px-8 lg:px-12">
+      <div className="mx-auto flex max-w-350 items-center justify-between gap-4 px-4 py-4 sm:px-8 lg:px-12">
         <Link
           to="/"
           onClick={closeAllMenus}
@@ -164,20 +164,20 @@ export function Navbar() {
                       role="menu"
                       aria-label={`Submenu ${item.label}`}
                       className={cn(
-                        'absolute top-full left-0 z-50 origin-top pt-2 transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none',
+                        'absolute top-full left-0 z-50 origin-top pt-2 transition-all duration-200 ease-in-out motion-reduce:transition-none',
                         sampahOpen
                           ? 'pointer-events-auto translate-y-0 scale-100 opacity-100'
                           : 'pointer-events-none translate-y-1 scale-[0.97] opacity-0',
                       )}
                     >
-                      <ul className="flex min-w-[180px] flex-col gap-0.5 rounded-2xl bg-white p-1.5 shadow-[0_10px_28px_rgba(0,0,0,0.1)] ring-1 ring-black/5 [&:focus-within>:not(:focus-within)]:text-neutral-400 [&:hover>:not(:hover)]:text-neutral-400">
+                      <ul className="flex min-w-45 flex-col gap-0.5 rounded-2xl bg-white p-1.5 shadow-[0_10px_28px_rgba(0,0,0,0.1)] ring-1 ring-black/5 [&:focus-within>:not(:focus-within)]:text-neutral-400 [&:hover>:not(:hover)]:text-neutral-400">
                         {item.children.map((child, index) => {
                           const itemDelay = Math.min(index * 70, 560)
                           return (
                             <li
                               key={child.to}
                               role="none"
-                              className="text-neutral-800 transition-[opacity,transform,color] duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none"
+                              className="text-neutral-800 transition-[opacity,transform,color] duration-200 ease-in-out motion-reduce:transition-none"
                               style={{
                                 opacity: sampahOpen ? 1 : 0,
                                 transform: sampahOpen

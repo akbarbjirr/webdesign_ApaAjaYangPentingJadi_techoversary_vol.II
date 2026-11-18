@@ -125,7 +125,7 @@ export function SampahPrincipleLayout({
               threshold={0.05}
               className="md:col-span-5"
             >
-              <div className="photo-hover-frame overflow-hidden rounded-[24px] bg-neutral-100 sm:rounded-[28px]">
+              <div className="photo-hover-frame overflow-hidden rounded-3xl bg-neutral-100 sm:rounded-[28px]">
                 <img
                   src={content.whyImage}
                   alt={content.whyImageAlt}
@@ -133,7 +133,7 @@ export function SampahPrincipleLayout({
                   height={1300}
                   loading="lazy"
                   decoding="async"
-                  className="aspect-[5/6] h-auto w-full object-cover"
+                  className="aspect-5/6 h-auto w-full object-cover"
                 />
               </div>
             </AnimatedContent>

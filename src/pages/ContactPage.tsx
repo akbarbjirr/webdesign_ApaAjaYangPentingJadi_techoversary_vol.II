@@ -1,28 +1,63 @@
 import { useState, type FormEvent } from 'react'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
+const ADYFAS_CONTACT_URL = 'https://adyfas.com/contact/'
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function buildContactRedirectUrl(name: string, email: string, message: string) {
+  const url = new URL(ADYFAS_CONTACT_URL)
+  url.searchParams.set('name', name)
+  url.searchParams.set('email', email)
+  url.searchParams.set('mess', message)
+  return url.toString()
+}
+
 export function ContactPage() {
   const [senderName, setSenderName] = useState('')
   const [senderEmail, setSenderEmail] = useState('')
   const [messageText, setMessageText] = useState('')
   const [errorText, setErrorText] = useState('')
-  const [submittedName, setSubmittedName] = useState('')
+  const [submittedState, setSubmittedState] = useState<{
+    name: string
+    url: string
+  } | null>(null)
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const cleanName = senderName.trim()
-    if (!cleanName || !senderEmail.trim() || !messageText.trim()) {
+    const cleanEmail = senderEmail.trim()
+    const cleanMessage = messageText.trim()
+
+    if (!cleanName || !cleanEmail || !cleanMessage) {
       setErrorText(
         'Mohon lengkapi nama, alamat email, dan isi pesan sebelum mengirim.',
       )
-      setSubmittedName('')
+      setSubmittedState(null)
       return
     }
+
+    if (!EMAIL_PATTERN.test(cleanEmail)) {
+      setErrorText('Mohon masukkan alamat email yang valid.')
+      setSubmittedState(null)
+      return
+    }
+
+    const targetUrl = buildContactRedirectUrl(
+      cleanName,
+      cleanEmail,
+      cleanMessage,
+    )
+
     setErrorText('')
-    setSubmittedName(cleanName)
+    setSubmittedState({ name: cleanName, url: targetUrl })
     setSenderName('')
     setSenderEmail('')
     setMessageText('')
+
+    const openedWindow = window.open(targetUrl, '_blank', 'noopener,noreferrer')
+    if (!openedWindow) {
+      window.location.assign(targetUrl)
+    }
   }
 
   return (
@@ -115,13 +150,23 @@ export function ContactPage() {
             </div>
           )}
 
-          {submittedName && (
+          {submittedState && (
             <div
               role="status"
               aria-live="polite"
               className="mt-5 max-w-lg rounded-xl border border-green-300 bg-green-50 px-4 py-3 text-xs font-semibold text-green-900 sm:text-sm"
             >
-              {`Terima kasih, ${submittedName}. Ide dan pesan kamu telah berhasil tercatat.`}
+              <p>
+                {`Terima kasih, ${submittedState.name}. Sudah Memberikan Ide`}
+                <a
+                  href={submittedState.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 hover:text-green-950"
+                >
+                  Buka ulang tautan
+                </a>
+              </p>
             </div>
           )}
 

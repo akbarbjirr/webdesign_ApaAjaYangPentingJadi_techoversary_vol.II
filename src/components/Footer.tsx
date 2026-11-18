@@ -31,7 +31,7 @@ const FOOTER_COLUMNS: FooterColumn[] = [
 export function Footer() {
   return (
     <footer className="w-full overflow-hidden bg-white pt-16 text-neutral-950 sm:pt-24">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-350 px-4 sm:px-8 lg:px-12">
         <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
           <p className="text-lg font-bold tracking-tight text-neutral-950 sm:text-xl lg:text-2xl">
             Hutan adalah Rumah, Mari Kita Jaga.

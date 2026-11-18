@@ -78,7 +78,7 @@ export function ParallaxPillarBand({
     >
       <div
         ref={mediaRef}
-        className="pointer-events-none absolute inset-x-0 -top-[6%] h-[112%] w-full will-change-transform"
+        className="pointer-events-none absolute inset-x-0 top-[-6%] h-[112%] w-full will-change-transform"
       >
         <img
           src={item.image}
@@ -93,7 +93,7 @@ export function ParallaxPillarBand({
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/25"
+        className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/80 via-black/25 to-black/25"
       />
 
       <div

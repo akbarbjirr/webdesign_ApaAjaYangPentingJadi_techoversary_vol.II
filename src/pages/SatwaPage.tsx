@@ -139,7 +139,7 @@ export function SatwaPage() {
           <div className="md:col-span-6">
             <AnimatedContent distance={28} duration={0.7} delay={0.1}>
               <div className="grid grid-cols-2 gap-4 sm:gap-5">
-                <div className="photo-hover-card relative row-span-2 min-h-[300px] overflow-hidden rounded-2xl bg-neutral-100 sm:min-h-[380px]">
+                <div className="photo-hover-card relative row-span-2 min-h-75 overflow-hidden rounded-2xl bg-neutral-100 sm:min-h-95">
                   <img
                     src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005511/Rectangle_137.jpg"
                     alt="Potret orangutan jantan di hutan hujan Indonesia"
@@ -175,10 +175,10 @@ export function SatwaPage() {
         <div className="grid grid-cols-1 items-center gap-7 md:grid-cols-12 md:gap-9 lg:gap-10">
           <div className="md:col-span-5">
             <AnimatedContent distance={24} duration={0.65}>
-              <div className="relative flex h-[196px] w-full max-w-[420px] items-end overflow-hidden rounded-[20px] bg-black pr-5 pb-4 pl-[138px] sm:h-[220px] sm:pr-6 sm:pb-5 sm:pl-[158px]">
+              <div className="relative flex h-49 w-full max-w-105 items-end overflow-hidden rounded-[20px] bg-black pr-5 pb-4 pl-34.5 sm:h-55 sm:pr-6 sm:pb-5 sm:pl-39.5">
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute top-1/2 -left-5 -translate-y-[48%] text-[16rem] leading-none font-bold tracking-tighter text-[#9e9e9e] select-none sm:-left-6 sm:text-[18.25rem]"
+                  className="pointer-events-none absolute top-1/2 -left-5 translate-y-[-48%] text-[16rem] leading-none font-bold tracking-tighter text-[#9e9e9e] select-none sm:-left-6 sm:text-[18.25rem]"
                 >
                   0
                 </span>
@@ -197,7 +197,7 @@ export function SatwaPage() {
               Beberapa suara kini telah sunyi.
             </ScrollReveal>
             <AnimatedContent distance={20} duration={0.65} delay={0.08}>
-              <p className="mt-3.5 max-w-[515px] text-sm leading-[1.5] font-medium text-neutral-900 sm:mt-4 sm:text-base">
+              <p className="mt-3.5 max-w-128.75 text-sm leading-normal font-medium text-neutral-900 sm:mt-4 sm:text-base">
                 Indonesia pernah menjadi rumah bagi keberagaman hayati yang tak
                 tertandingi. Namun, laju deforestasi dan perburuan masif telah
                 merampas rumah mereka. Delapan satwa ini bukan lagi sekadar
