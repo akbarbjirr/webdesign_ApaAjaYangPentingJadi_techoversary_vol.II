@@ -56,8 +56,6 @@ export function Navbar() {
       }
     }
 
-
-
     const handleMouseDown = (event: MouseEvent) => {
       if (
         sampahOpen &&
@@ -80,7 +78,6 @@ export function Navbar() {
     setMobileOpen(false)
     setSampahOpen(false)
   }
-
 
   return (
     <header className="sticky top-0 z-40 bg-white">

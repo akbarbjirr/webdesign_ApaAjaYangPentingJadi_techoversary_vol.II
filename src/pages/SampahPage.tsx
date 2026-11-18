@@ -9,7 +9,7 @@ import {
 import { ScrollReveal } from '@/components/ScrollReveal'
 
 const SAMPAH_HERO_IMAGE =
-  'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748902/Rectangle_102.png'
+  'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005537/Rectangle_102.png'
 
 const BURDEN_CARDS = [
   {
@@ -18,7 +18,7 @@ const BURDEN_CARDS = [
     description:
       'Sampah yang masuk ke sungai dapat merusak kualitas air dan mengganggu kehidupan organisme.',
     image:
-      'https://images.unsplash.com/photo-1621451537084-482c73073a0f?auto=format&fit=crop&w=900&q=80',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005447/Gambar_Pencemaran_Sungai.jpg',
     alt: 'Sampah plastik dan jaring mengapung di bawah permukaan air laut biru',
   },
   {
@@ -27,7 +27,7 @@ const BURDEN_CARDS = [
     description:
       'Sampah yang tidak terkelola dapat menumpuk dan menurunkan kualitas lingkungan.',
     image:
-      'https://images.unsplash.com/photo-1713016877596-6a800832e15c?auto=format&fit=crop&w=900&q=80',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005452/Gambar_Penumpukan_Sampah.jpg',
     alt: 'Tumpukan botol plastik bekas berwarna-warni yang menumpuk',
   },
   {
@@ -36,7 +36,7 @@ const BURDEN_CARDS = [
     description:
       'Satwa dapat menelan sampah plastik atau terjerat limbah yang mencemari habitatnya.',
     image:
-      'https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&w=900&q=80',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005447/Gambar_Ancaman_bagi_Satwa.jpg',
     alt: 'Satwa burung di tengah tumpukan sampah plastik di alam terbuka',
   },
 ] as const
@@ -195,7 +195,7 @@ const IMPACT_PARALLAX_BANDS: ParallaxBandItem[] = [
     description:
       'Lingkungan yang tercemar dapat meningkatkan risiko gangguan kesehatan, terutama ketika manusia terpapar air, udara, atau bahan berbahaya yang tercemar.',
     image:
-      'https://images.unsplash.com/photo-1633219664572-473fd988a44f?auto=format&fit=crop&w=1600&q=80',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005448/Gambar_Dampak_terhadap_Manusia.jpg',
     alt: 'Tangan pasien terpasang selang infus saat menjalani perawatan medis',
   },
   {
@@ -204,8 +204,8 @@ const IMPACT_PARALLAX_BANDS: ParallaxBandItem[] = [
     description:
       'Sampah plastik dan limbah lainnya dapat membahayakan satwa melalui tertelan atau terjerat, bahkan mengancam kelangsungan hidupnya.',
     image:
-      'https://images.unsplash.com/photo-1589634749362-a8ef3056cbe9?auto=format&fit=crop&w=1600&q=80',
-    alt: 'Penyu laut berenang di bawah permukaan air laut biru',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005442/Gambar_Dampak_terhadap_Satwa.jpg',
+    alt: 'Penyu laut berenang di bawah permukaan air laut biru yang tercemar plastik',
   },
   {
     id: 'terhadap-ekosistem',
@@ -213,7 +213,7 @@ const IMPACT_PARALLAX_BANDS: ParallaxBandItem[] = [
     description:
       'Penumpukan dan pencemaran sampah dapat mengganggu keseimbangan ekosistem, baik di daratan maupun perairan.',
     image:
-      'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=80',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005452/Gambar_Dampak_terhadap_Ekosistem.jpg',
     alt: 'Pepohonan hutan hijau diterangi berkas cahaya matahari pagi',
   },
 ]

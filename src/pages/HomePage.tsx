@@ -60,21 +60,21 @@ const WILDLIFE_CARDS = [
     id: 'harimau-sumatera',
     name: 'Harimau Sumatera',
     image:
-      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748863/Rectangle_99.png',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005539/Rectangle_99.png',
     alt: 'Harimau Sumatera berjalan di atas tanah hutan',
   },
   {
     id: 'orangutan',
     name: 'Orangutan',
     image:
-      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748884/Rectangle_100.png',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005541/Rectangle_100.png',
     alt: 'Induk dan anak orangutan bergelantungan di dahan pohon',
   },
   {
     id: 'badak-jawa',
     name: 'Badak Jawa',
     image:
-      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748893/Rectangle_101.png',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005541/Rectangle_101.png',
     alt: 'Badak Jawa berdiri di habitat alaminya',
   },
 ] as const
@@ -87,7 +87,7 @@ const WASTE_IMPACTS = [
     description:
       'Sampah yang terbawa ke sungai dapat mengotori perairan dan mengganggu kehidupan di dalamnya.',
     image:
-      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748902/Rectangle_102.png',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005537/Rectangle_102.png',
     alt: 'Sampah plastik mengapung di perairan laut bersama ikan',
   },
   {
@@ -97,7 +97,7 @@ const WASTE_IMPACTS = [
     description:
       'Satwa dapat menelan sampah plastik atau terjerat benda yang dibuang manusia.',
     image:
-      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748910/Rectangle_103.png',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005540/Rectangle_103.png',
     alt: 'Tumpukan sisa sampah makanan di atas tanah berumput',
   },
   {
@@ -107,7 +107,7 @@ const WASTE_IMPACTS = [
     description:
       'Sampah yang dibuang sembarangan dapat menurunkan kualitas lingkungan.',
     image:
-      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748916/Rectangle_104.png',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005535/Rectangle_104.png',
     alt: 'Gunungan sampah menumpuk di area terbuka dekat pepohonan',
   },
 ] as const
@@ -163,12 +163,16 @@ export function HomePage() {
               loop
               playsInline
               preload="metadata"
+              poster="https://res.cloudinary.com/hd53eglp/video/upload/so_0,f_auto,q_auto,w_1200/v1795004813/Hasil.jpg"
               width={1200}
               height={638}
-              aria-label="Harimau Sumatera di balik pagar kandang dengan dedaunan hijau di sekitarnya"
+              aria-label="Video udara air terjun di tengah lebatnya pepohonan hutan tropis hijau"
               className="aspect-[16/9] h-auto w-full object-cover sm:aspect-[16/8.5]"
             >
-              <source src="/video/Hasil.mp4" type="video/mp4" />
+              <source
+                src="https://res.cloudinary.com/hd53eglp/video/upload/f_mp4,q_auto,w_1600/v1795004813/Hasil.mp4"
+                type="video/mp4"
+              />
               Browser kamu tidak mendukung pemutaran video.
             </video>
           </AnimatedContent>
@@ -260,7 +264,7 @@ export function HomePage() {
             >
               <div className="photo-hover-card rounded-2xl bg-neutral-100">
                 <img
-                  src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/Rectangle_90.png"
+                  src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005541/Rectangle_90.png"
                   alt="Tajuk pepohonan hutan hijau menjulang ke arah langit berawan"
                   width={600}
                   height={798}
@@ -459,7 +463,7 @@ export function HomePage() {
               >
                 <div className="photo-hover-card rounded-2xl bg-neutral-100">
                   <img
-                    src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748923/Rectangle_105.png"
+                    src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005536/Rectangle_105.png"
                     alt="Orangutan terjebak di antara jaring plastik"
                     width={520}
                     height={480}
@@ -486,7 +490,7 @@ export function HomePage() {
 
             <div className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 md:col-span-7 md:col-start-6">
               <div>
-                <div className='lg:block hidden'>
+                <div className="hidden lg:block">
                   <ScrollReveal
                     as="h3"
                     className="text-base font-bold text-neutral-950 sm:text-lg"
@@ -513,7 +517,7 @@ export function HomePage() {
                 >
                   <div className="photo-hover-card rounded-2xl bg-neutral-100">
                     <img
-                      src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748933/Rectangle_106.png"
+                      src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005536/Rectangle_106.jpg"
                       alt="Sampah plastik mencemari perairan hijau"
                       width={380}
                       height={328}
@@ -523,7 +527,7 @@ export function HomePage() {
                     />
                   </div>
                 </AnimatedContent>
-                <div className='lg:hidden block'>
+                <div className="block lg:hidden">
                   <ScrollReveal
                     as="h3"
                     className="text-base font-bold text-neutral-950 sm:text-lg"
@@ -552,7 +556,7 @@ export function HomePage() {
                 >
                   <div className="photo-hover-card rounded-2xl bg-neutral-100">
                     <img
-                      src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748941/Rectangle_107.png"
+                      src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005532/Rectangle_107.jpg"
                       alt="Pembukaan lahan hutan dilihat dari atas dengan alat berat"
                       width={340}
                       height={328}

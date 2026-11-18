@@ -4,7 +4,7 @@ import { AnimatedContent } from '@/components/AnimatedContent'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
 const FOREST_HERO_IMAGE =
-  'https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1800&q=80'
+  'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005467/image_17.jpg'
 
 const ECOSYSTEM_CARDS = [
   {
@@ -13,7 +13,7 @@ const ECOSYSTEM_CARDS = [
     description:
       'Dari lantai hutan hingga tajuk kanopi tertinggi, setiap lapisan menciptakan rumah dan ruang bagi kehidupan.',
     image:
-      'https://images.unsplash.com/photo-1700880326547-3558d336f0c9?auto=format&fit=crop&w=900&q=80',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005466/Rectangle_126.jpg',
     alt: 'Pandangan ke atas batang bambu tinggi menuju kanopi hijau hutan',
   },
   {
@@ -22,7 +22,7 @@ const ECOSYSTEM_CARDS = [
     description:
       'Hutan menyimpan karbon, melepaskan oksigen, dan membantu mengatur sistem iklim yang kita andalkan setiap hari.',
     image:
-      'https://images.unsplash.com/photo-1615239095558-41ac83720423?auto=format&fit=crop&w=900&q=80',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005479/Rectangle_127.jpg',
     alt: 'Berkas sinar matahari menembus sela pepohonan di dalam hutan',
   },
   {
@@ -31,13 +31,13 @@ const ECOSYSTEM_CARDS = [
     description:
       'Sebuah jaring kehidupan antara tumbuhan, satwa, dan manusia, menjadikan hutan lebih dari sekadar kumpulan pepohonan.',
     image:
-      'https://images.unsplash.com/photo-1727697453803-2d50ae07c0e3?auto=format&fit=crop&w=900&q=80',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005471/Rectangle_128.jpg',
     alt: 'Jamur dan organisme pengurai tumbuh alami di batang pohon hutan',
   },
 ] as const
 
 const FOREST_THREAT_IMAGE =
-  'https://images.unsplash.com/photo-1780229923714-187a988f5af9?auto=format&fit=crop&w=1200&q=80'
+  'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005485/Rectangle_129.jpg'
 
 const FOREST_THREATS = [
   {
@@ -62,11 +62,11 @@ const FOREST_THREATS = [
 
 const CONSERVATION_PHOTOS = {
   orangutanClimb: {
-    src: 'https://images.unsplash.com/photo-1727100828954-8759b3e98d21?auto=format&fit=crop&w=900&q=80',
+    src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005477/Rectangle_133.jpg',
     alt: 'Orangutan bergelantungan pada batang pohon di tengah hutan hujan Sumatera',
   },
   treeClimber: {
-    src: 'https://images.unsplash.com/photo-1750787161686-da5eaa90667f?auto=format&fit=crop&w=900&q=80',
+    src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005494/Rectangle_134.jpg',
     alt: 'Peneliti memanjat batang pohon raksasa menggunakan helm dan tali pengaman di hutan hujan',
   },
 } as const
@@ -115,7 +115,7 @@ export function HutanPage() {
           >
             <img
               src={FOREST_HERO_IMAGE}
-              alt="Pepohonan pinus tinggi di hutan berkabut diterangi sinar matahari pagi"
+              alt="Siluet pepohonan pinus dan puncak pegunungan yang diterangi sinar matahari terbit"
               width={1800}
               height={1012}
               fetchPriority="high"

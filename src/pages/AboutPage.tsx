@@ -25,7 +25,7 @@ const CAMPAIGN_SHOWCASE: ParallaxBandItem[] = [
     description:
       'Hutan adalah penopang kehidupan dan rumah bagi berbagai spesies. Melindunginya berarti menjaga keseimbangan ekosistem dan masa depan alam.',
     image:
-      'https://images.unsplash.com/photo-1772295651128-fede8b060c56?auto=format&fit=crop&w=1280&q=75',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005549/Rectangle_115.jpg',
     alt: 'Air terjun tinggi di tengah lebatnya pepohonan hutan hujan tropis',
   },
   {
@@ -34,7 +34,7 @@ const CAMPAIGN_SHOWCASE: ParallaxBandItem[] = [
     description:
       'Setiap satwa memiliki peran dalam ekosistem. Perlindungan habitat dan penghentian perburuan ilegal menjadi bagian penting dalam menjaga keberlangsungan hidup mereka.',
     image:
-      'https://images.unsplash.com/photo-1559569607-866e745bcf10?auto=format&fit=crop&w=1280&q=75',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005538/Rectangle_116.jpg',
     alt: 'Potret orangutan dengan pencahayaan hangat pada rambut oranyenya di latar gelap',
   },
   {
@@ -43,7 +43,7 @@ const CAMPAIGN_SHOWCASE: ParallaxBandItem[] = [
     description:
       'Pengelolaan sampah merupakan tanggung jawab bersama. Kebiasaan sederhana seperti mengurangi, memilah, dan menggunakan kembali barang dapat membantu mengurangi pencemaran.',
     image:
-      'https://images.unsplash.com/photo-1584921467312-99ff98cc2ebd?auto=format&fit=crop&w=1280&q=75',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005529/Rectangle_117.jpg',
     alt: 'Tumpukan kantong sampah plastik berwarna-warni yang mencemari lingkungan',
   },
 ]
@@ -61,7 +61,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-macaque',
     alt: 'Monyet hitam Sulawesi di habitat alami',
-    src: 'https://images.unsplash.com/photo-1578013460946-7b3884b7831d?auto=format&fit=crop&w=520&q=75',
+    src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005483/Rectangle_118.jpg',
     positionClass:
       'lg:left-[3%] lg:top-[12%] lg:w-[175px] xl:w-[225px] 2xl:w-[260px] z-0',
     parallaxEnd: 170,
@@ -70,7 +70,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-orangutan',
     alt: 'Orangutan bergelantungan di dahan pohon hutan hujan',
-    src: 'https://images.unsplash.com/photo-1762301394169-af73f9553e74?auto=format&fit=crop&w=520&q=75',
+    src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005492/Rectangle_119.jpg',
     positionClass:
       'lg:left-[5%] lg:top-[27%] lg:w-[180px] xl:w-[235px] 2xl:w-[270px] z-10',
     parallaxEnd: 280,
@@ -79,7 +79,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-canopy',
     alt: 'Hamparan tajuk hutan hujan tropis dari udara',
-    src: 'https://images.unsplash.com/photo-1547033255-aa27399c1810?auto=format&fit=crop&w=520&q=75',
+    src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005490/Rectangle_120.jpg',
     positionClass:
       'lg:right-[7%] lg:top-[11%] lg:w-[175px] xl:w-[225px] 2xl:w-[260px] z-0',
     parallaxEnd: 180,
@@ -88,7 +88,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-valley',
     alt: 'Pegunungan hijau berkabut diterangi cahaya matahari pagi',
-    src: 'https://images.unsplash.com/photo-1475139195209-c6343f17842f?auto=format&fit=crop&w=520&q=75',
+    src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005493/Rectangle_121.jpg',
     positionClass:
       'lg:right-[2%] lg:top-[26%] lg:w-[180px] xl:w-[235px] 2xl:w-[270px] z-10',
     parallaxEnd: 295,
@@ -97,7 +97,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-tiger',
     alt: 'Potret jarak dekat harimau sumatera di alam liar',
-    src: 'https://images.unsplash.com/photo-1508817628294-5a453fa0b8fb?auto=format&fit=crop&w=520&q=75',
+    src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005496/Rectangle_123.jpg',
     positionClass:
       'lg:left-[17%] lg:bottom-[4%] lg:w-[180px] xl:w-[230px] 2xl:w-[265px] z-10',
     parallaxEnd: 250,
@@ -106,7 +106,7 @@ const KNOWLEDGE_GALLERY: KnowledgeScatterPhoto[] = [
   {
     id: 'scatter-rhino',
     alt: 'Badak berdiri di padang rumput terbuka',
-    src: 'https://images.unsplash.com/photo-1696894134345-abdb955875b2?auto=format&fit=crop&w=520&q=75',
+    src: 'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005495/Rectangle_122.jpg',
     positionClass:
       'lg:right-[17%] lg:bottom-[5%] lg:w-[180px] xl:w-[230px] 2xl:w-[265px] z-10',
     parallaxEnd: 230,
@@ -232,7 +232,7 @@ function KnowledgeChangeSection() {
           </AnimatedContent>
         </div>
 
-        <div className="lg:grid hidden mt-12 grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:mt-0">
+        <div className="mt-12 hidden grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:mt-0 lg:grid">
           {KNOWLEDGE_GALLERY.map((photo) => (
             <div
               key={photo.id}
@@ -427,7 +427,7 @@ export function AboutPage() {
             >
               <div className="photo-hover-card rounded-[20px] bg-neutral-100">
                 <img
-                  src="https://images.unsplash.com/photo-1493034908614-a06e7a4712d5?auto=format&fit=crop&w=1000&q=80"
+                  src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005508/Rectangle_111.jpg"
                   alt="Puncak pegunungan di balik deretan pepohonan pinus hijau di bawah langit cerah"
                   width={760}
                   height={720}

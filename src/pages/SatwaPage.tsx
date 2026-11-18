@@ -15,8 +15,8 @@ const SATWA_PARALLAX_BANDS: readonly ParallaxBandItem[] = [
     description:
       'Dahulu mereka menjelajah bebas di daratan Asia Tenggara, namun penyusutan habitat dan perburuan cula mengurung mereka di satu semenanjung kecil Ujung Kulon. Jejak kaki raksasa pemalu ini semakin jarang terlihat, bertahan dalam keheningan yang sangat rapuh.',
     image:
-      'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/South-western_black_rhinoceros_%28Diceros_bicornis_occidentalis%29_female.jpg/1280px-South-western_black_rhinoceros_%28Diceros_bicornis_occidentalis%29_female.jpg',
-    alt: 'Badak berjalan menyusuri semak belukar hijau di habitat alaminya',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005453/Rectangle_140.jpg',
+    alt: 'Badak Jawa berjalan melintasi tanah dan pepohonan di habitat alaminya',
   },
   {
     id: 'badak-sumatera',
@@ -24,8 +24,8 @@ const SATWA_PARALLAX_BANDS: readonly ParallaxBandItem[] = [
     description:
       'Laju deforestasi yang masif membuat mamalia purba berambut ini hidup dalam kesepian yang mematikan. Terisolasi terlalu jauh satu sama lain di sisa-sisa hutan yang terpecah, mereka perlahan menghilang dalam sunyi tanpa sempat menemukan pasangan.',
     image:
-      'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Sumatran_Rhinoceros_at_Sumatran_Rhino_Sanctuary_Lampung_Indonesia_2013_%28cropped%29.JPG/1280px-Sumatran_Rhinoceros_at_Sumatran_Rhino_Sanctuary_Lampung_Indonesia_2013_%28cropped%29.JPG',
-    alt: 'Badak Sumatera berjalan di Suaka Rhino Sumatera Way Kambas, Lampung',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005455/Rectangle_141.jpg',
+    alt: 'Potret dekat kepala Badak Sumatera berambut di Suaka Rhino Sumatera',
   },
   {
     id: 'orangutan-tapanuli',
@@ -33,8 +33,8 @@ const SATWA_PARALLAX_BANDS: readonly ParallaxBandItem[] = [
     description:
       'Spesies kera besar ini baru saja diidentifikasi, namun langsung berhadapan dengan jurang kepunahan. Fragmentasi hutan oleh pembukaan jalan dan beton telah membelah rumah mereka, memisahkan keluarga yang kini terkurung di sisa-sisa kanopi yang kian menyempit.',
     image:
-      'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Pongo_tapanuliensis.jpg/1280px-Pongo_tapanuliensis.jpg',
-    alt: 'Orangutan Tapanuli jantan di antara dedaunan hutan hujan Batang Toru',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005463/Rectangle_142.jpg',
+    alt: 'Orangutan Tapanuli jantan duduk di antara dedaunan hutan hujan Batang Toru',
   },
   {
     id: 'gajah-sumatera',
@@ -42,8 +42,8 @@ const SATWA_PARALLAX_BANDS: readonly ParallaxBandItem[] = [
     description:
       'Raksasa lembut penjaga keseimbangan ekosistem ini kian terdesak oleh konflik lahan dan perburuan gading. Rute jelajah purba mereka kini berubah menjadi hamparan perkebunan sawit, mengubah mereka dari penguasa rimba menjadi tamu yang diusir dari rumahnya sendiri.',
     image:
-      'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Elephant_Sumatra_ProfilG.jpg/1280px-Elephant_Sumatra_ProfilG.jpg',
-    alt: 'Gajah Sumatera bergading panjang berdiri di tepian sungai hutan hujan',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005462/Rectangle_144.jpg',
+    alt: 'Gajah Sumatera bergading panjang berdiri di padang rumput hijau dengan dedaunan segar',
   },
   {
     id: 'orangutan-sumatera',
@@ -51,8 +51,8 @@ const SATWA_PARALLAX_BANDS: readonly ParallaxBandItem[] = [
     description:
       'Primata cerdas yang sering dijuluki "tukang kebun hutan" ini kian kehilangan rimbunnya tajuk pepohonan tempat mereka bergantung. Pembukaan lahan besar-besaran telah merampas rumah purba mereka, memaksa kera berbulu kemerahan ini turun ke tanah dan berhadapan langsung dengan ancaman perburuan yang merenggut kebebasan mereka selamanya.',
     image:
-      'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Yuli_Seperi_Orangutan_TNGL-1.jpg/1280px-Yuli_Seperi_Orangutan_TNGL-1.jpg',
-    alt: 'Induk Orangutan Sumatera menggendong anaknya di rimbunnya Taman Nasional Gunung Leuser',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005457/Rectangle_143.jpg',
+    alt: 'Induk Orangutan Sumatera memeluk anaknya di antara dahan pepohonan hutan',
   },
   {
     id: 'macan-tutul-jawa',
@@ -60,8 +60,8 @@ const SATWA_PARALLAX_BANDS: readonly ParallaxBandItem[] = [
     description:
       'Kucing besar terakhir yang tersisa di Pulau Jawa ini hidup seperti bayangan akibat hilangnya hutan pegunungan. Terimpit oleh ekspansi lahan manusia, mereka terpaksa mundur dan bersembunyi di sisa-sisa tebing curam yang kian hari kian menyempit.',
     image:
-      'https://images.unsplash.com/photo-1456926631375-92c8ce872def?auto=format&fit=crop&w=1600&q=80',
-    alt: 'Macan tutul bermata hijau beristirahat di atas dahan pohon berlumut',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005463/Rectangle_147.jpg',
+    alt: 'Macan Tutul Jawa beristirahat di atas dahan pohon dengan latar dedaunan hijau',
   },
   {
     id: 'harimau-sumatera',
@@ -69,8 +69,8 @@ const SATWA_PARALLAX_BANDS: readonly ParallaxBandItem[] = [
     description:
       'Kucing besar terakhir yang tersisa di Indonesia ini terus berpacu dengan waktu di tengah rimbunnya hutan Sumatera yang kian menyusut. Pembalakan liar dan jerat perburuan yang kejam tak henti mengintai, menyudutkan sang predator puncak ke ambang kepunahan sebelum aumannya benar-benar senyap menyusul kerabatnya di Jawa dan Bali.',
     image:
-      'https://images.unsplash.com/photo-1566794774033-2de8ecd7b17c?auto=format&fit=crop&w=1600&q=80',
-    alt: 'Harimau berdiri waspada di antara rimbunnya batang bambu hijau',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005463/Rectangle_145.jpg',
+    alt: 'Harimau Sumatera berdiri waspada di antara rimbunnya batang bambu hijau',
   },
   {
     id: 'anoa',
@@ -78,7 +78,7 @@ const SATWA_PARALLAX_BANDS: readonly ParallaxBandItem[] = [
     description:
       'Sapi kerdil endemik kebanggaan Sulawesi ini semakin terpinggirkan dari habitat aslinya. Perburuan liar dan pembukaan hutan secara masif telah merampas ketenangan mereka, memaksa satwa pemalu yang gemar menyendiri di kedalaman rimba ini terus berlari mencari tempat bersembunyi yang kini seolah tak lagi tersisa.',
     image:
-      'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Lowland_anoa.jpg/1280px-Lowland_anoa.jpg',
+      'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005465/Rectangle_165.jpg',
     alt: 'Anoa dataran rendah endemik Sulawesi berdiri tampak samping di habitatnya',
   },
 ] as const
@@ -141,14 +141,14 @@ export function SatwaPage() {
               <div className="grid grid-cols-2 gap-4 sm:gap-5">
                 <div className="photo-hover-card relative row-span-2 min-h-[300px] overflow-hidden rounded-2xl bg-neutral-100 sm:min-h-[380px]">
                   <img
-                    src="https://images.unsplash.com/photo-1541799028-31d61060fdbd?auto=format&fit=crop&w=700&q=80"
+                    src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005511/Rectangle_137.jpg"
                     alt="Potret orangutan jantan di hutan hujan Indonesia"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                 </div>
                 <div className="photo-hover-card aspect-square overflow-hidden rounded-2xl bg-neutral-100">
                   <img
-                    src="https://images.unsplash.com/photo-1553756109-4671268bafd3?auto=format&fit=crop&w=600&q=80"
+                    src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005452/Rectangle_135.jpg"
                     alt="Potret dekat kepala dan cula badak"
                     className="h-full w-full object-cover"
                     loading="lazy"
@@ -156,7 +156,7 @@ export function SatwaPage() {
                 </div>
                 <div className="photo-hover-card aspect-square overflow-hidden rounded-2xl bg-neutral-100">
                   <img
-                    src="https://plus.unsplash.com/premium_photo-1661828159832-19d8340f8e09?auto=format&fit=crop&w=600&q=80"
+                    src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005460/Rectangle_136.jpg"
                     alt="Badak bercula satu di habitat hutan hijau"
                     className="h-full w-full object-cover"
                     loading="lazy"

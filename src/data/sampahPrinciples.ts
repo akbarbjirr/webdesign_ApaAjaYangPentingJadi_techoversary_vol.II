@@ -19,7 +19,7 @@ export const REDUCE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
   definitionBody:
     'Adalah upaya mengurangi jumlah sampah dengan membatasi penggunaan barang yang berpotensi menjadi limbah. Prinsip ini mengajak kita untuk lebih bijak dalam memilih, membeli, dan menggunakan sesuatu.',
   whyImage:
-    'https://images.unsplash.com/photo-1762805543729-361d38e78a37?auto=format&fit=crop&w=1100&h=1300&q=80',
+    'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005439/Foto_Pengurangan_Sampah.jpg',
   whyImageAlt:
     'Petugas kebersihan mengangkut tempat sampah ke truk pengangkut sampah di jalan',
   whyHeading: 'Mengapa Kita Perlu Mengurangi\nSampah?',
@@ -55,7 +55,7 @@ export const REDUCE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       title: 'Bawa Tas Belanja Sendiri',
       description: 'Kurangi penggunaan kantong plastik saat berbelanja.',
       image:
-        'https://images.unsplash.com/photo-1584473457406-6240486418e9?auto=format&fit=crop&w=1600&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005435/Foto_Tas_Belanja_Sendiri.jpg',
       alt: 'Tas belanja ramah lingkungan berisi sayuran dan buah segar',
     },
     {
@@ -64,7 +64,7 @@ export const REDUCE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Hindari membeli minuman dengan kemasan sekali pakai jika tersedia alternatif.',
       image:
-        'https://images.unsplash.com/photo-1619020986176-50be596d0c02?auto=format&fit=crop&w=1600&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005422/Foto_Botol_Isi_Ulang.jpg',
       alt: 'Botol minum stainless steel isi ulang',
     },
     {
@@ -72,7 +72,7 @@ export const REDUCE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       title: 'Bawa Bekal Sendiri',
       description: 'Gunakan wadah makan yang bisa dipakai berulang kali.',
       image:
-        'https://images.unsplash.com/photo-1744957280662-af6472128abd?auto=format&fit=crop&w=1600&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005462/Foto_Bawa_Bekal_Sendiri.jpg',
       alt: 'Wadah kotak bekal makanan sehat yang dapat dipakai berulang kali',
     },
     {
@@ -80,7 +80,7 @@ export const REDUCE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       title: 'Belanja Sesuai Kebutuhan',
       description: 'Hindari membeli barang atau makanan secara berlebihan.',
       image:
-        'https://images.unsplash.com/photo-1601600576337-c1d8a0d1373c?auto=format&fit=crop&w=1600&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005418/Foto_Belanja_Sesuai_Kebutuhan.jpg',
       alt: 'Belanja bahan kebutuhan segar di rak supermarket',
     },
   ],
@@ -94,7 +94,7 @@ export const REDUCE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Gunakan alternatif yang dapat dipakai berulang kali, seperti sedotan stainless atau alat makan pribadi.',
       image:
-        'https://images.unsplash.com/photo-1621448594471-726ea66ed97f?auto=format&fit=crop&w=900&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005426/Foto_Hindari_Barang_Sekali_Pakai.jpg',
       alt: 'Minuman segar dalam gelas dengan sedotan',
     },
     {
@@ -103,7 +103,7 @@ export const REDUCE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Utamakan produk yang tidak menggunakan banyak lapisan kemasan yang tidak diperlukan.',
       image:
-        'https://images.unsplash.com/photo-1598563597339-df4d424e8959?auto=format&fit=crop&w=900&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005434/Foto_Pilih_Produk_dengan_Kemasan_Minimal.jpg',
       alt: 'Tas kain isi ulang berisi sayuran dan buah segar tanpa kemasan berlebih',
     },
     {
@@ -112,7 +112,7 @@ export const REDUCE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Ambil makanan secukupnya dan simpan bahan makanan dengan baik agar tidak terbuang.',
       image:
-        'https://images.unsplash.com/photo-1744957280662-af6472128abd?auto=format&fit=crop&w=900&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005426/Foto_Hindari_Membuang_Makanan.jpg',
       alt: 'Hidangan secukupnya di dalam wadah makanan rapi',
     },
     {
@@ -121,7 +121,7 @@ export const REDUCE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Pertimbangkan kebutuhan sebelum membeli barang baru agar tidak menghasilkan sampah konsumsi berlebihan.',
       image:
-        'https://images.unsplash.com/photo-1693505628207-dbeb3d882c92?auto=format&fit=crop&w=900&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005427/Foto_Belanja_dengan_Bijak.jpg',
       alt: 'Keranjang belanja berisi bahan kebutuhan di lorong supermarket',
     },
     {
@@ -130,7 +130,7 @@ export const REDUCE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Gunakan produk isi ulang ketika tersedia untuk mengurangi kebutuhan kemasan baru.',
       image:
-        'https://images.unsplash.com/photo-1784039518522-ec4cf52a294f?auto=format&fit=crop&w=900&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005479/Foto_Pilih_Produk_Isi_Ulang.jpg',
       alt: 'Wadah dan produk isi ulang ramah lingkungan di keranjang belanja',
     },
   ],
@@ -153,7 +153,7 @@ export const REUSE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
   definitionBody:
     'Reuse merupakan upaya menggunakan kembali barang yang masih layak pakai, baik untuk fungsi yang sama maupun fungsi yang berbeda. Prinsip ini mengajak kita untuk tidak terburu-buru membuang barang dan mulai melihat potensi manfaat dari benda yang sudah dimiliki.',
   whyImage:
-    'https://images.unsplash.com/photo-1753354868656-53671f69602a?auto=format&fit=crop&w=1100&h=1300&q=80',
+    'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005420/Foto_Manfaat_Reuse.jpg',
   whyImageAlt:
     'Seorang wanita memilih produk ramah lingkungan sambil membawa keranjang belanja',
   whyHeading: 'Mengapa Menggunakan Kembali\nItu Penting?',
@@ -190,15 +190,15 @@ export const REUSE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Manfaatkan botol atau stoples bekas sebagai tempat penyimpanan.',
       image:
-        'https://images.unsplash.com/photo-1645567454567-901dc409551b?auto=format&fit=crop&w=1600&q=80',
-      alt: 'Deretan stoples kaca bekas yang dimanfaatkan kembali sebagai wadah penyimpanan',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005418/Foto_Gunakan_Kembali_Wadah.jpg',
+      alt: 'Botol plastik bekas dikreasikan menjadi pot tanaman hias',
     },
     {
       id: 'donasikan-pakaian',
       title: 'Donasikan Pakaian',
       description: 'Berikan pakaian layak pakai kepada orang yang membutuhkan.',
       image:
-        'https://plus.unsplash.com/premium_photo-1661964021703-59bbdcdbfdab?auto=format&fit=crop&w=1600&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005412/Foto_Donasikan_Pakaian.jpg',
       alt: 'Seseorang menata dan melipat pakaian layak pakai ke dalam kardus donasi',
     },
     {
@@ -207,7 +207,7 @@ export const REUSE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Coba perbaiki barang yang masih memiliki potensi untuk digunakan.',
       image:
-        'https://plus.unsplash.com/premium_photo-1663025422368-4ddce39a1462?auto=format&fit=crop&w=1600&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005427/Foto_Perbaiki_Barang_Rusak.jpg',
       alt: 'Perajin memperbaiki perabot kayu agar tetap kokoh dan dapat digunakan kembali',
     },
     {
@@ -216,7 +216,7 @@ export const REUSE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Jadikan kaleng atau wadah bekas sebagai pot tanaman atau tempat alat tulis.',
       image:
-        'https://images.unsplash.com/photo-1772371145511-3f89a21e8b39?auto=format&fit=crop&w=1600&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005406/Foto_Ubah_Fungsi_Barang.jpg',
       alt: 'Wadah bekas yang dialihfungsikan menjadi pot tanaman di dekat jendela',
     },
   ],
@@ -230,7 +230,7 @@ export const REUSE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Gunakan kembali botol kaca, stoples, atau wadah plastik yang masih aman dan layak untuk menyimpan barang.',
       image:
-        'https://images.unsplash.com/photo-1645567454567-901dc409551b?auto=format&fit=crop&w=900&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005432/Foto_Manfaatkan_Wadah_Bekas.jpg',
       alt: 'Deretan stoples kaca berisi bahan makanan di rak dapur',
     },
     {
@@ -239,7 +239,7 @@ export const REUSE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Berikan pakaian, buku, atau barang lain yang sudah tidak dibutuhkan kepada orang yang dapat memanfaatkannya.',
       image:
-        'https://plus.unsplash.com/premium_photo-1683140538884-07fb31428ca6?auto=format&fit=crop&w=900&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005412/Foto_Donasikan_Barang_Layak_Pakai.jpg',
       alt: 'Kardus donasi berisi pakaian layak pakai siap disalurkan',
     },
     {
@@ -248,7 +248,7 @@ export const REUSE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Jika barang mengalami kerusakan ringan, pertimbangkan untuk memperbaikinya daripada langsung membeli yang baru.',
       image:
-        'https://plus.unsplash.com/premium_photo-1663025422368-4ddce39a1462?auto=format&fit=crop&w=900&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005408/Foto_Perbaiki_Sebelum_Mengganti.jpg',
       alt: 'Proses memperbaiki perabot kayu agar kembali layak digunakan',
     },
     {
@@ -257,8 +257,8 @@ export const REUSE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Ubah barang yang sudah tidak digunakan menjadi benda baru, seperti kaleng menjadi tempat pensil atau wadah menjadi pot tanaman.',
       image:
-        'https://images.unsplash.com/photo-1759746571141-30a56dde257e?auto=format&fit=crop&w=900&q=80',
-      alt: 'Wadah daur ulang berisi pensil warna dan perlengkapan tulis',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005418/Foto_Kreasikan_Barang_Bekas.jpg',
+      alt: 'Kaleng bekas yang dihias menjadi tempat pensil warna dan perlengkapan tulis',
     },
     {
       number: '05',
@@ -266,7 +266,7 @@ export const REUSE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Pertimbangkan membeli barang bekas yang masih bagus dan berfungsi untuk mengurangi kebutuhan produksi barang baru.',
       image:
-        'https://images.unsplash.com/photo-1768321612089-cad6e7751bc1?auto=format&fit=crop&w=900&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005407/Foto_Pilih_Barang_Bekas_Berkualitas.jpg',
       alt: 'Beragam barang bekas berkualitas yang masih layak pakai di pasar barang bekas',
     },
   ],
@@ -350,7 +350,7 @@ export const RECYCLE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Manfaatkan sisa makanan dan bahan organik tertentu untuk dijadikan kompos.',
       image:
-        'https://plus.unsplash.com/premium_photo-1724660929189-6d7db3b165a0?auto=format&fit=crop&w=1600&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005412/Gambar_Dampak_terhadap_Ekosistem_1.jpg',
       alt: 'Wadah pengolahan sisa makanan dan sampah organik menjadi kompos',
     },
   ],
@@ -391,7 +391,7 @@ export const RECYCLE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Setorkan sampah anorganik yang sudah dipilah ke bank sampah atau tempat pengumpulan yang menerima material tersebut.',
       image:
-        'https://images.unsplash.com/photo-1758599668426-1cf242bb7667?auto=format&fit=crop&w=900&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005413/Rectangle_104_1.jpg',
       alt: 'Kegiatan warga mengumpulkan dan memilah botol plastik bersama untuk didaur ulang',
     },
     {
@@ -400,7 +400,7 @@ export const RECYCLE_PRINCIPLE_CONTENT: SampahPrincipleContent = {
       description:
         'Manfaatkan sisa sayuran, daun kering, dan bahan organik yang sesuai untuk menghasilkan kompos.',
       image:
-        'https://plus.unsplash.com/premium_photo-1724100592091-0317f05719c7?auto=format&fit=crop&w=900&q=80',
+        'https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1795005410/Rectangle_104_2.jpg',
       alt: 'Sisa sayuran dan kulit buah yang disiapkan sebagai bahan kompos organik',
     },
   ],

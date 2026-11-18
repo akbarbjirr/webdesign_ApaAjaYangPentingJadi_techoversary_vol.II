@@ -4,11 +4,7 @@ import {
   fetchQuizSubmissions,
   submitAndGradeQuiz,
 } from '@/services/quizService'
-import type {
-  QuizDifficulty,
-  QuizQuestion,
-  QuizReviewItem,
-} from '@/types/quiz'
+import type { QuizDifficulty, QuizQuestion, QuizReviewItem } from '@/types/quiz'
 import type { QuizSubmissionRow } from '@/types/supabase'
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
