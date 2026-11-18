@@ -1,76 +1,65 @@
-# React + TypeScript + Vite
+# Under
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Platform web edukasi interaktif tentang konservasi hutan Indonesia, perlindungan satwa liar, pengelolaan sampah **3R** (_Reduce, Reuse, Recycle_), serta kuis lingkungan interaktif.
 
-Currently, two official plugins are available:
+Live demo: [under-iota.vercel.app](https://under-iota.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Fitur Utama
 
-## React Compiler
+- **Beranda (`/`)**: Pengantar misi konservasi, statistik ekosistem, dan navigasi ke seluruh pilar edukasi.
+- **Edukasi Hutan (`/hutan`)**: Informasi ekosistem hutan, ancaman deforestasi, dan upaya pelestarian.
+- **Satwa (`/satwa`)**: Pengenalan satwa endemik Indonesia dan status perlindungannya.
+- **Sampah 3R (`/sampah`)**: Panduan pengelolaan sampah beserta halaman khusus **Reduce** (`/sampah/reduce`), **Reuse** (`/sampah/reuse`), dan **Recycle** (`/sampah/recycle`).
+- **Kuis Interaktif (`/quiz`)**: Kuis pemahaman lingkungan dengan skor yang tersimpan melalui Supabase.
+- **Tentang & Kontak (`/about`, `/contact`)**: Informasi tim dan formulir pengiriman ide/masukan.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Tech Stack
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+- **Frontend**: React 19, TypeScript, Vite 8, React Router 8
+- **Styling**: Tailwind CSS v4
+- **Animasi & Scroll**: GSAP, Lenis, SplitType
+- **Backend / Database**: Supabase (`@supabase/supabase-js`)
+- **Deploy**: Vercel (SPA rewrite + cache/security headers di `vercel.json`)
 
-## Expanding the ESLint configuration
+## Cara Setup Lokal
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. Prasyarat
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Node.js** >= 20 dan **npm**
+- Akun/project **Supabase** (untuk fitur kuis)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 2. Clone & Install Dependencies
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/akbarbjirr/webdesign_ApaAjaYangPentingJadi_techoversary_vol.II.git
+cd webdesign_ApaAjaYangPentingJadi_techoversary_vol.II
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### 3. Konfigurasi Environment Variable
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Buat file `.env` di root project dan isi kredensial Supabase:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_SUPABASE_URL=https://<project-ref>.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=<supabase-publishable-or-anon-key>
 ```
+
+### 4. Jalankan Development Server
+
+```bash
+npm run dev
+```
+
+Aplikasi akan berjalan di `http://localhost:5173`.
+
+## Script Tersedia
+
+| Perintah               | Deskripsi                                                        |
+| ---------------------- | ---------------------------------------------------------------- |
+| `npm run dev`          | Menjalankan server pengembangan Vite                             |
+| `npm run build`        | Type-check TypeScript (`tsc -b`) dan build production ke `dist/` |
+| `npm run preview`      | Preview hasil build production secara lokal                      |
+| `npm run lint`         | Menjalankan ESLint                                               |
+| `npm run format`       | Memformat kode dengan Prettier                                   |
+| `npm run format:check` | Mengecek format kode tanpa mengubah file                         |
