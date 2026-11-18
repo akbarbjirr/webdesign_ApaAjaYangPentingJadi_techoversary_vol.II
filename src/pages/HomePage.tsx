@@ -157,15 +157,20 @@ export function HomePage() {
             threshold={0.02}
             className="mt-14 overflow-hidden rounded-2xl bg-neutral-100 sm:mt-20 sm:rounded-[24px]"
           >
-            <img
-              src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/Group_18"
-              alt="Harimau Sumatera di balik pagar kandang dengan dedaunan hijau di sekitarnya"
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
               width={1200}
               height={638}
-              fetchPriority="high"
-              decoding="async"
+              aria-label="Harimau Sumatera di balik pagar kandang dengan dedaunan hijau di sekitarnya"
               className="aspect-[16/9] h-auto w-full object-cover sm:aspect-[16/8.5]"
-            />
+            >
+              <source src="/video/Hasil.mp4" type="video/mp4" />
+              Browser kamu tidak mendukung pemutaran video.
+            </video>
           </AnimatedContent>
         </div>
       </section>
@@ -481,7 +486,7 @@ export function HomePage() {
 
             <div className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 md:col-span-7 md:col-start-6">
               <div>
-                <div>
+                <div className='lg:block hidden'>
                   <ScrollReveal
                     as="h3"
                     className="text-base font-bold text-neutral-950 sm:text-lg"
@@ -511,13 +516,30 @@ export function HomePage() {
                       src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748933/Rectangle_106.png"
                       alt="Sampah plastik mencemari perairan hijau"
                       width={380}
-                      height={440}
+                      height={328}
                       loading="lazy"
                       decoding="async"
                       className="aspect-[5/6] h-auto w-full object-cover"
                     />
                   </div>
                 </AnimatedContent>
+                <div className='lg:hidden block'>
+                  <ScrollReveal
+                    as="h3"
+                    className="text-base font-bold text-neutral-950 sm:text-lg"
+                  >
+                    Alam Tercemar
+                  </ScrollReveal>
+                  <AnimatedContent
+                    distance={8}
+                    duration={0.65}
+                    threshold={0.12}
+                  >
+                    <p className="mt-0.5 text-sm text-neutral-600 sm:text-base">
+                      Ekosistem terganggu
+                    </p>
+                  </AnimatedContent>
+                </div>
               </div>
 
               <div>
@@ -533,7 +555,7 @@ export function HomePage() {
                       src="https://res.cloudinary.com/hd53eglp/image/upload/f_auto,q_auto/v1794748941/Rectangle_107.png"
                       alt="Pembukaan lahan hutan dilihat dari atas dengan alat berat"
                       width={340}
-                      height={520}
+                      height={328}
                       loading="lazy"
                       decoding="async"
                       className="aspect-[3/4.6] h-auto w-full object-cover"

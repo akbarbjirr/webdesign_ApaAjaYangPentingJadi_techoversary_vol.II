@@ -232,7 +232,7 @@ function KnowledgeChangeSection() {
           </AnimatedContent>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:mt-0 lg:contents">
+        <div className="lg:grid hidden mt-12 grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:mt-0">
           {KNOWLEDGE_GALLERY.map((photo) => (
             <div
               key={photo.id}

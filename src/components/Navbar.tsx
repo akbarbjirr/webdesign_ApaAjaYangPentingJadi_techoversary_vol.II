@@ -44,7 +44,6 @@ export function Navbar() {
   const { pathname } = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [sampahOpen, setSampahOpen] = useState(false)
-  const [mobileSampahOpen, setMobileSampahOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -56,6 +55,8 @@ export function Navbar() {
         setSampahOpen(false)
       }
     }
+
+
 
     const handleMouseDown = (event: MouseEvent) => {
       if (
@@ -78,8 +79,8 @@ export function Navbar() {
   const closeAllMenus = () => {
     setMobileOpen(false)
     setSampahOpen(false)
-    setMobileSampahOpen(false)
   }
+
 
   return (
     <header className="sticky top-0 z-40 bg-white">
@@ -283,15 +284,16 @@ export function Navbar() {
           <ul className="flex flex-col gap-1">
             {NAV_ITEMS.map((item) => {
               if (item.children) {
-                const isGroupActive = pathname.startsWith(item.to)
+                const isGroupActive =
+                  pathname === item.to || pathname.startsWith(`${item.to}/`)
+
                 return (
                   <li key={item.to}>
-                    <button
-                      type="button"
-                      onClick={() => setMobileSampahOpen((prev) => !prev)}
-                      aria-expanded={mobileSampahOpen}
+                    <NavLink
+                      to={item.to}
+                      onClick={closeAllMenus}
                       className={cn(
-                        'group flex min-h-11 w-full items-center justify-between rounded-lg px-4 py-2.5 text-base transition-colors',
+                        'group flex min-h-11 w-full items-center rounded-lg px-4 py-2.5 text-base transition-colors',
                         isGroupActive
                           ? 'bg-neutral-100 font-bold text-neutral-950'
                           : 'font-normal text-neutral-600 hover:bg-neutral-50 hover:text-neutral-950',
@@ -300,65 +302,30 @@ export function Navbar() {
                       <span className={navUnderlineClass(isGroupActive)}>
                         {item.label}
                       </span>
-                      <CaretDown
-                        size={15}
-                        weight="light"
-                        aria-hidden="true"
-                        className={cn(
-                          'transition-transform duration-200',
-                          mobileSampahOpen && 'rotate-180',
-                        )}
-                      />
-                    </button>
+                    </NavLink>
 
-                    <div
-                      aria-hidden={!mobileSampahOpen}
-                      className={cn(
-                        'grid transition-[grid-template-rows] duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none',
-                        mobileSampahOpen
-                          ? 'grid-rows-[1fr]'
-                          : 'grid-rows-[0fr]',
-                      )}
-                    >
-                      <div className="overflow-hidden">
-                        <ul className="mt-1 ml-4 flex flex-col gap-1 border-l border-neutral-200 pl-3 [&:focus-within>:not(:focus-within)]:text-neutral-400 [&:hover>:not(:hover)]:text-neutral-400">
-                          {item.children.map((child, index) => {
-                            const itemDelay = Math.min(index * 70, 560)
-                            return (
-                              <li
-                                key={child.to}
-                                className="text-neutral-800 transition-[opacity,transform,color] duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none"
-                                style={{
-                                  opacity: mobileSampahOpen ? 1 : 0,
-                                  transform: mobileSampahOpen
-                                    ? 'translate3d(0, 0, 0) scale(1)'
-                                    : 'translate3d(0, 8px, 0) scale(0.97)',
-                                  transitionDelay: mobileSampahOpen
-                                    ? `${itemDelay}ms, ${itemDelay}ms, 0ms`
-                                    : '0ms',
-                                }}
-                              >
-                                <NavLink
-                                  to={child.to}
-                                  tabIndex={mobileSampahOpen ? 0 : -1}
-                                  onClick={closeAllMenus}
-                                  className={({ isActive }) =>
-                                    cn(
-                                      'flex min-h-11 items-center rounded-xl px-4 py-2 text-sm transition-colors duration-200 ease-out',
-                                      isActive
-                                        ? 'bg-neutral-100 font-medium text-neutral-950'
-                                        : 'font-normal text-current hover:bg-neutral-100/90 hover:text-neutral-950 focus-visible:bg-neutral-100/90 focus-visible:text-neutral-950',
-                                    )
-                                  }
-                                >
-                                  {child.label}
-                                </NavLink>
-                              </li>
-                            )
-                          })}
-                        </ul>
-                      </div>
-                    </div>
+                    {isGroupActive && (
+                      <ul className="mt-1 ml-4 flex flex-col gap-1 border-l border-neutral-200 pl-3 [&:focus-within>:not(:focus-within)]:text-neutral-400 [&:hover>:not(:hover)]:text-neutral-400">
+                        {item.children.map((child) => (
+                          <li key={child.to} className="text-neutral-800">
+                            <NavLink
+                              to={child.to}
+                              onClick={closeAllMenus}
+                              className={({ isActive }) =>
+                                cn(
+                                  'flex min-h-11 items-center rounded-xl px-4 py-2 text-sm transition-colors',
+                                  isActive
+                                    ? 'bg-neutral-100 font-medium text-neutral-950'
+                                    : 'font-normal text-current hover:bg-neutral-100/90 hover:text-neutral-950 focus-visible:bg-neutral-100/90 focus-visible:text-neutral-950',
+                                )
+                              }
+                            >
+                              {child.label}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 )
               }
