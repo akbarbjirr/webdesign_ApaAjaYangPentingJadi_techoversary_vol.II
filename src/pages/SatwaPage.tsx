@@ -1,236 +1,283 @@
-import { useState } from 'react'
+import { type MouseEvent } from 'react'
 import { Link } from 'react-router'
-import { ArrowRight, PawPrint, ShieldCheck, Tree } from '@phosphor-icons/react'
+import { ArrowRight } from '@phosphor-icons/react'
 import { AnimatedContent } from '@/components/AnimatedContent'
+import {
+  ParallaxPillarBand,
+  type ParallaxBandItem,
+} from '@/components/ParallaxPillarBand'
 import { ScrollReveal } from '@/components/ScrollReveal'
-import { cn } from '@/lib/utils'
 
-interface WildlifeProfile {
-  id: string
-  commonName: string
-  scientificName: string
-  status: 'Kritis (CR)' | 'Terancam Punah (EN)' | 'Rentan (VU)'
-  habitat: string
-  region: 'Sumatera' | 'Kalimantan' | 'Jawa'
-  roleInForest: string
-  mainThreat: string
-  conservationAction: string
-}
-
-const WILDLIFE_DATA: WildlifeProfile[] = [
-  {
-    id: 'harimau-sumatera',
-    commonName: 'Harimau Sumatera',
-    scientificName: 'Panthera tigris sumatrae',
-    status: 'Kritis (CR)',
-    habitat: 'Hutan hujan dataran rendah hingga hutan pegunungan bukit barisan',
-    region: 'Sumatera',
-    roleInForest:
-      'Predator puncak yang menjaga keseimbangan populasi herbivora seperti babi hutan dan rusa agar regenerasi pohon muda tetap sehat.',
-    mainThreat:
-      'Fragmentasi koridor hutan akibat pembukaan lahan dan perburuan liar.',
-    conservationAction:
-      'Melindungi koridor satwa liar dan mendukung produk pangan bebas deforestasi.',
-  },
-  {
-    id: 'orangutan-kalimantan',
-    commonName: 'Orangutan Kalimantan',
-    scientificName: 'Pongo pygmaeus',
-    status: 'Kritis (CR)',
-    habitat:
-      'Hutan rawa gambut dan hutan Dipterokarpa di lapisan kanopi tengah',
-    region: 'Kalimantan',
-    roleInForest:
-      'Penyebar biji buah hutan jarak jauh yang membantu tumbuhnya ratusan spesies pohon kanopi baru.',
-    mainThreat:
-      'Kebakaran hutan rawa gambut dan menyempitnya pohon pakan akibat alih fungsi hutan.',
-    conservationAction:
-      'Menjaga ekosistem rawa gambut tetap basah dan mendukung restorasi pohon pakan alami.',
-  },
-  {
-    id: 'rangkong-gading',
-    commonName: 'Rangkong Gading',
-    scientificName: 'Rhinoplax vigil',
-    status: 'Kritis (CR)',
-    habitat: 'Tajuk pohon emergen berbatang besar sebagai sarang alami',
-    region: 'Kalimantan',
-    roleInForest:
-      'Dikenal sebagai petani hutan karena menebar biji pohon buah raksasa di seluruh lanskap rimba.',
-    mainThreat:
-      'Hilangnya pohon tua berlubang tempat bersarang dan perburuan ilegal.',
-    conservationAction:
-      'Menolak segala bentuk perdagangan bagian tubuh satwa liar dan menjaga kelestarian pohon tua.',
-  },
+const SATWA_PARALLAX_BANDS: readonly ParallaxBandItem[] = [
   {
     id: 'badak-jawa',
-    commonName: 'Badak Jawa',
-    scientificName: 'Rhinoceros sondaicus',
-    status: 'Kritis (CR)',
-    habitat: 'Hutan dataran rendah pesisir Taman Nasional Ujung Kulon',
-    region: 'Jawa',
-    roleInForest:
-      'Membentuk celah cahaya alami saat memakan tumbuhan bawah sehingga anak pohon rimba dapat tumbuh.',
-    mainThreat:
-      'Populasi tunggal yang rentan terhadap penyakit dan tumbuhan invasif langkap.',
-    conservationAction:
-      'Mendukung pengelolaan habitat Ujung Kulon dan menghindari wisata alam tanpa izin resmi.',
+    title: 'Badak Jawa',
+    description:
+      'Dahulu mereka menjelajah bebas di daratan Asia Tenggara, namun penyusutan habitat dan perburuan cula mengurung mereka di satu semenanjung kecil Ujung Kulon. Jejak kaki raksasa pemalu ini semakin jarang terlihat, bertahan dalam keheningan yang sangat rapuh.',
+    image:
+      'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/South-western_black_rhinoceros_%28Diceros_bicornis_occidentalis%29_female.jpg/1280px-South-western_black_rhinoceros_%28Diceros_bicornis_occidentalis%29_female.jpg',
+    alt: 'Badak berjalan menyusuri semak belukar hijau di habitat alaminya',
   },
-]
-
-const REGION_FILTERS = ['Semua', 'Sumatera', 'Kalimantan', 'Jawa'] as const
-type RegionFilter = (typeof REGION_FILTERS)[number]
+  {
+    id: 'badak-sumatera',
+    title: 'Badak Sumatera',
+    description:
+      'Laju deforestasi yang masif membuat mamalia purba berambut ini hidup dalam kesepian yang mematikan. Terisolasi terlalu jauh satu sama lain di sisa-sisa hutan yang terpecah, mereka perlahan menghilang dalam sunyi tanpa sempat menemukan pasangan.',
+    image:
+      'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Sumatran_Rhinoceros_at_Sumatran_Rhino_Sanctuary_Lampung_Indonesia_2013_%28cropped%29.JPG/1280px-Sumatran_Rhinoceros_at_Sumatran_Rhino_Sanctuary_Lampung_Indonesia_2013_%28cropped%29.JPG',
+    alt: 'Badak Sumatera berjalan di Suaka Rhino Sumatera Way Kambas, Lampung',
+  },
+  {
+    id: 'orangutan-tapanuli',
+    title: 'OrangUtan Tapanuli',
+    description:
+      'Spesies kera besar ini baru saja diidentifikasi, namun langsung berhadapan dengan jurang kepunahan. Fragmentasi hutan oleh pembukaan jalan dan beton telah membelah rumah mereka, memisahkan keluarga yang kini terkurung di sisa-sisa kanopi yang kian menyempit.',
+    image:
+      'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Pongo_tapanuliensis.jpg/1280px-Pongo_tapanuliensis.jpg',
+    alt: 'Orangutan Tapanuli jantan di antara dedaunan hutan hujan Batang Toru',
+  },
+  {
+    id: 'gajah-sumatera',
+    title: 'Gajah Sumatera',
+    description:
+      'Raksasa lembut penjaga keseimbangan ekosistem ini kian terdesak oleh konflik lahan dan perburuan gading. Rute jelajah purba mereka kini berubah menjadi hamparan perkebunan sawit, mengubah mereka dari penguasa rimba menjadi tamu yang diusir dari rumahnya sendiri.',
+    image:
+      'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Elephant_Sumatra_ProfilG.jpg/1280px-Elephant_Sumatra_ProfilG.jpg',
+    alt: 'Gajah Sumatera bergading panjang berdiri di tepian sungai hutan hujan',
+  },
+  {
+    id: 'orangutan-sumatera',
+    title: 'OrangUtan Sumatera',
+    description:
+      'Primata cerdas yang sering dijuluki "tukang kebun hutan" ini kian kehilangan rimbunnya tajuk pepohonan tempat mereka bergantung. Pembukaan lahan besar-besaran telah merampas rumah purba mereka, memaksa kera berbulu kemerahan ini turun ke tanah dan berhadapan langsung dengan ancaman perburuan yang merenggut kebebasan mereka selamanya.',
+    image:
+      'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Yuli_Seperi_Orangutan_TNGL-1.jpg/1280px-Yuli_Seperi_Orangutan_TNGL-1.jpg',
+    alt: 'Induk Orangutan Sumatera menggendong anaknya di rimbunnya Taman Nasional Gunung Leuser',
+  },
+  {
+    id: 'macan-tutul-jawa',
+    title: 'Macan Tutul Jawa',
+    description:
+      'Kucing besar terakhir yang tersisa di Pulau Jawa ini hidup seperti bayangan akibat hilangnya hutan pegunungan. Terimpit oleh ekspansi lahan manusia, mereka terpaksa mundur dan bersembunyi di sisa-sisa tebing curam yang kian hari kian menyempit.',
+    image:
+      'https://images.unsplash.com/photo-1456926631375-92c8ce872def?auto=format&fit=crop&w=1600&q=80',
+    alt: 'Macan tutul bermata hijau beristirahat di atas dahan pohon berlumut',
+  },
+  {
+    id: 'harimau-sumatera',
+    title: 'Harimau Sumatera',
+    description:
+      'Kucing besar terakhir yang tersisa di Indonesia ini terus berpacu dengan waktu di tengah rimbunnya hutan Sumatera yang kian menyusut. Pembalakan liar dan jerat perburuan yang kejam tak henti mengintai, menyudutkan sang predator puncak ke ambang kepunahan sebelum aumannya benar-benar senyap menyusul kerabatnya di Jawa dan Bali.',
+    image:
+      'https://images.unsplash.com/photo-1566794774033-2de8ecd7b17c?auto=format&fit=crop&w=1600&q=80',
+    alt: 'Harimau berdiri waspada di antara rimbunnya batang bambu hijau',
+  },
+  {
+    id: 'anoa',
+    title: 'Anoa',
+    description:
+      'Sapi kerdil endemik kebanggaan Sulawesi ini semakin terpinggirkan dari habitat aslinya. Perburuan liar dan pembukaan hutan secara masif telah merampas ketenangan mereka, memaksa satwa pemalu yang gemar menyendiri di kedalaman rimba ini terus berlari mencari tempat bersembunyi yang kini seolah tak lagi tersisa.',
+    image:
+      'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Lowland_anoa.jpg/1280px-Lowland_anoa.jpg',
+    alt: 'Anoa dataran rendah endemik Sulawesi berdiri tampak samping di habitatnya',
+  },
+] as const
 
 export function SatwaPage() {
-  const [selectedRegion, setSelectedRegion] = useState<RegionFilter>('Semua')
-
-  const filteredSpecies = WILDLIFE_DATA.filter(
-    (item) => selectedRegion === 'Semua' || item.region === selectedRegion,
-  )
+  const handleScrollToSpecies = (event: MouseEvent<HTMLAnchorElement>) => {
+    const target = document.getElementById('daftar-satwa')
+    if (!target) return
+    event.preventDefault()
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    target.scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      block: 'start',
+    })
+  }
 
   return (
-    <main id="konten-utama" className="min-h-screen bg-white py-12 sm:py-16">
-      <div className="mx-auto max-w-6xl space-y-10 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl space-y-3 border-b border-neutral-200 pb-8">
-          <p className="inline-flex items-center gap-2 text-xs font-semibold text-green-700">
-            <PawPrint size={18} weight="regular" aria-hidden="true" />
-            <span>SATWA ENDEMIK &amp; HUTAN INDONESIA</span>
-          </p>
-          <ScrollReveal
-            as="h1"
-            className="text-3xl leading-[1.15] font-bold tracking-tight text-neutral-950 sm:text-5xl"
-          >
-            Satwa Langka Penjaga Keseimbangan Rimba.
-          </ScrollReveal>
-          <AnimatedContent distance={8} duration={0.65} threshold={0.1}>
-            <p className="text-sm leading-relaxed text-neutral-600 sm:text-base">
-              Ketika hutan terjaga, satwa liar berperan aktif menebar biji pohon
-              dan menjaga rantai makanan tetap seimbang. Kenali spesies kunci di
-              hutan Indonesia.
-            </p>
-          </AnimatedContent>
-        </div>
-
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div
-            role="group"
-            aria-label="Filter wilayah sebaran satwa"
-            className="flex flex-wrap gap-2"
-          >
-            {REGION_FILTERS.map((region) => {
-              const isActive = selectedRegion === region
-              return (
-                <button
-                  key={region}
-                  type="button"
-                  onClick={() => setSelectedRegion(region)}
-                  aria-pressed={isActive}
-                  className={cn(
-                    'inline-flex min-h-11 items-center rounded-full border px-5 py-2 text-xs font-semibold transition-colors sm:text-sm',
-                    isActive
-                      ? 'border-neutral-950 bg-neutral-950 text-white'
-                      : 'border-neutral-300 bg-white text-neutral-800 hover:bg-neutral-50',
-                  )}
-                >
-                  {region}
-                </button>
-              )
-            })}
+    <main id="konten-utama" className="min-h-screen bg-white">
+      <section
+        aria-label="Pengantar satwa langka"
+        className="mx-auto max-w-6xl px-5 pt-12 pb-16 sm:px-8 sm:pt-16 md:pt-20 md:pb-24"
+      >
+        <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 lg:gap-12">
+          <div className="md:col-span-6">
+            <ScrollReveal
+              as="h1"
+              className="text-3xl leading-[1.15] font-bold tracking-tight text-neutral-950 sm:text-4xl lg:text-[2.75rem]"
+            >
+              Mereka yang Kehilangan Rumah
+            </ScrollReveal>
+            <AnimatedContent distance={20} duration={0.65} delay={0.08}>
+              <p className="mt-5 max-w-xl text-sm leading-relaxed text-neutral-600 sm:text-base">
+                Hutan lebih dari sekadar pepohonan; ia adalah benteng terakhir
+                bagi ribuan spesies langka yang tak ditemukan di belahan bumi
+                mana pun. Mari kenali wajah-wajah asli penghuni hutan kita
+                sebelum mereka hanya menjadi sejarah.
+              </p>
+            </AnimatedContent>
+            <AnimatedContent distance={20} duration={0.65} delay={0.14}>
+              <a
+                href="#daftar-satwa"
+                onClick={handleScrollToSpecies}
+                className="group mt-8 inline-flex min-h-11 items-center gap-3 rounded-full bg-neutral-950 px-6 py-3 text-xs font-semibold text-white transition-all duration-200 hover:bg-neutral-800 sm:text-sm"
+              >
+                <span>Jelajahi Spesies</span>
+                <ArrowRight
+                  size={16}
+                  weight="bold"
+                  aria-hidden="true"
+                  className="transition-transform duration-200 group-hover:translate-x-0.5"
+                />
+              </a>
+            </AnimatedContent>
           </div>
 
-          <Link
-            to="/quiz"
-            className="group inline-flex min-h-11 items-center gap-2.5 rounded-full bg-neutral-950 py-1.5 pr-2 pl-5 text-xs font-medium text-white transition-colors duration-300 hover:bg-neutral-900 sm:text-sm"
+          <div className="md:col-span-6">
+            <AnimatedContent distance={28} duration={0.7} delay={0.1}>
+              <div className="grid grid-cols-2 gap-4 sm:gap-5">
+                <div className="photo-hover-card relative row-span-2 min-h-[300px] overflow-hidden rounded-2xl bg-neutral-100 sm:min-h-[380px]">
+                  <img
+                    src="https://images.unsplash.com/photo-1541799028-31d61060fdbd?auto=format&fit=crop&w=700&q=80"
+                    alt="Potret orangutan jantan di hutan hujan Indonesia"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </div>
+                <div className="photo-hover-card aspect-square overflow-hidden rounded-2xl bg-neutral-100">
+                  <img
+                    src="https://images.unsplash.com/photo-1553756109-4671268bafd3?auto=format&fit=crop&w=600&q=80"
+                    alt="Potret dekat kepala dan cula badak"
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="photo-hover-card aspect-square overflow-hidden rounded-2xl bg-neutral-100">
+                  <img
+                    src="https://plus.unsplash.com/premium_photo-1661828159832-19d8340f8e09?auto=format&fit=crop&w=600&q=80"
+                    alt="Badak bercula satu di habitat hutan hijau"
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </AnimatedContent>
+          </div>
+        </div>
+      </section>
+
+      <section
+        aria-label="Fakta kepunahan satwa"
+        className="mx-auto max-w-6xl px-5 py-12 sm:px-8 md:py-20"
+      >
+        <div className="grid grid-cols-1 items-center gap-7 md:grid-cols-12 md:gap-9 lg:gap-10">
+          <div className="md:col-span-5">
+            <AnimatedContent distance={24} duration={0.65}>
+              <div className="relative flex h-[196px] w-full max-w-[420px] items-end overflow-hidden rounded-[20px] bg-black pr-5 pb-4 pl-[138px] sm:h-[220px] sm:pr-6 sm:pb-5 sm:pl-[158px]">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute top-1/2 -left-5 -translate-y-[48%] text-[16rem] leading-none font-bold tracking-tighter text-[#9e9e9e] select-none sm:-left-6 sm:text-[18.25rem]"
+                >
+                  0
+                </span>
+                <p className="relative z-10 text-xs leading-[1.35] font-normal text-white/95 sm:text-[15px]">
+                  Sisa populasi dari spesies yang telah pergi selamanya.
+                </p>
+              </div>
+            </AnimatedContent>
+          </div>
+
+          <div className="md:col-span-7">
+            <ScrollReveal
+              as="h2"
+              className="text-2xl leading-[1.15] font-bold tracking-tight text-neutral-950 sm:text-4xl lg:text-[2.65rem]"
+            >
+              Beberapa suara kini telah sunyi.
+            </ScrollReveal>
+            <AnimatedContent distance={20} duration={0.65} delay={0.08}>
+              <p className="mt-3.5 max-w-[515px] text-sm leading-[1.5] font-medium text-neutral-900 sm:mt-4 sm:text-base">
+                Indonesia pernah menjadi rumah bagi keberagaman hayati yang tak
+                tertandingi. Namun, laju deforestasi dan perburuan masif telah
+                merampas rumah mereka. Delapan satwa ini bukan lagi sekadar
+                catatan sejarah, melainkan peringatan keras tentang apa yang
+                terjadi jika kita terus diam.
+              </p>
+            </AnimatedContent>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="daftar-satwa"
+        aria-labelledby="daftar-satwa-heading"
+        className="scroll-mt-24"
+      >
+        <div className="mx-auto max-w-4xl px-5 pt-12 pb-10 text-center sm:px-8 sm:pt-16 sm:pb-14">
+          <p className="text-[11px] font-bold tracking-[0.14em] text-neutral-950 uppercase sm:text-xs">
+            ARSIP KEHILANGAN
+          </p>
+          <ScrollReveal
+            as="h2"
+            id="daftar-satwa-heading"
+            className="mt-4 text-2xl leading-[1.2] font-bold tracking-tight text-neutral-950 sm:text-4xl"
           >
-            <span>Uji Pengetahuan di Quiz</span>
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-neutral-950 transition-transform duration-300 ease-out group-hover:translate-x-1">
-              <ArrowRight
-                size={15}
-                weight="bold"
-                aria-hidden="true"
-                className="transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-rotate-45"
-              />
-            </span>
-          </Link>
+            Jejak Langkah yang Telah Usai.
+          </ScrollReveal>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {filteredSpecies.map((species) => (
-            <article
-              key={species.id}
-              className="flex flex-col justify-between rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8"
-            >
-              <div className="space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="font-mono text-xs font-semibold text-neutral-600">
-                    Wilayah: {species.region}
-                  </span>
-                  <span className="rounded-full border border-amber-300 bg-amber-50 px-3 py-1 font-mono text-xs font-semibold text-amber-900">
-                    {species.status}
-                  </span>
-                </div>
-
-                <div>
-                  <ScrollReveal
-                    as="h2"
-                    className="text-2xl font-bold tracking-tight text-neutral-950"
-                  >
-                    {species.commonName}
-                  </ScrollReveal>
-                  <AnimatedContent distance={8} duration={0.65} threshold={0.1}>
-                    <p className="text-sm text-neutral-600 italic">
-                      {species.scientificName}
-                    </p>
-                  </AnimatedContent>
-                </div>
-
-                <AnimatedContent distance={8} duration={0.65} threshold={0.1}>
-                  <div className="space-y-3 border-t border-neutral-200 pt-4 text-sm leading-relaxed text-neutral-700">
-                    <p className="flex items-start gap-2.5">
-                      <Tree
-                        size={18}
-                        weight="regular"
-                        aria-hidden="true"
-                        className="mt-0.5 shrink-0 text-green-600"
-                      />
-                      <span>
-                        <strong className="text-neutral-950">Habitat:</strong>{' '}
-                        {species.habitat}.
-                      </span>
-                    </p>
-                    <p>
-                      <strong className="text-neutral-950">
-                        Peran ekologis:
-                      </strong>{' '}
-                      {species.roleInForest}
-                    </p>
-                    <p>
-                      <strong className="text-neutral-950">
-                        Ancaman utama:
-                      </strong>{' '}
-                      {species.mainThreat}
-                    </p>
-                  </div>
-                </AnimatedContent>
-              </div>
-
-              <AnimatedContent distance={8} duration={0.65} threshold={0.1}>
-                <div className="mt-6 flex items-start gap-2.5 rounded-xl bg-neutral-50 p-4 text-xs leading-relaxed text-neutral-800 sm:text-sm">
-                  <ShieldCheck
-                    size={18}
-                    weight="regular"
-                    aria-hidden="true"
-                    className="mt-0.5 shrink-0 text-green-600"
-                  />
-                  <span>
-                    <strong className="text-neutral-950">Langkah aksi:</strong>{' '}
-                    {species.conservationAction}
-                  </span>
-                </div>
-              </AnimatedContent>
-            </article>
+        <div>
+          {SATWA_PARALLAX_BANDS.map((item) => (
+            <ParallaxPillarBand
+              key={item.id}
+              item={item}
+              titleClassName="mx-auto max-w-5xl text-4xl leading-[1.1] font-bold tracking-tight text-white sm:text-6xl lg:text-[4.75rem]"
+              descriptionClassName="max-w-3xl text-sm leading-relaxed text-white/95 sm:text-base"
+            />
           ))}
         </div>
-      </div>
+      </section>
+
+      <section className="py-24 sm:py-32">
+        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <AnimatedContent distance={8} duration={0.65} threshold={0.15}>
+            <p className="text-sm font-medium text-neutral-700 sm:text-base">
+              Menjaga Bumi Dimulai dari Kita.
+            </p>
+          </AnimatedContent>
+          <ScrollReveal
+            as="h2"
+            className="mt-3 text-2xl leading-[1.22] font-bold tracking-tight text-neutral-950 sm:text-4xl"
+          >
+            Tidak semua perubahan harus dimulai dengan tindakan besar. Kebiasaan
+            sederhana yang dilakukan secara konsisten dapat membantu menjaga
+            lingkungan.
+          </ScrollReveal>
+          <AnimatedContent
+            distance={32}
+            duration={0.75}
+            delay={0.1}
+            threshold={0.15}
+            className="mt-8 flex justify-center"
+          >
+            <Link
+              to="/quiz"
+              className="group inline-flex min-h-12 items-center gap-6 rounded-full bg-neutral-950 py-2 pr-2.5 pl-8 text-sm font-medium text-white transition-all duration-300 hover:bg-neutral-900 active:scale-[0.99] sm:text-base"
+            >
+              <span>Mulai Kuis</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-950 transition-transform duration-300 ease-out group-hover:translate-x-1.5 sm:h-9 sm:w-9">
+                <ArrowRight
+                  size={16}
+                  weight="bold"
+                  aria-hidden="true"
+                  className="transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-rotate-45"
+                />
+              </span>
+            </Link>
+          </AnimatedContent>
+        </div>
+      </section>
     </main>
   )
 }

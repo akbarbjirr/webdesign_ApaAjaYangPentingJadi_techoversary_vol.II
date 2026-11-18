@@ -25,8 +25,8 @@ const CAMPAIGN_SHOWCASE: ParallaxBandItem[] = [
     description:
       'Hutan adalah penopang kehidupan dan rumah bagi berbagai spesies. Melindunginya berarti menjaga keseimbangan ekosistem dan masa depan alam.',
     image:
-      'https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1280&q=75',
-    alt: 'Lembah hutan pinus dan padang rumput hijau dengan tebing batu bermandikan cahaya matahari',
+      'https://images.unsplash.com/photo-1772295651128-fede8b060c56?auto=format&fit=crop&w=1280&q=75',
+    alt: 'Air terjun tinggi di tengah lebatnya pepohonan hutan hujan tropis',
   },
   {
     id: 'satwa',
@@ -43,8 +43,8 @@ const CAMPAIGN_SHOWCASE: ParallaxBandItem[] = [
     description:
       'Pengelolaan sampah merupakan tanggung jawab bersama. Kebiasaan sederhana seperti mengurangi, memilah, dan menggunakan kembali barang dapat membantu mengurangi pencemaran.',
     image:
-      'https://images.unsplash.com/photo-1713016877596-6a800832e15c?auto=format&fit=crop&w=1280&q=75',
-    alt: 'Tumpukan sampah plastik beraneka warna yang mencemari lingkungan',
+      'https://images.unsplash.com/photo-1584921467312-99ff98cc2ebd?auto=format&fit=crop&w=1280&q=75',
+    alt: 'Tumpukan kantong sampah plastik berwarna-warni yang mencemari lingkungan',
   },
 ]
 
@@ -297,40 +297,28 @@ interface WildlifeMarqueeItem {
 
 const WILDLIFE_GALLERY: WildlifeMarqueeItem[] = [
   {
-    id: 'owl-flight',
+    id: 'tiger-forest',
     image:
-      'https://images.unsplash.com/photo-1792942204448-775ef17baa7b?auto=format&fit=crop&w=600&q=75',
-    alt: 'Burung hantu elang terbang membentangkan sayap di alam terbuka',
+      'https://images.unsplash.com/photo-1602388283137-d55be9fa15ad?auto=format&fit=crop&w=600&q=75',
+    alt: 'Harimau berenang di perairan habitat hutan alaminya',
   },
   {
-    id: 'eagle-mist',
+    id: 'elephant-wild',
     image:
-      'https://images.unsplash.com/photo-1485488448524-23e9ea0a94cd?auto=format&fit=crop&w=600&q=75',
-    alt: 'Elang botak terbang melintasi latar langit gelap berkabut',
+      'https://images.unsplash.com/photo-1660897589784-ae6b51e3f5ca?auto=format&fit=crop&w=600&q=75',
+    alt: 'Gajah melangkah di padang rumput hijau dengan pepohonan rimbun',
   },
   {
     id: 'orangutan-canopy',
     image:
       'https://images.unsplash.com/photo-1762301394169-af73f9553e74?auto=format&fit=crop&w=600&q=75',
-    alt: 'Orangutan bergelantungan di dahan pohon kawasan hutan alami',
+    alt: 'Orangutan berambut merah kecokelatan di dahan pohon hutan',
   },
   {
     id: 'rhino-trail',
     image:
-      'https://images.unsplash.com/photo-1696894134345-abdb955875b2?auto=format&fit=crop&w=600&q=75',
-    alt: 'Badak berjalan di jalur habitat alaminya saat senja',
-  },
-  {
-    id: 'tiger-forest',
-    image:
-      'https://images.unsplash.com/photo-1508817628294-5a453fa0b8fb?auto=format&fit=crop&w=600&q=75',
-    alt: 'Harimau beristirahat di habitat hutan alaminya',
-  },
-  {
-    id: 'elephant-wild',
-    image:
-      'https://images.unsplash.com/photo-1597487389339-5591e52de66f?auto=format&fit=crop&w=600&q=75',
-    alt: 'Gajah Asia melangkah di kawasan vegetasi terbuka',
+      'https://plus.unsplash.com/premium_photo-1661828159832-19d8340f8e09?auto=format&fit=crop&w=600&q=75',
+    alt: 'Badak bercula satu berjalan di jalur tanah habitat alaminya',
   },
 ]
 
@@ -343,13 +331,13 @@ function MarqueeCardList({ decorative = false }: { decorative?: boolean }) {
       {WILDLIFE_GALLERY.map((item) => (
         <li
           key={decorative ? `${item.id}-dup` : item.id}
-          className="photo-hover-card aspect-square w-[240px] shrink-0 rounded-[20px] bg-neutral-100 sm:w-[300px] lg:w-[340px]"
+          className="photo-hover-card aspect-[4/5] w-[220px] shrink-0 rounded-[20px] bg-neutral-100 sm:w-[270px] lg:w-[300px]"
         >
           <img
             src={item.image}
             alt={decorative ? '' : item.alt}
-            width={340}
-            height={340}
+            width={300}
+            height={375}
             loading="lazy"
             decoding="async"
             className="h-full w-full object-cover"
@@ -439,8 +427,8 @@ export function AboutPage() {
             >
               <div className="photo-hover-card rounded-[20px] bg-neutral-100">
                 <img
-                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80"
-                  alt="Danau alam jernih yang memantulkan langit biru dan perbukitan hijau"
+                  src="https://images.unsplash.com/photo-1493034908614-a06e7a4712d5?auto=format&fit=crop&w=1000&q=80"
+                  alt="Puncak pegunungan di balik deretan pepohonan pinus hijau di bawah langit cerah"
                   width={760}
                   height={720}
                   loading="lazy"

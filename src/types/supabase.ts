@@ -16,9 +16,14 @@ export type Database = {
         Row: {
           correct_index: number
           created_at: string
+          difficulty: string
           explanation: string
           id: string
+          image_url: string | null
+          materi: string
+          option_explanations: Json
           options: Json
+          points: number
           question: string
           scenario: string
           sort_order: number
@@ -26,9 +31,14 @@ export type Database = {
         Insert: {
           correct_index: number
           created_at?: string
+          difficulty?: string
           explanation: string
           id: string
+          image_url?: string | null
+          materi?: string
+          option_explanations?: Json
           options: Json
+          points?: number
           question: string
           scenario: string
           sort_order?: number
@@ -36,9 +46,14 @@ export type Database = {
         Update: {
           correct_index?: number
           created_at?: string
+          difficulty?: string
           explanation?: string
           id?: string
+          image_url?: string | null
+          materi?: string
+          option_explanations?: Json
           options?: Json
+          points?: number
           question?: string
           scenario?: string
           sort_order?: number
@@ -49,28 +64,34 @@ export type Database = {
         Row: {
           answers: Json
           created_at: string
+          difficulty: string
           id: string
           institution: string | null
           participant_name: string
           score: number
+          total_points: number
           total_questions: number
         }
         Insert: {
           answers?: Json
           created_at?: string
+          difficulty?: string
           id?: string
           institution?: string | null
           participant_name: string
           score: number
+          total_points?: number
           total_questions: number
         }
         Update: {
           answers?: Json
           created_at?: string
+          difficulty?: string
           id?: string
           institution?: string | null
           participant_name?: string
           score?: number
+          total_points?: number
           total_questions?: number
         }
         Relationships: []
@@ -80,7 +101,29 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_quiz_questions: {
+        Args: { p_difficulty?: string }
+        Returns: {
+          difficulty: string
+          id: string
+          image_url: string | null
+          materi: string
+          options: Json
+          points: number
+          question: string
+          scenario: string
+          sort_order: number
+        }[]
+      }
+      submit_and_grade_quiz: {
+        Args: {
+          p_answers: Json
+          p_difficulty: string
+          p_institution: string
+          p_participant_name: string
+        }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never

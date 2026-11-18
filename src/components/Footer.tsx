@@ -24,7 +24,7 @@ const FOOTER_COLUMNS: FooterColumn[] = [
   },
   {
     heading: 'Challenge',
-    links: [{ to: '/quiz', label: 'Quiz' }],
+    links: [{ to: '/quiz', label: 'Kuis' }],
   },
 ]
 

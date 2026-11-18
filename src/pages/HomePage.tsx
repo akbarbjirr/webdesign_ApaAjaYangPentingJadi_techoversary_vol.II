@@ -145,7 +145,7 @@ export function HomePage() {
               threshold={0.02}
               className="mt-8 flex justify-center sm:mt-10"
             >
-              <PillActionLink to="/quiz" label="Yuk Quiz" />
+              <PillActionLink to="/quiz" label="Yuk Kuis" />
             </AnimatedContent>
           </div>
 

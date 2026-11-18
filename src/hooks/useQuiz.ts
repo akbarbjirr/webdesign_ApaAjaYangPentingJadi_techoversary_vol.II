@@ -1,20 +1,39 @@
-import { useCallback, useEffect, useState } from 'react'
-import { QUIZ_QUESTIONS, type QuizQuestion } from '@/data/forestData'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   fetchQuizQuestions,
   fetchQuizSubmissions,
-  submitQuizScore,
+  submitAndGradeQuiz,
 } from '@/services/quizService'
+import type {
+  QuizDifficulty,
+  QuizQuestion,
+  QuizReviewItem,
+} from '@/types/quiz'
 import type { QuizSubmissionRow } from '@/types/supabase'
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
+
+const LEADERBOARD_FETCH_LIMIT = 500
 
 function getErrorMessage(error: unknown, fallback: string): string {
   return error instanceof Error ? error.message : fallback
 }
 
+function sortLeaderboardRows(rows: QuizSubmissionRow[]): QuizSubmissionRow[] {
+  return [...rows].sort((a, b) => {
+    if (b.total_points !== a.total_points) {
+      return b.total_points - a.total_points
+    }
+    if (b.score !== a.score) {
+      return b.score - a.score
+    }
+    return a.created_at.localeCompare(b.created_at)
+  })
+}
+
 export function useQuiz() {
-  const [questions, setQuestions] = useState<QuizQuestion[]>(QUIZ_QUESTIONS)
+  const [difficulty, setDifficultyState] = useState<QuizDifficulty>('mudah')
+  const [allQuestions, setAllQuestions] = useState<QuizQuestion[]>([])
   const [questionsLoading, setQuestionsLoading] = useState(true)
   const [questionsError, setQuestionsError] = useState<string | null>(null)
 
@@ -31,68 +50,76 @@ export function useQuiz() {
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [lastSubmission, setLastSubmission] =
     useState<QuizSubmissionRow | null>(null)
+  const [reviewItems, setReviewItems] = useState<QuizReviewItem[]>([])
 
-  const applyQuestionsSuccess = useCallback(
-    (loadedQuestions: QuizQuestion[]) => {
-      setQuestions(loadedQuestions)
-      setQuestionsError(null)
-      setCurrentIndex((prev) => (prev < loadedQuestions.length ? prev : 0))
-    },
-    [],
+  const questions = useMemo(
+    () => allQuestions.filter((item) => item.difficulty === difficulty),
+    [allQuestions, difficulty],
   )
 
-  const applyQuestionsError = useCallback((error: unknown) => {
-    setQuestionsError(getErrorMessage(error, 'Gagal memuat soal kuis.'))
-    setQuestions(QUIZ_QUESTIONS)
-  }, [])
-
-  const applySubmissionsError = useCallback((error: unknown) => {
-    setSubmissionsError(
-      getErrorMessage(error, 'Gagal memuat catatan skor peserta.'),
-    )
-  }, [])
+  const questionCounts = useMemo(
+    () => ({
+      mudah: allQuestions.filter((item) => item.difficulty === 'mudah').length,
+      sedang: allQuestions.filter((item) => item.difficulty === 'sedang')
+        .length,
+      sulit: allQuestions.filter((item) => item.difficulty === 'sulit').length,
+    }),
+    [allQuestions],
+  )
 
   const reloadQuestions = useCallback(async () => {
     setQuestionsLoading(true)
     setQuestionsError(null)
     try {
       const result = await fetchQuizQuestions()
-      applyQuestionsSuccess(result)
+      setAllQuestions(result)
+      setCurrentIndex(0)
     } catch (error) {
-      applyQuestionsError(error)
+      setQuestionsError(
+        getErrorMessage(error, 'Gagal memuat soal kuis dari database.'),
+      )
     } finally {
       setQuestionsLoading(false)
     }
-  }, [applyQuestionsError, applyQuestionsSuccess])
+  }, [])
 
   const reloadSubmissions = useCallback(async () => {
     setSubmissionsLoading(true)
     setSubmissionsError(null)
     try {
-      const rows = await fetchQuizSubmissions(6)
+      const rows = await fetchQuizSubmissions(LEADERBOARD_FETCH_LIMIT)
       setSubmissions(rows)
     } catch (error) {
-      applySubmissionsError(error)
+      setSubmissionsError(
+        getErrorMessage(error, 'Gagal memuat data papan peringkat.'),
+      )
     } finally {
       setSubmissionsLoading(false)
     }
-  }, [applySubmissionsError])
+  }, [])
 
   useEffect(() => {
     let cancelled = false
 
     fetchQuizQuestions()
       .then((result) => {
-        if (!cancelled) applyQuestionsSuccess(result)
+        if (!cancelled) {
+          setAllQuestions(result)
+          setQuestionsError(null)
+        }
       })
       .catch((error: unknown) => {
-        if (!cancelled) applyQuestionsError(error)
+        if (!cancelled) {
+          setQuestionsError(
+            getErrorMessage(error, 'Gagal memuat soal kuis dari database.'),
+          )
+        }
       })
       .finally(() => {
         if (!cancelled) setQuestionsLoading(false)
       })
 
-    fetchQuizSubmissions(6)
+    fetchQuizSubmissions(LEADERBOARD_FETCH_LIMIT)
       .then((rows) => {
         if (!cancelled) {
           setSubmissions(rows)
@@ -100,7 +127,11 @@ export function useQuiz() {
         }
       })
       .catch((error: unknown) => {
-        if (!cancelled) applySubmissionsError(error)
+        if (!cancelled) {
+          setSubmissionsError(
+            getErrorMessage(error, 'Gagal memuat data papan peringkat.'),
+          )
+        }
       })
       .finally(() => {
         if (!cancelled) setSubmissionsLoading(false)
@@ -109,12 +140,22 @@ export function useQuiz() {
     return () => {
       cancelled = true
     }
-  }, [applyQuestionsError, applyQuestionsSuccess, applySubmissionsError])
+  }, [])
 
-  const answeredCount = Object.keys(selectedAnswers).length
-  const correctCount = questions.reduce((acc, item) => {
-    return selectedAnswers[item.id] === item.correctIndex ? acc + 1 : acc
-  }, 0)
+  const answeredCount = questions.reduce(
+    (acc, item) => (selectedAnswers[item.id] !== undefined ? acc + 1 : acc),
+    0,
+  )
+
+  const setDifficulty = useCallback((nextDifficulty: QuizDifficulty) => {
+    setDifficultyState(nextDifficulty)
+    setSelectedAnswers({})
+    setCurrentIndex(0)
+    setSubmitState('idle')
+    setSubmitError(null)
+    setLastSubmission(null)
+    setReviewItems([])
+  }, [])
 
   const selectAnswer = useCallback(
     (questionId: string, optionIndex: number) => {
@@ -136,6 +177,7 @@ export function useQuiz() {
     setSubmitState('idle')
     setSubmitError(null)
     setLastSubmission(null)
+    setReviewItems([])
   }, [])
 
   const submitScore = useCallback(
@@ -151,10 +193,15 @@ export function useQuiz() {
         setSubmitError('Nama peserta maksimal 80 karakter.')
         return false
       }
+      if (questions.length === 0) {
+        setSubmitState('error')
+        setSubmitError('Soal kuis tidak tersedia.')
+        return false
+      }
       if (answeredCount < questions.length) {
         setSubmitState('error')
         setSubmitError(
-          `Jawab seluruh ${questions.length} skenario terlebih dahulu sebelum menyimpan skor.`,
+          `Jawab seluruh ${questions.length} pertanyaan terlebih dahulu sebelum menyimpan skor.`,
         )
         return false
       }
@@ -162,28 +209,42 @@ export function useQuiz() {
       setSubmitState('submitting')
       setSubmitError(null)
       try {
-        const saved = await submitQuizScore({
-          participant_name: trimmedName,
-          institution: institution?.trim() || null,
-          score: correctCount,
-          total_questions: questions.length,
+        const result = await submitAndGradeQuiz({
+          participantName: trimmedName,
+          institution: institution?.trim() || '',
+          difficulty,
           answers: selectedAnswers,
         })
-        setLastSubmission(saved)
+        setLastSubmission(result.submission)
+        setReviewItems(result.review)
         setSubmitState('success')
-        setSubmissions((prev) => [saved, ...prev].slice(0, 6))
+
+        try {
+          const refreshed = await fetchQuizSubmissions(LEADERBOARD_FETCH_LIMIT)
+          setSubmissions(refreshed)
+        } catch {
+          setSubmissions((prev) =>
+            sortLeaderboardRows([result.submission, ...prev]),
+          )
+        }
+
         return true
       } catch (error) {
         setSubmitState('error')
-        setSubmitError(getErrorMessage(error, 'Gagal menyimpan skor.'))
+        setSubmitError(
+          getErrorMessage(error, 'Gagal menilai dan menyimpan skor.'),
+        )
         return false
       }
     },
-    [answeredCount, correctCount, questions.length, selectedAnswers],
+    [answeredCount, difficulty, questions.length, selectedAnswers],
   )
 
   return {
+    difficulty,
+    setDifficulty,
     questions,
+    questionCounts,
     questionsLoading,
     questionsError,
     reloadQuestions,
@@ -193,7 +254,6 @@ export function useQuiz() {
     selectedAnswers,
     selectAnswer,
     answeredCount,
-    correctCount,
     resetQuiz,
     submissions,
     submissionsLoading,
@@ -202,6 +262,7 @@ export function useQuiz() {
     submitState,
     submitError,
     lastSubmission,
+    reviewItems,
     submitScore,
   }
 }

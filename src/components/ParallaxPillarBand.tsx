@@ -17,11 +17,13 @@ export interface ParallaxBandItem {
 interface ParallaxPillarBandProps {
   item: ParallaxBandItem
   titleClassName?: string
+  descriptionClassName?: string
 }
 
 export function ParallaxPillarBand({
   item,
   titleClassName = 'text-5xl font-bold tracking-tight text-white sm:text-7xl lg:text-[5.5rem]',
+  descriptionClassName = 'max-w-lg text-sm leading-relaxed text-white/95 sm:text-base',
 }: ParallaxPillarBandProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const mediaRef = useRef<HTMLDivElement>(null)
@@ -121,7 +123,7 @@ export function ParallaxPillarBand({
             stagger={0.025}
             delay={0.12}
             threshold={0.05}
-            className="max-w-lg text-sm leading-relaxed text-white/95 sm:text-base"
+            className={descriptionClassName}
           />
         </div>
       </div>

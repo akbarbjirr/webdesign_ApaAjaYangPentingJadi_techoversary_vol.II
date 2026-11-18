@@ -61,13 +61,13 @@ const FOREST_THREATS = [
 ] as const
 
 const CONSERVATION_PHOTOS = {
-  forestRays: {
-    src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=80',
-    alt: 'Sinar matahari pagi menembus lebatnya pepohonan hutan yang hijau',
+  orangutanClimb: {
+    src: 'https://images.unsplash.com/photo-1727100828954-8759b3e98d21?auto=format&fit=crop&w=900&q=80',
+    alt: 'Orangutan bergelantungan pada batang pohon di tengah hutan hujan Sumatera',
   },
-  handFern: {
-    src: 'https://images.unsplash.com/photo-1687263149867-44b84c581d91?auto=format&fit=crop&w=900&q=80',
-    alt: 'Tangan menyentuh daun pakis hijau yang terkena cahaya matahari di hutan',
+  treeClimber: {
+    src: 'https://images.unsplash.com/photo-1750787161686-da5eaa90667f?auto=format&fit=crop&w=900&q=80',
+    alt: 'Peneliti memanjat batang pohon raksasa menggunakan helm dan tali pengaman di hutan hujan',
   },
 } as const
 
@@ -329,8 +329,8 @@ export function HutanPage() {
               >
                 <div className="photo-hover-card rounded-[24px] bg-neutral-100">
                   <img
-                    src={CONSERVATION_PHOTOS.forestRays.src}
-                    alt={CONSERVATION_PHOTOS.forestRays.alt}
+                    src={CONSERVATION_PHOTOS.orangutanClimb.src}
+                    alt={CONSERVATION_PHOTOS.orangutanClimb.alt}
                     width={540}
                     height={756}
                     loading="lazy"
@@ -350,8 +350,8 @@ export function HutanPage() {
               >
                 <div className="photo-hover-card rounded-[24px] bg-neutral-100">
                   <img
-                    src={CONSERVATION_PHOTOS.handFern.src}
-                    alt={CONSERVATION_PHOTOS.handFern.alt}
+                    src={CONSERVATION_PHOTOS.treeClimber.src}
+                    alt={CONSERVATION_PHOTOS.treeClimber.alt}
                     width={540}
                     height={756}
                     loading="lazy"

@@ -243,7 +243,7 @@ export function Navbar() {
             to="/quiz"
             className="group inline-flex min-h-11 items-center gap-2.5 rounded-full bg-neutral-950 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.99]"
           >
-            <span>Quiz</span>
+            <span>Kuis</span>
             <ArrowRight
               size={16}
               weight="bold"
@@ -393,7 +393,7 @@ export function Navbar() {
                 onClick={closeAllMenus}
                 className="group inline-flex min-h-11 w-full items-center justify-center gap-2.5 rounded-full bg-neutral-950 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-neutral-800"
               >
-                <span>Quiz</span>
+                <span>Kuis</span>
                 <ArrowRight
                   size={16}
                   weight="bold"
